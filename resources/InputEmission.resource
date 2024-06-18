@@ -9,6 +9,7 @@ Resource          FormUtility.resource
 Go To Input Emission
     VAR    ${navlink input}    //div[contains(@class, 'mantine-Flex-root')]/a[2]
     Click Element    ${navlink input}
+    Wait Until Element Is Visible    ${navlink input}//span[text()='Emissions']
     Click Element    ${navlink input}//span[text()='Emissions']
     Wait Until Element Is Not Visible    //div[contains(@class, 'styles_loadingOverlayContent')]
     Wait Until Element Is Not Visible    //td//span[contains(@class, 'mantine-Loader-root')]
@@ -25,16 +26,6 @@ Go To Input Emission By Url
     Go To    ${url to go}
     Wait Until Element Is Not Visible    //div[contains(@class, 'styles_loadingOverlayContent')]
     Wait Until Element Is Not Visible    //td//span[contains(@class, 'mantine-Loader-root')]
-
-Filter Org Only
-    [Arguments]    ${org name}
-    Wait Until Element Is Visible    css:.mantine-PillsInput-input
-    Click Element    css:.mantine-PillsInput-input     #filter org button
-    VAR    ${filter dropdown}    //div[contains(@class, 'mantine-Combobox-dropdown')]     #ก้อน dropdown
-    Click Element    ${filter dropdown}
-    Run Keyword And Ignore Error    Click Element    //p[text()='All Organizations']/..//div[@data-checked="true"]     #เอา all org ออก
-    Click Element    //div[contains(@class, 'mantine-Combobox-dropdown')]//*[local-name()='svg' and not(@class)]    #กด+
-    Click Element    ${filter dropdown}//p[text()='${org name}']   #เลือก org 
 
 Add Emission Page 1 2
     [Arguments]    ${org name}    ${site name}    ${group}
@@ -63,7 +54,7 @@ Select Date of Activity
         RETURN
     END
     Click Element    //form//label[.//*[text()='Date of Activity']]
-    Wait Until Element Is Visible   //button[contains(@class, 'calendarHeaderLevel')] 
+    Wait Until Element Is Visible   //button[contains(@class, 'calendarHeaderLevel')]
     Select Date    ${from}
     IF  $to is None
         Press Keys    ${None}    RETURN
@@ -369,7 +360,8 @@ Enter Employee Commuting or Business Travel Form
     ...    ${publisher}=${None}
     ...    ${vendor}=${None}
     ...    ${unit}=${None}
-    ...    ${distance}=${None}    ${amount}=${None}
+    ...    ${distance}=${None}
+    ...    ${amount}=${None}
     ...    ${remark}=${None}
     Select Date of Activity    ${from date}    ${to date}
     Select Drop Down    Mode of Transport    ${mode}
@@ -392,9 +384,8 @@ Enter Employee Commuting or Business Travel Form
     Select Drop Down    Unit    ${unit}
     Input Text With Default    //input[@placeholder="Distance"]    ${distance}    100
     IF  $amount is not None
-        Input Text    //input[@id=//form//label[./div[text()='Amount of Employees']]/@for]    ${amount}    
+        Input Text    //input[@id=//form//label[./div[text()='Amount of Employees']]/@for]    ${amount}
     END
-    
     IF  $remark is not None
         Input Text    name:remark    ${remark}
     END
