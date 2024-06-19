@@ -3,20 +3,23 @@ Documentation     Keywords that can be reuse. Author: Sanfong
 Library           SeleniumLibrary
 Library           String
 
+*** Variables ***
+${POPOVER_XPATH}    (//div[contains(@class, 'Popover-dropdown') and not(contains(@style,'display: none'))])[last()]
+
 *** Keywords ***
 Find WebElement
-    [Documentation]    Find element matching `locator`.
+    [Documentation]    Find element matching ``locator``.
     ...
-    ...    `locator`: Locator to use when searching the element.
+    ...    ``locator``: Locator to use when searching the element.
     ...
-    ...    `required`: Raise `ElementNotFound` if element not found when `${True}`, return `None` otherwise.
+    ...    ``required``: Raise ``ElementNotFound`` if element not found when ``True``, return ``None`` otherwise.
     ...
-    ...    `parent`: Optional parent `WebElememt` to search child elements
+    ...    ``parent``: Optional parent ``WebElememt`` to search child elements
     ...    
-    ...    `return`: Found `WebElement` or `None` if element not found and `required` is `${False}`.
+    ...    ``return``: Found ``WebElement`` or ``None`` if element not found and ``required`` is ``False``.
     ...
-    ...    ข้างใน `Get WebElement` จริงๆแล้วมี arguments มากถึง 4 ช่องแต่ selenium ทำเป็น keyword แล้วมีให้ใส่แค่ช่องเดียว
-    ...    ใช้งานได้เหมือน `Get WebElement` แต่มักจะใช้เมื่อต้องการ WebElement แต่ไม่ต้องการให้เกิด error เมื่อหาไม่เจอ
+    ...    ข้างใน ``Get WebElement`` จริงๆแล้วมี arguments มากถึง 4 ช่องแต่ selenium ทำเป็น keyword แล้วมีให้ใส่แค่ช่องเดียว
+    ...    ใช้งานได้เหมือน ``Get WebElement`` แต่มักจะใช้เมื่อต้องการ WebElement แต่ไม่ต้องการให้เกิด error เมื่อหาไม่เจอ
     ...    ---
     ...    Examples:
     ...    | Get WebElement  | //svg |                  | \# Fail: Element with locator '//svg' not found. |
@@ -26,12 +29,6 @@ Find WebElement
     # Run Keyword And Return    Evaluate    robot.libraries.BuiltIn.BuiltIn().get_library_instance('SeleniumLibrary')._element_finder.find_element($locator, required=$required, parent=$parent)    modules=robot
     ${selenium}    Get Library Instance    SeleniumLibrary
     RETURN    ${{$selenium._element_finder.find_element($locator, required=$required, parent=$parent)}}
-
-Blur Active Element
-    [Documentation]    Removes keyboard focus from the current element.
-    ${element}    Execute Javascript    return document.activeElement
-    Execute Javascript    document.activeElement.blur()
-    RETURN    ${element}
 
 Check Input Type
     [Documentation]
@@ -46,21 +43,24 @@ Check Input Type
     RETURN    TF
 
 Get Id From Label In Modal Form
-    [Documentation]    คืน id ของ input จาก label ที่มี `text` ที่ได้รับมา
-    ...    และ `compare` คือสิ่งที่จะเอามาเทียบกับ `text`
-    [Arguments]
-    ...    ${text}    ${compare}=text()
+    [Documentation]    คืน id ของ input จาก label ที่มี ``text`` ที่ได้รับมา
+    ...    และ ``compare`` คือสิ่งที่จะเอามาเทียบกับ ``text``
+    [Arguments]    ${text}    ${compare}=text()
     VAR    ${xpath}    (//label[(contains(@class, 'InputWrapper-label') or contains(@class, 'Checkbox-label')) and ./descendant-or-self::*[${compare}='${text}']])[last()]
     ${input id}    Get Element Attribute    ${xpath}    for
     RETURN    ${input id}
 
 Select Date
-    [Documentation]    เลือกเดือนและปีในปฏิทินตาม `month year` ด้วยรูปแบบเดือนเว้นวรรคด้วยปี เช่น `Oct 2002`
+    [Documentation]    เลือกเดือนและปีในปฏิทินตาม ``month year`` ด้วยรูปแบบเดือนเว้นวรรคปี เช่น ``Oct 2002``
     [Arguments]    ${month year}
     # แบ่ง 'month year' ออกเป็น 'month' และ 'year'
     ${month}    ${year}    Split String    ${month year}
+
+    ${selenium}    Get Library Instance    SeleniumLibrary
+    VAR    ${speed}       ${selenium.speed}
+    Set Selenium Speed    ${{$selenium.speed / 8}}
     # ดูปีในปฏิทิน
-    Wait Until Element Is Visible   //button[contains(@class, 'calendarHeaderLevel') and text()] 
+    Wait Until Element Is Visible   //button[contains(@class, 'calendarHeaderLevel') and text()]
     ${calendar year}    Get Text    //button[contains(@class, 'calendarHeaderLevel')]
     # หาความต่างปีปัจจุบันกับปีที่ต้องการ
     VAR    ${year diff}         ${{${year} - ${calendar year}}}
@@ -70,20 +70,36 @@ Select Date
     VAR    ${year diff}         ${{abs(${year diff})}}
     # กดเปลี่ยนปี year diff ครั้ง
     FOR  ${i}  IN RANGE  ${year diff}
-        Wait Until Element Is Enabled    //button[@data-direction="${year direction}"]
         Wait Until Element Is Visible    //button[@data-direction="${year direction}"]
-        Click Element    //button[@data-direction="${year direction}"]
+        Element Should Be Enabled        //button[@data-direction="${year direction}"]
+        Click Element                    //button[@data-direction="${year direction}"]
     END
     # เลือกเดือน
     VAR    ${month button}    //table[contains(@class, 'monthsList')]//button[text()='${month}']
     Wait Until Element Is Visible    ${month button}
-    Wait Until Element Is Enabled    ${month button}
-    Click Element    ${month button}
+    Element Should Be Enabled        ${month button}
+    Click Element                    ${month button}
+    Set Selenium Speed               ${speed}
+
+Select Exact Date
+    [Documentation]    เลือกวันเดือนและปีในปฏิทินตาม ``day month year`` ด้วยรูปแบบวันที่เว้นวรรคเดือนเว้นวรรคปี เช่น ``3 Oct 2002``
+    ...
+    ...    ใช้กับ Report Date ในหน้า edit report
+    [Arguments]    ${day month year}
+
+    ${day}    ${month}    ${year}    Split String    ${day month year}
+    VAR    ${month year button}      //button[contains(@class, 'calendarHeaderLevel') and text()]
+    Wait Until Element Is Visible    ${month year button}
+    Click Button                     ${month year button}
+    Select Date                      ${month} ${year}
+    VAR    ${day button}    //table[contains(@class, 'DatePickerInput')]//button[text()='${day}' and not(@data-outside)]
+    Wait Until Element Is Visible    ${day button}
+    Click Button                     ${day button}
 
 Select Drop Down
     [Documentation]
-    ...    หาแล้วคลิก drop down จาก `label` ที่ได้มาแล้วเลือก `option`
-    ...    หาก `option` เป็น `None` จะเป็นการกดลูกษรลงตามด้วยปุ่ม Enter
+    ...    หาแล้วคลิก drop down จาก ``label`` ที่ได้มาแล้วเลือก ``option``
+    ...    หาก ``option`` เป็น ``None`` จะเป็นการกดลูกษรลงตามด้วยปุ่ม Enter
     ...
     ...    มักจะใช้ในการเลือกข้อมูลใน form
     ...    ---
@@ -92,13 +108,14 @@ Select Drop Down
     ...    | Select Drop Down | Site         | Building 1    | # เลือก site เป็น Building 1   |
     [Arguments]    ${label}    ${option}=${None}
     ${drop down}    Get Id From Label In Modal Form    ${label}
+    Scroll Element Into View       id:${drop down}
     Select Drop Down By Locator    id:${drop down}    ${option}
 
 Select Drop Down By Locator
     [Documentation]
-    ...    คลิก drop down จาก `locator` ที่ได้มาแล้วเลือก `option`
-    ...    โดย element ที่ได้จาก `locator` ควรเป็น tag input
-    ...    และหาก `option` เป็น `None` จะเป็นการกดลูกษรลงตามด้วยปุ่ม Enter
+    ...    คลิก drop down จาก ``locator`` ที่ได้มาแล้วเลือก ``option``
+    ...    โดย element ที่ได้จาก ``locator`` ควรเป็น tag input
+    ...    และหาก ``option`` เป็น ``None`` จะเป็นการกดลูกษรลงตามด้วยปุ่ม Enter
     ...
     ...    มักจะใช้ในการเลือกข้อมูลจาก drop down ที่ไม่มี label เช่น drop down ใน Access Control
     ...    ---
@@ -111,23 +128,20 @@ Select Drop Down By Locator
         ${value}    Get Value    ${locator}
         IF    $value    RETURN
         Click Element    ${locator}
-        # Wait Until Element Is Visible    //div[contains(@class, 'mantine-Select')]
-        Wait Until Element Is Visible    //div[@role='presentation' and not(contains(@style,'display: none'))]
+        Wait Until Element Is Visible    ${POPOVER_XPATH}
         Press Keys    ${None}    ARROW_DOWN    RETURN
         RETURN
     END
-    # VAR    ${option element}    //div[@role="option" and (text()='${option}' or ./span[text()='${option}'])]
-    # VAR    ${option element}    (//div[@role="option" and ./descendant-or-self::*[text()='${option}']])[last()]
-    VAR    ${option element}    //div[@role='presentation' and not(contains(@style,'display: none'))]//div[@role="option" and ./descendant-or-self::*[text()='${option}']]
+    VAR    ${option element}    ${POPOVER_XPATH}//div[@role="option" and ./descendant-or-self::*[text()='${option}']]
     Click Element    ${locator}
     Wait Until Element Is Visible    ${option element}
     Click Element    ${option element}
 
 MultiSelect Drop Down By Locator
     [Documentation]
-    ...    คลิก drop down จาก `locator` ที่ได้มาแล้วเลือกข้อมูลทั้งหมดตาม `select options`
-    ...    โดย element ที่ได้จาก `locator` ควรเป็น tag input
-    ...    และหากไม่ใส่ `select options` จะเป็นการไม่เลือกอะไรเลย
+    ...    คลิก drop down จาก ``locator`` ที่ได้มาแล้วเลือกข้อมูลทั้งหมดตาม ``select options``
+    ...    โดย element ที่ได้จาก ``locator`` ควรเป็น tag input
+    ...    และหากไม่ใส่ ``select options`` จะเป็นการไม่เลือกอะไรเลย
     ...
     ...    มักจะใช้ในการเลือกข้อมูลจาก drop down หลายตัวเลือกเช่น drop down ใน Filter หรือ Report Template
     ...    ---
@@ -137,26 +151,28 @@ MultiSelect Drop Down By Locator
     [Arguments]    ${locator}    @{select options}
     # กด drop down แล้วรอตัวเลือกแสดง
     Click Element    ${locator}
-    VAR    ${popover}    //div[@role='presentation' and not(contains(@style,'display: none'))]
-    Wait Until Element Is Visible    ${popover}
+
+    Wait Until Element Is Visible    ${POPOVER_XPATH}
     # generate condition
     VAR    ${condition}    false()
     FOR  ${opt}  IN  @{select options}
         VAR    ${condition}    ${condition} or text()='${opt}'
     END
     # หา option ที่ต้องการทั้งแบบที่ถูกเลือกแล้วและยังไม่ถูกเลือก
-    ${will select}    Get WebElements    ${popover}//div[@role="option" and @aria-selected="false" and ./descendant-or-self::*[${condition}]]
-    ${selected}       Get WebElements    ${popover}//div[@role="option" and @aria-selected="true" and ./descendant-or-self::*[${condition}]]
+    ${will select}    Get WebElements    ${POPOVER_XPATH}//div[@role="option" and @aria-selected="false" and ./descendant-or-self::*[${condition}]]
+    ${selected}       Get WebElements    ${POPOVER_XPATH}//div[@role="option" and @aria-selected="true" and ./descendant-or-self::*[${condition}]]
     # Check ว่าจำนวนที่ option ที่ได้มากับที่จะเลือกมีค่าเท่ากัน ถ้าไม่เท่าแปลว่าได้ใส่ option ที่ไม่มีอยู่จริงเข้ามา
     VAR    ${received count}    ${{len($select_options)}}
-    VAR    ${found count}    ${{len($will_select) + len($selected)}}
-    Should Be Equal    ${received count}    ${found count}    msg=Receiced ${received count} items, but found only ${found count} items. Check your typo again.    values=${False}
+    VAR    ${found count}       ${{len($will_select) + len($selected)}}
+    Should Be Equal    ${received count}    ${found count}
+    ...    msg=Receiced ${received count} items, but found only ${found count} items. Check your typo again.
+    ...    values=${False}
     # คลิก option ที่ยังไม่ถูกเลือกทั้งหมด
     FOR  ${opt}  IN  @{will select}
         Click Element    ${opt}
     END
     # หา option ที่ไม่ต้องการแต่ถูกเลือกอยู่
-    ${unselect}    Get WebElements    ${popover}//div[@role="option" and @aria-selected="true" and not(./descendant-or-self::*[${condition}])]
+    ${unselect}    Get WebElements    ${POPOVER_XPATH}//div[@role="option" and @aria-selected="true" and not(./descendant-or-self::*[${condition}])]
     FOR  ${opt}  IN  @{unselect}
         Click Element    ${opt}
     END
@@ -165,19 +181,19 @@ MultiSelect Drop Down By Locator
 Select Orgs Structure Drop Down
     [Documentation]    เลือก orgs ใน drop down ที่มักจะใช้ในการกรอง org
     ...
-    ...    คลิกตาม `locator` ที่กำหนด ควรจะเป็นปุ่มที่ทำให้ drop down สำหรับกรอง orgs แสดง
-    ...    จากนั้นยกเลิกการเลือกทุก orgs แล้วคลิกเลือกตาม `orgs` ที่กำหนดมา
+    ...    คลิกตาม ``locator`` ที่กำหนด ควรจะเป็นปุ่มที่ทำให้ drop down สำหรับกรอง orgs แสดง
+    ...    จากนั้นยกเลิกการเลือกทุก orgs แล้วคลิกเลือกตาม ``orgs`` ที่กำหนดมา
     ...
-    ...    หากใส่ `locator` เป็น `${None}` จะใช้ค่า default ให้
-    ...    มีให้ใส่ `locator` เพราะเผื่อค่า default ใช้ไม่ได้
-    ...    คิดอะไรไม่ออกก็ใส่ `${None}` ไปก่อน
+    ...    หากใส่ ``locator`` เป็น ``${None}`` จะใช้ค่า default ให้
+    ...    มีให้ใส่ ``locator`` เพราะเผื่อค่า default ใช้ไม่ได้
+    ...    คิดอะไรไม่ออกก็ใส่ ``${None}`` ไปก่อน
     ...    ---
     ...    Examples:
-    ...    | Select Orgs Structure Drop Down | //button | Blockfint |             | # กดปุ่มจาก `locator` ที่กำหนดแล้วเลือก Blockfint |
-    ...    | Select Orgs Structure Drop Down | //button | Blockfint | Thinkerfint | # กดปุ่มจาก `locator` ที่กำหนดแล้วเลือก Blockfint จากนั้นเลือก Thinkerfint |
-    ...    | Select Orgs Structure Drop Down | ${None} | All Organizations |      | # กดปุ่มจาก default `locator` ค่าแล้วเลือกทุก orgs |
-    ...    | Select Orgs Structure Drop Down | //button | |                       | # กดปุ่มแล้วไม่เลือกสัก org |
-    ...    | Select Orgs Structure Drop Down | ${None} | All Organizations | Blockfint | # กดปุ่มจาก default `locator` แล้วไม่เลือก Blockfint |
+    ...    | Select Orgs Structure Drop Down | //button | Blockfint |             | # กดปุ่มจาก locator ที่กำหนดแล้วเลือก Blockfint |
+    ...    | Select Orgs Structure Drop Down | //button | Blockfint | Thinkerfint | # กดปุ่มจาก locator ที่กำหนดแล้วเลือก Blockfint จากนั้นเลือก Thinkerfint |
+    ...    | Select Orgs Structure Drop Down | ${None}  | All Organizations |     | # กดปุ่มจาก default locator ค่าแล้วเลือกทุก orgs |
+    ...    | Select Orgs Structure Drop Down | //button |           |             | # กดปุ่มแล้วไม่เลือกสัก org |
+    ...    | Select Orgs Structure Drop Down | ${None} | All Organizations | Blockfint | # กดปุ่มจาก default locator แล้วไม่เลือก Blockfint |
 
     [Arguments]
     ...    ${locator}=${None}
@@ -185,30 +201,70 @@ Select Orgs Structure Drop Down
     
     # ถ้า ${locator} เป็น None ให้ใส่ค่า default
     IF  $locator is None
-        VAR    ${locator}   //input[@placeholder="Select Organization"]/../../..
+        VAR    ${locator}   //input[@placeholder="Select Organization"]/../..
     END
     # คลิกปุ่ม drop down จาก ${locator}
-    Click Element    ${locator}
+    ${element}    Get WebElement    ${locator}
+    Evaluate    $element.click()
     Wait Until Element Is Visible    //div[@role='presentation' and not(contains(@style,'display: none'))]
     # ติ๊ก All Orgs แล้วติ๊กออก เพื่อล้าง orgs ที่เลือกออกทั้งหมด
-    Select Checkbox    //div[./span and ./p[text()='All Organizations']]//input
+    Select Checkbox      //div[./span and ./p[text()='All Organizations']]//input
     Unselect Checkbox    //div[./span and ./p[text()='All Organizations']]//input
     # วนแต่ละ org ที่ให้มา
     FOR  ${org}  IN  @{orgs}
         # วนคลิกปุ่มบวกที่เป็นของ parent org และ ancestor org
         VAR    ${div ตัวแรกที่ถูกซ่อนอยู่และมีตัวเลือกที่ต้องการ}    (//div[@aria-hidden="true" and .//div[./span and ./p[text()='${org}']]])[1]
         VAR    ${div ที่เป็นพี่}    /preceding-sibling::div
-        VAR    ${plus icon}    //*[local-name()='svg' and ../div]    # //*[@d="M7.14.04v12.92M.69 6.5H13.6"]
+        VAR    ${plus icon}    //*[local-name()='svg' and ../div]
         ${plus}    Find WebElement    ${div ตัวแรกที่ถูกซ่อนอยู่และมีตัวเลือกที่ต้องการ} ${div ที่เป็นพี่} ${plus icon}
         WHILE  $plus is not None
             Wait Until Element Is Visible    ${plus}
-            Click Element    ${plus}
+            Click Element                    ${plus}
             ${plus}    Find WebElement    ${div ตัวแรกที่ถูกซ่อนอยู่และมีตัวเลือกที่ต้องการ} ${div ที่เป็นพี่} ${plus icon}
         END
         # คลิก org
         Wait Until Element Is Visible    //div[./span and ./p[text()='${org}']]
-        Click Element    //div[./span and ./p[text()='${org}']]
+        Click Element                    //div[./span and ./p[text()='${org}']]
     END
     # ออกเมื่อเลือกเสร็จ
     Execute Javascript    document.activeElement.blur()
 
+Click Kebab Button In Table
+    [Documentation]
+    ...    คลิกปุ่มสามจุดตามเงื่อนไข ``condition`` จากผลลัพท์ลำดับที่ ``result no``
+    ...
+    ...    ``condition`` สามารถเป็นเงื่อนไขอื่นได้ เช่น
+    ...    - ``2`` หมายความว่า คลิกปุ่มสามจุดในแถวที่ 2
+    ...    - ``.//*[text()='EM-999']`` หมายความว่า คลิกปุ่มสามจุดในแถวที่มีคำว่า EM-999
+    ...    - ``.//*[text()='NewReport'] and position()=2`` หมายความว่า คลิกปุ่มสามจุดในแถวที่มีคำว่า NewReport และเป็นแถวที่ 2
+    [Arguments]    ${condition}=1    ${result no}=1
+    Wait Until Element Is Visible    (//tbody/tr[${condition}]//td[last()]//button)[${result no}]
+    Click Button                     (//tbody/tr[${condition}]//td[last()]//button)[${result no}]
+
+Click Menu Button
+    [Documentation]
+    ...    กดปุ่ม ``menu`` ในเมนูที่กำลังแสดงอยู่
+    ...    มักจะใช้กับเมนูที่แสดงจากการปุ่มสามจุด
+    [Arguments]    ${menu}
+    Wait Until Element Is Visible    (//div[@role="menu"])[last()]//button[.='${menu}']
+    Click Button                     (//div[@role="menu"])[last()]//button[.='${menu}']
+
+Upload Evidences
+    [Documentation]    อัปโหลดหลักฐานใน drop zone สามารถใส่ค่าสุดท้ายเป็น ``timeout`` ได้
+    ...    ---
+    ...    Examples:
+    ...    | Upload Evidences | ${CURDIR}/pic-1.png   |                     | # อัปโหลดไฟล์เดียว |
+    ...    | Upload Evidences | ${CURDIR}/pic-1.png   | ${CURDIR}/pic-2.png | # อัปโหลดสองไฟล์  |
+    ...    | Upload Evidences | ${CURDIR}/bigFile.pdf | 30                  | # อัปโหลดไฟล์เดียว รอนานสุด 30 วินาที |
+    [Arguments]    @{files}
+    TRY
+        ${timeout}    Evaluate    SeleniumLibrary.utils._convert_timeout($files[-1])    modules=SeleniumLibrary.utils
+        Evaluate    $files.pop()
+    EXCEPT
+        VAR    ${timeout}    ${None}
+    END
+    IF  len($files) == 0    RETURN
+    ${paths}    Catenate    SEPARATOR=${\n}    @{files}
+    Scroll Element Into View    //div[./input[@accept and @type='file']]
+    Choose File    //div/input[@accept and @type='file']    ${paths}
+    Wait Until Element Is Not Visible    css:.mantine-Dropzone-root .mantine-Loader-root    ${timeout}
