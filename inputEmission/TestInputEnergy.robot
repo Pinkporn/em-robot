@@ -17,16 +17,16 @@ Add & Check Emission
     ...    ${no emission}=${False}    
     ...    ${delete}=${True}
     
-    ${id}    Get Last ID Emission
+    ${id}    Get Last Running No
     Add Emission Page 1 2    ${SUB ORG}    ${site name}   Energy
     Enter Energy Form    asset type=${asset type}   asset name=${asset name}
     ...    source=${source}    unit=${unit}    amount=${amount}    resell=${resell}
     Click Element    //button[.//span[text()='Save as Draft']]
     Wait Until Page Contains    Emission created successfully
-    ${new id}    Get Last ID Emission
+    ${new id}    Get Last Running No
     WHILE  $new_id <= $id
         Sleep    0.2
-        ${new id}    Get Last ID Emission
+        ${new id}    Get Last Running No
     END
     Wait Until Page Contains Element    //td[@data-key="emissions"]/div
     Click Element    //td[@data-key="emissions"]/div

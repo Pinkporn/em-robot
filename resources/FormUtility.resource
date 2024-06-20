@@ -268,3 +268,11 @@ Upload Evidences
     Scroll Element Into View    //div[./input[@accept and @type='file']]
     Choose File    //div/input[@accept and @type='file']    ${paths}
     Wait Until Element Is Not Visible    css:.mantine-Dropzone-root .mantine-Loader-root    ${timeout}
+
+Get Last Running No
+    ${element id}    Find WebElement    (//td[@data-idx="0"]//span)[1]
+    IF  $element_id is None
+        RETURN    ${0}
+    END
+    ${running no}    Get Text    ${element id}
+    RETURN    ${{int($running_no[3:])}}
