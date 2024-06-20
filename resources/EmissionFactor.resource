@@ -33,20 +33,14 @@ Select Effective Date
     Click Element    (//button[@data-dates-input="true"])[1]
     Select Date      ${start date}
     Wait Until Element Is Not Visible    //div[@role="dialog"]
-    ${box id}    Get Element Attribute    //label[text()='No Expiration Date']    for
-    ${box}       Get WebElement    id:${box id}
-    VAR    ${box is selected}    ${{$box.is_selected()}}
+    ${box}       Get WebElement    //input[@id=//label[text()='No Expiration Date']/@for]
     IF  $end_date is not None
-        IF  ${box is selected}
-            Click Element    ${box}
-        END
+        Unselect Checkbox    ${box}
         Click Element    (//button[@data-dates-input="true"])[2]
         Select Date    ${end date}
         Wait Until Element Is Not Visible    //div[@role="dialog"]
     ELSE
-        IF  not ${box is selected}
-            Click Element    ${box}
-        END
+        Select Checkbox    ${box}
     END
 
 Generic Emission Factor Form
