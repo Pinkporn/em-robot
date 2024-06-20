@@ -172,3 +172,8 @@ Enter Purchases Emission Factor Form
     ...    Purchase Group=${purchase group}
     ...    Goods / Services=${goods and services}
     ...    Unit=${unit}
+
+Confirm Add EF
+    Click Element    //button[.="Add"]
+    Wait Until Element Is Not Visible    //section
+    Wait Until Page Contains    Emission Factor created successfully  
