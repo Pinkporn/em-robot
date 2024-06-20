@@ -14,16 +14,16 @@ Add & Check Fuel Emission
     ...    ${scope 1}=${None}    ${scope 3}=${None}    ${outside of scope}=${None}
     ...    ${delete}=${True}
     
-    ${id}    Get Last ID Emission
+    ${id}    Get Last Running No
     Add Emission Page 1 2    ${SUB ORG}    ${site name}    Fuel
     Enter Fuel Form    asset name=${asset name}    fuel=${fuel name}    
     ...    unit=${unit}    amount=${amount}    asset type=${asset type}
     Click Element    //button[.//span[text()='Save as Draft']]
     Wait Until Page Contains    Emission created successfully
-    ${new id}    Get Last ID Emission
+    ${new id}    Get Last Running No
     WHILE  $new_id <= $id
         Sleep    0.2
-        ${new id}    Get Last ID Emission
+        ${new id}    Get Last Running No
     END
     Wait Until Page Contains Element    //td[@data-key="emissions"]/div
     Click Element    //td[@data-key="emissions"]/div

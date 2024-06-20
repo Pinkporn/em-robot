@@ -70,14 +70,6 @@ Input Text With Default
     END
     Input Text    ${locator}    ${text}
 
-Get Last ID Emission
-    ${element id}    Find WebElement    (//td[@data-idx="0"]//span)[1]
-    IF  $element_id is None
-        RETURN    ${0}
-    END
-    ${running no}    Get Text    ${element id}
-    RETURN    ${{int($running_no[3:])}}
-
 Click Edit Emission
     Click Kebab Button In Table
     Click Menu Button    Edit
