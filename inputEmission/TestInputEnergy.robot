@@ -1,6 +1,6 @@
 *** Settings ***
 Documentation     Input Emission Regression Test
-Resource          ../resources/InputEmission.resource
+Resource          TestInput.resource
 Suite Setup       Setup Everything
 Test Teardown     Sleep    0.5
 
@@ -15,6 +15,7 @@ Add & Check Emission
     ...    ${source}    ${asset type}=${None}   ${asset name}=${None}    ${resell}=${None}    ${unit}=kWh                   
     ...    ${scope 1}=${None}   ${scope 2}=${None}    ${scope 3}=${None}    ${outside of scope}=${None}
     ...    ${no emission}=${False}    
+    ...    ${delete}=${True}
     
     ${id}    Get Last ID Emission
     Add Emission Page 1 2    ${SUB ORG}    ${site name}   Energy
@@ -42,10 +43,9 @@ Add & Check Emission
     IF  ${no emission}
         Element Should Be Visible    (//td[@data-key="emissions"]/div)[1][text()='0.00 kg']
     END
-    Click Button    (//td[@data-idx="12"]/button)[1]
-    Press Keys    ${None}    ARROW_DOWN  ARROW_DOWN  ARROW_DOWN  RETURN
-    Wait Until Element Is Visible    //section
-    Press Keys    ${None}    TAB  RETURN
+    IF  $delete
+        Click Delete Emission
+    END
 
 *** Test Cases ***
 Add Energy 01

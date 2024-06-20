@@ -1,6 +1,6 @@
 *** Settings ***
 Documentation     Input Emission Regression Test
-Resource          Common.resource
+Resource          TestInput.resource
 Suite Setup       Setup Everything
 Test Teardown     Sleep    0.5
 
@@ -8,13 +8,11 @@ Test Teardown     Sleep    0.5
 
 
 *** Keywords ***
-
-
-
 Add & Check Fuel Emission
     [Arguments]    ${site name}    ${asset name}    ${fuel name}    ${amount}    
     ...    ${unit}=litre    ${asset type}=Machinery / Equipment    ${delete}=${False}
     ...    ${scope 1}=${None}    ${scope 3}=${None}    ${outside of scope}=${None}
+    ...    ${delete}=${True}
     
     ${id}    Get Last ID Emission
     Add Emission Page 1 2    ${SUB ORG}    ${site name}    Fuel
@@ -38,6 +36,9 @@ Add & Check Fuel Emission
     END
     IF  $outside_of_scope is not None
         Element Should Be Visible    //p[text()='Outside of Scope: ' and text()='${outside of scope}']
+    END
+    IF  $delete
+        Click Delete Emission
     END
 
 
@@ -107,13 +108,13 @@ Add Fuel 11
     Add & Check Fuel Emission    ${SITE NAMES}[0]
     ...    asset name=V1OU       fuel name=Diesel B7 (On-road vehicle)    amount=100
     ...    scope 1=254.88 kg     scope 3=27.62 kg        outside of scope=16.52 kg    asset type=Vehicle
-    Click Delete Emission
 
 Add Fuel 12
     [Documentation]    Site: Owned and used - Asset: Machinery, Natural gas
     Add & Check Fuel Emission    ${SITE NAMES}[0]
     ...    asset name=M1OU       fuel name=Natural gas    unit=scf    amount=100
-    ...    scope 1=5.73 kg     scope 3=1.70 kg   
+    ...    scope 1=5.73 kg     scope 3=1.70 kg
+    ...    delete=${False}
 
 Dup Emission Fuel
     Click Duplicate Emission

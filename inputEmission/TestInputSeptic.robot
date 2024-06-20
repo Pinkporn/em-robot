@@ -1,6 +1,6 @@
 *** Settings ***
 Documentation     Input Emission Regression Test
-Resource          ../resources/InputEmission.resource
+Resource          TestInput.resource
 Suite Setup       Setup Everything
 Test Teardown     Sleep    0.5
 
@@ -8,12 +8,11 @@ Test Teardown     Sleep    0.5
 
 
 *** Keywords ***
-
-
 Add & Check Emission
-    [Arguments]      ${site name}    ${from date}    ${to date}        ${amount}=20         
+    [Arguments]      ${site name}    ${from date}    ${to date}    ${amount}=20         
     ...    ${scope 1}=${None}    ${scope 3}=${None}    ${outside of scope}=${None}
-    ...    ${no emission}=${False}    &{days}
+    ...    ${no emission}=${False}    ${delete}=${True}
+    ...    &{days}
     
     ${id}    Get Last ID Emission
     Add Emission Page 1 2    ${SUB ORG}    ${site name}    Septic Tank
@@ -40,10 +39,9 @@ Add & Check Emission
     IF  ${no emission}
         Element Should Be Visible    (//td[@data-key="emissions"]/div)[1][text()='0.00 kg']
     END
-    Click Button    (//td[@data-idx="12"]/button)[1]
-    Press Keys    ${None}    ARROW_DOWN  ARROW_DOWN  ARROW_DOWN  RETURN
-    Wait Until Element Is Visible    //section
-    Press Keys    ${None}    TAB  RETURN
+    IF  $delete
+        Click Delete Emission
+    END
 
 *** Test Cases ***
 Add Septic 01

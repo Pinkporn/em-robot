@@ -6,8 +6,6 @@ Resource          FormUtility.resource
 
 
 *** Keywords ***
-
-
 Go To Input Emission
     VAR    ${navlink input}    //div[contains(@class, 'mantine-Flex-root')]/a[2]
     Click Element    ${navlink input}
@@ -80,6 +78,25 @@ Get Last ID Emission
     ${running no}    Get Text    ${element id}
     RETURN    ${{int($running_no[3:])}}
 
+Click Edit Emission
+    Click Kebab Button In Table
+    Click Menu Button    Edit
+
+Click Duplicate Emission
+    Click Kebab Button In Table
+    Click Menu Button    Duplicate
+
+Click View Emission
+    Click Kebab Button In Table
+    Click Menu Button    View
+
+Click Delete Emission
+    Click Kebab Button In Table
+    Click Menu Button    Delete
+    Wait Until Element Is Visible    //section
+    Click Button    //button[.='Delete']
+
+# ======== Enter Emission Form ========
 Enter Energy Form
     [Arguments]
     ...    ${from date}=${None}    ${to date}=${None}
