@@ -119,3 +119,40 @@ Enter FR-01
         END
     END
 
+Click Go Back To List Report
+    Click Element    //a[contains(@href, "report")]/button
+    Wait Until Element Is Not Visible    //div[contains(@class, 'loadingOverlayContent')]
+    Wait Until Element Is Not Visible    //td//span[contains(@class, 'mantine-Loader-root')]
+
+Click Edit Report
+    Click Kebab Button In Table
+    Click Menu Button    Edit
+    Wait Until Element Is Visible    //input[@placeholder="Select Organizations To Be Included In Report"]/preceding-sibling::*
+    Wait Until Element Is Visible    name:detail.creatorName
+    Wait For Condition
+    ...    return document.getElementsByName('detail.creatorName')[0].value != ''
+    ...    error=Creator Name field still blank after waiting
+
+Click Export Report
+    Click Kebab Button In Table
+    Click Menu Button    Export
+    Wait Until Page Contains    Template exported successfully    10s
+
+Click Delete Report
+    Click Kebab Button In Table
+    Click Menu Button    Delete
+    Wait Until Element Is Visible    //button[.='Delete']
+    Click Element    //button[.='Delete']
+    Wait Until Page Contains    Template deleted successfully
+    
+Click Save Report
+    Click Element    //button[.='Save']
+    Wait Until Page Contains    The report template was successfully saved
+
+Click Save & Report
+    Click Element    //button[.='Save & Export']
+    Wait Until Page Contains    The report template was successfully saved
+    Wait Until Page Contains    Template exported successfully    10s
+    Click Go Back To List Report
+
+
