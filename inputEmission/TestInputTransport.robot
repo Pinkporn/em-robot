@@ -30,7 +30,9 @@ Add & Check Emission
     END
     Wait Until Page Contains Element    //td[@data-key="emissions"]/div
     Click Element    //td[@data-key="emissions"]/div
-    Wait Until Element Is Visible    //div[@role='dialog']
+    IF  not $no_emission
+        Wait Until Element Is Visible    //div[@role='dialog']
+    END
     IF  $scope_1 is not None    
         Element Should Be Visible    //p[text()='Scope 1: ' and text()='${scope 1}']
     END

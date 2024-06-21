@@ -30,7 +30,9 @@ Add & Check Emission
     END
     Wait Until Page Contains Element    //td[@data-key="emissions"]/div
     Click Element    //td[@data-key="emissions"]/div
-    Wait Until Element Is Visible    //div[@role='dialog']
+    IF  not $no_emission
+        Wait Until Element Is Visible    //div[@role='dialog']
+    END
     IF  $scope_1 is not None    
         Element Should Be Visible    //p[text()='Scope 1: ' and text()='${scope 1}']
     END
@@ -48,51 +50,51 @@ Add & Check Emission
     END
 
 *** Test Cases ***
-Add Transport 01
+Add Fertilizer 01
     [Documentation]    Owned and used / NPK Fertilizer / N,P,K=0%
     Add & Check Emission    ${SITE NAMES}[0]    
     ...    fertilizer type=NPK Fertilizer    n=0    p=0    k=0    
     ...    no emission=${True}   
 
 
-Add Transport 02
+Add Fertilizer 02
     [Documentation]   Owned and used / NPK Fertilizer
     Add & Check Emission    ${SITE NAMES}[0]    
     ...    fertilizer type=NPK Fertilizer    n=20    p=20    k=20
     ...    scope 1=83.29 kg          
 
 
-Add Transport 03
+Add Fertilizer 03
     [Documentation]    Owned and used / Organic Fertilizer
     Add & Check Emission    ${SITE NAMES}[0]    
     ...    fertilizer type=Organic Fertilizer    n=30
     ...    scope 1=124.93 kg  
 
-Add Transport 04
+Add Fertilizer 04
     [Documentation]    Owned and used / Organic Fertilizer / N=0%
     Add & Check Emission    ${SITE NAMES}[0]    
     ...    fertilizer type=Organic Fertilizer    n=0    
     ...    no emission=${True}   
 
-Add Transport 05
+Add Fertilizer 05
     [Documentation]    Owned and used / Urea Fertilizer
     Add & Check Emission    ${SITE NAMES}[0]    
     ...    fertilizer type=Urea Fertilizer    
     ...    scope 1=73.33 kg   
 
-Add Transport 06
+Add Fertilizer 06
     [Documentation]    Owned and used / Lime
     Add & Check Emission    ${SITE NAMES}[0]    
     ...    fertilizer type=Lime    
     ...    scope 1=44.00 kg 
 
-Add Transport 07
+Add Fertilizer 07
     [Documentation]    Owned and used / Dolomite
     Add & Check Emission    ${SITE NAMES}[0]    
     ...    fertilizer type=Dolomite    
     ...    scope 1=47.67 kg
 
-Add Transport 08
+Add Fertilizer 08
     [Documentation]    Leased in / NPK Fertilizer
     Add & Check Emission    ${SITE NAMES}[1]    
     ...    fertilizer type=NPK Fertilizer    n=15    p=10    k=5

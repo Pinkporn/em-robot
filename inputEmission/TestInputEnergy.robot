@@ -13,7 +13,7 @@ Test Teardown     Sleep    0.5
 Add & Check Emission
     [Arguments]      ${site name}    ${amount}                       
     ...    ${source}    ${asset type}=${None}   ${asset name}=${None}    ${resell}=${None}    ${unit}=kWh                   
-    ...    ${scope 1}=${None}   ${scope 2}=${None}    ${scope 3}=${None}    ${outside of scope}=${None}
+    ...    ${scope 2}=${None}    ${scope 3}=${None}    ${outside of scope}=${None}
     ...    ${no emission}=${False}    
     ...    ${delete}=${True}
     
@@ -30,9 +30,11 @@ Add & Check Emission
     END
     Wait Until Page Contains Element    //td[@data-key="emissions"]/div
     Click Element    //td[@data-key="emissions"]/div
-    Wait Until Element Is Visible    //div[@role='dialog']
-    IF  $scope_1 is not None    
-        Element Should Be Visible    //p[text()='Scope 1: ' and text()='${scope 1}']
+    IF  not $no_emission
+        Wait Until Element Is Visible    //div[@role='dialog']
+    END
+    IF  $scope_2 is not None    
+        Element Should Be Visible    //p[text()='Scope 2: ' and text()='${scope 2}']
     END
     IF  $scope_3 is not None
         Element Should Be Visible    //p[text()='Scope 3: ' and text()='${scope 3}']
@@ -74,9 +76,19 @@ Add Energy 04
 
 Add Energy 05
     [Documentation]    Owned and used / Site / EF Type Case 13 / Renew
-    Add & Check Emission    ${SITE NAMES}[0]    
-    ...    source=รีนิว    amount=100    unit=tonne    
-    ...    no emission=${True}
+    ${id}    Get Last Running No
+    Add Emission Page 1 2    ${SUB ORG}    ${SITE NAMES}[0]   Energy
+    Enter Energy Form    source=รีนิว    amount=100    unit=tonne
+    Element Should Be Visible    //p[text()='The selected energy source is Renewable.']
+    Click Element    //button[.//span[text()='Save as Draft']]
+    Wait Until Page Contains    Emission created successfully
+    ${new id}    Get Last Running No
+    WHILE  $new_id <= $id
+        Sleep    0.2
+        ${new id}    Get Last Running No
+    END
+    Element Should Be Visible    (//td[@data-key="emissions"]/div)[1][text()='0.00 kg']
+    Click Delete Emission
 
 Add Energy 06
     [Documentation]    Owned and used / Site / EF Type Case 13 / Resell / RE

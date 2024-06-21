@@ -177,3 +177,18 @@ Confirm Add EF
     Click Element    //button[.="Add"]
     Wait Until Element Is Not Visible    //section
     Wait Until Page Contains    Emission Factor created successfully  
+
+Click Edit EF
+    Click Kebab Button In Table
+    Click Menu Button    Edit
+
+Click Duplicate EF
+    Click Kebab Button In Table
+    Click Menu Button    Duplicate
+
+Click Delete EF
+    Click Kebab Button In Table
+    Click Menu Button    Delete
+    Wait Until Element Is Visible    //section
+    Click Button    //button[.='Delete']
+    Wait Until Page Contains    The emission factor has been successfully deleted.    10s
