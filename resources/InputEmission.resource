@@ -87,6 +87,7 @@ Click Delete Emission
     Click Menu Button    Delete
     Wait Until Element Is Visible    //section
     Click Button    //button[.='Delete']
+    Wait Until Page Contains    The emission was successfully deleted.
 
 # ======== Enter Emission Form ========
 Enter Energy Form
