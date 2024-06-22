@@ -163,74 +163,73 @@ Tracker Date Color Should Be Equal
     ${style}    Get Element Attribute    ${circle}    style
     IF  $color not in $style    Fail    '${date}' circle in ${group} is not ${color}.
 
-Emission Source Color Should Be Equal
+Item Color Should Be Equal
     [Documentation]
-    ...    ตรวจสอบสีของ Emission Sources ``sources`` ใน Tracker Group ``group``
+    ...    ตรวจสอบสีของ ``items`` ใน Tracker Group ``group``
     ...
     ...    ``sources`` ใส่ค่าแบบ ``ชื่อ=สี`` สามารถใส่ข้อมูลได้มากกว่า 1 ชุด
     ...
     ...    สีที่เป็นไปได้คือ 'green', 'yellow', 'red', 'gray'
     ...    ---
     ...    Examples:
-    ...    | Emission Source Color Should Be Equal | Fuel | Machine 101=yellow |
-    ...    | Emission Source Color Should Be Equal | Energy | Electricity (MEA / PEA)=green | MayaElec=gray |
-    [Arguments]    ${group}    &{sources}
+    ...    | Item Color Should Be Equal | Fuel   | Machine 101=yellow |
+    ...    | Item Color Should Be Equal | Energy | Electricity (MEA / PEA)=green | MayaElec=gray |
+    [Arguments]    ${group}    &{items}
     VAR    ${tracker div}    //div[./div[@aria-hidden] and .//p[.='${group}']]
     VAR    ${card div}    //div[contains(@class, 'Card')]
-    FOR  ${s}  IN  @{sources}
-        VAR    ${color}    ${sources}[${s}]
+    FOR  ${s}  IN  @{items}
+        VAR    ${color}    ${items}[${s}]
         ${circle}    Get WebElement    ${tracker div}${card div}//div[./p[.='${s}']]//div[@aria-haspopup]
         ${style}    Get Element Attribute    ${circle}    style
         IF  $color not in $style    Fail    '${s}' circle in ${group} is not ${color}.
     END
 
-Skip Emission Source
+Skip Item
     [Documentation]
-    ...    กด skip Emission Sources ``sources`` ใน Tracker Group ``group``
+    ...    กด skip ``items`` ใน Tracker Group ``group``
     ...
     ...    สามารถใส่ชื่อ ``sources`` ได้มากกว่า 1 ค่า
     ...    ---
     ...    Examples:
-    ...    | Skip Emission Source | Fuel   | Machine 101 |
-    ...    | Skip Emission Source | Energy | Electricity (MEA / PEA) | MayaElec |
-    [Arguments]    ${group}    @{sources}
+    ...    | Skip Item | Fuel   | Machine 101 |
+    ...    | Skip Item | Energy | Electricity (MEA / PEA) | MayaElec |
+    [Arguments]    ${group}    @{items}
     VAR    ${tracker div}    //div[./div[@aria-hidden] and .//p[.='${group}']]
     VAR    ${card div}    //div[contains(@class, 'Card')]
-    FOR  ${s}  IN  @{sources}
-        VAR    ${button xpath}    ${tracker div}${card div}//div[./div[.='${s}']]//button
+    FOR  ${i}  IN  @{items}
+        VAR    ${button xpath}    ${tracker div}${card div}//div[./div[.='${i}']]//button
         Click Button    ${button xpath}\[.='Skip']
         Wait Until Element Is Visible    ${button xpath}\[.='Undo']
     END
 
-Undo Skipped Emission Source
+Undo Skipped Item
     [Documentation]
-    ...    กด undo Emission Sources ``sources`` ใน Tracker Group ``group``
+    ...    กด undo ``items`` ใน Tracker Group ``group``
     ...
-    ...    สามารถใส่ชื่อ ``sources`` ได้มากกว่า 1 ค่า
+    ...    สามารถใส่ชื่อ ``items`` ได้มากกว่า 1 ค่า
     ...    ---
     ...    Examples:
-    ...    | Skip Emission Source | Fuel   | Machine 101 |
-    ...    | Skip Emission Source | Energy | Electricity (MEA / PEA) | MayaElec |
-    [Arguments]    ${group}    @{sources}
+    ...    | Undo Skipped Item | Fuel   | Machine 101 |
+    ...    | Undo Skipped Item | Energy | Electricity (MEA / PEA) | MayaElec |
+    [Arguments]    ${group}    @{items}
     VAR    ${tracker div}    //div[./div[@aria-hidden] and .//p[.='${group}']]
     VAR    ${card div}    //div[contains(@class, 'Card')]
-    FOR  ${s}  IN  @{sources}
-        VAR    ${button xpath}    ${tracker div}${card div}//div[./div[.='${s}']]//button
+    FOR  ${i}  IN  @{items}
+        VAR    ${button xpath}    ${tracker div}${card div}//div[./div[.='${i}']]//button
         Click Button    ${button xpath}\[.='Undo']
         Wait Until Element Is Visible    ${button xpath}\[.='Skip']
     END
 
-Input Emission Source Remark
+Input Item Remark
     [Documentation]
-    ...    กดรูปดินสอแล้วใส่ ``remark`` ให้กับ Emission Source ``source`` ใน Tracker Group ``group``
+    ...    กดรูปดินสอแล้วใส่ ``remark`` ให้กับ ``items`` ใน Tracker Group ``group``
     ...    ---
     ...    Examples:
-    ...    | Skip Emission Source | Fuel   | Machine 101 |
-    ...    | Skip Emission Source | Energy | Electricity (MEA / PEA) | MayaElec |
-    [Arguments]    ${group}    ${source}    ${remark}
+    ...    | Input Item Remark | Energy | Electricity (MEA / PEA) | Hello |
+    [Arguments]    ${group}    ${items}    ${remark}
     VAR    ${tracker div}    //div[./div[@aria-hidden] and .//p[.='${group}']]
     VAR    ${card div}    //div[contains(@class, 'Card')]
-    VAR    ${pencil}    ${tracker div}${card div}//div[./div[.='${source}']]//*[local-name()='svg']
+    VAR    ${pencil}    ${tracker div}${card div}//div[./div[.='${items}']]//*[local-name()='svg']
     Click Element    ${pencil}
     ${input element}    Execute Javascript    return document.activeElement
     Press Keys    ${None}    CTRL+A    BACKSPACE
@@ -240,59 +239,59 @@ Input Emission Source Remark
 
 Tracking Records Should Be Equal
     [Documentation]
-    ...    ตรวจสอบ Tracking Records ของ Emission Sources ``sources`` ใน Tracker Group ``group``
+    ...    ตรวจสอบ Tracking Records ของ ``items`` ใน Tracker Group ``group``
     ...
-    ...    ``sources`` ใส่ค่าแบบ ``ชื่อ=ข้อความ`` สามารถใส่ข้อมูลได้มากกว่า 1 ชุด
+    ...    ``items`` ใส่ค่าแบบ ``ชื่อ=ข้อความ`` สามารถใส่ข้อมูลได้มากกว่า 1 ชุด
     ...    ---
     ...    Examples:
     ...    | Tracking Records Should Be Equal | Fuel   | Machine 101=(1/2) |
     ...    | Tracking Records Should Be Equal | Energy | Electricity (MEA / PEA)=(1/1) | MayaElec=(0/1) |
-    [Arguments]    ${group}    &{sources}
+    [Arguments]    ${group}    &{items}
     VAR    ${tracker div}    //div[./div[@aria-hidden] and .//p[.='${group}']]
     VAR    ${card div}    //div[contains(@class, 'Card')]
-    FOR  ${s}  IN  @{sources}
-        VAR    ${expected}    ${sources}[${s}]
-        ${records}    Get Text    ${tracker div}${card div}//div[./div[.='${s}']]/div[@id='tracking-records']/p
+    FOR  ${i}  IN  @{items}
+        VAR    ${expected}    ${items}[${i}]
+        ${records}    Get Text    ${tracker div}${card div}//div[./div[.='${i}']]/div[@id='tracking-records']/p
         Should Be Equal    ${records}    ${expected}
-        ...    msg=Tracking records of '${s}' in ${group} has '${records}' instead of '${expected}'
+        ...    msg=Tracking records of '${i}' in ${group} has '${records}' instead of '${expected}'
         ...    values=${False}
     END
 
 Dialog Tracking Records Should Be Equal
     [Documentation]
-    ...    ตรวจสอบ Tracking Records ของ Emission Sources ``sources`` ใน hover card (dialog)
+    ...    ตรวจสอบ Tracking Records ของ ``items`` ใน hover card (dialog)
     ...
-    ...    ``sources`` ใส่ค่าแบบ ``ชื่อ=ข้อความ`` สามารถใส่ข้อมูลได้มากกว่า 1 ชุด
+    ...    ``items`` ใส่ค่าแบบ ``ชื่อ=ข้อความ`` สามารถใส่ข้อมูลได้มากกว่า 1 ชุด
     ...    ---
     ...    Examples:
     ...    | Dialog Tracking Records Should Be Equal | Machine 101=(1/2) |
     ...    | Dialog Tracking Records Should Be Equal | Electricity (MEA / PEA)=(1/1) | MayaElec=(0/1) |
-    [Arguments]    &{sources}
-    FOR  ${s}  IN  @{sources}
-        VAR    ${expected}    ${sources}[${s}]
-        ${records}    Get Text    //div[@role="dialog"]//div[./div[.='${s}']]/p
+    [Arguments]    &{items}
+    FOR  ${i}  IN  @{items}
+        VAR    ${expected}    ${items}[${i}]
+        ${records}    Get Text    //div[@role="dialog"]//div[./div[.='${i}']]/p
         Should Be Equal    ${records}    ${expected}
-        ...    msg=Tracking records of '${s}' in dialog has '${records}' instead of '${expected}'
+        ...    msg=Tracking records of '${i}' in dialog has '${records}' instead of '${expected}'
         ...    values=${False}
     END
 
-Dialog Emission Source Color Should Be Equal
+Dialog Item Color Should Be Equal
     [Documentation]
-    ...    ตรวจสอบสีของ Emission Sources ``sources`` ใน hover card (dialog)
+    ...    ตรวจสอบสีของ ``items`` ใน hover card (dialog)
     ...    
-    ...    ``sources`` ใส่ค่าแบบ ``ชื่อ=สี`` สามารถใส่ข้อมูลได้มากกว่า 1 ชุด
+    ...    ``items`` ใส่ค่าแบบ ``ชื่อ=สี`` สามารถใส่ข้อมูลได้มากกว่า 1 ชุด
     ...    
     ...    สีที่เป็นไปได้คือ 'green', 'yellow', 'red', 'gray'
     ...    ---
     ...    Examples:
-    ...    | Dialog Emission Source Color Should Be Equal | Machine 101=yellow |
-    ...    | Dialog Emission Source Color Should Be Equal | Electricity (MEA / PEA)=green | MayaElec=gray |
-    [Arguments]    &{sources}
-    FOR  ${s}  IN  @{sources}
-        VAR    ${color}    ${sources}[${s}]
-        ${circle}    Get WebElement    //div[@role="dialog"]//div[./p[.='${s}']]//div[@aria-haspopup]
+    ...    | Dialog Item Color Should Be Equal | Machine 101=yellow |
+    ...    | Dialog Item Color Should Be Equal | Electricity (MEA / PEA)=green | MayaElec=gray |
+    [Arguments]    &{items}
+    FOR  ${i}  IN  @{items}
+        VAR    ${color}    ${items}[${i}]
+        ${circle}    Get WebElement    //div[@role="dialog"]//div[./p[.='${i}']]//div[@aria-haspopup]
         ${style}    Get Element Attribute    ${circle}    style
-        IF  $color not in $style    Fail    '${s}' circle in dialog is not ${color}.
+        IF  $color not in $style    Fail    '${i}' circle in dialog is not ${color}.
     END
 
 # ======== Keywords for Settings ========
@@ -316,23 +315,23 @@ Close Setting Region
     Click Element    ${element}
     Sleep    0.2
 
-Set Emission Source Records
+Set Item Records
     [Arguments]    ${name}    ${records}
     Input Text    //div[@data-type and ./div='${name}']//input    ${records}
 
-Decrement Emission Source Record
+Decrement Item Record
     [Arguments]    ${name}    ${times}=1
     FOR  ${i}  IN RANGE  ${times}
         Click Button    //div[@data-type and ./div='${name}']//button[.='-']
     END
 
-Increment Emission Source Record
+Increment Item Record
     [Arguments]    ${name}    ${times}=1
     FOR  ${i}  IN RANGE  ${times}
         Click Button    //div[@data-type and ./div='${name}']//button[.='+']
     END
 
-Deselect Emission Source
+Deselect Item
     [Arguments]    ${name}
     Click Button    //div[@data-type and ./div='${name}']//button[.='']
     Click Menu Button    Deselect
@@ -351,9 +350,9 @@ Save Settings
     Wait Until Element Is Visible    //div[@role="status" and text()='Settings saved']
 
 # ---- Select Emission Source Modal ----
-Click Select Emission Source Button
-    [Arguments]    ${site}    @{actions}
-    Click Button    //button[.//div[.='${site}']]/following-sibling::*//button[.='Select Emission Source']
+Click Select Item Button
+    [Arguments]    ${site}
+    Click Button    //button[.//div[.='${site}']]/following-sibling::*//button[contains(., 'Select')]
     Wait Until Element Is Visible    //section//button
 
 Click Stack Button
@@ -371,38 +370,38 @@ Search Selected
     Press Keys    //div[@data-type="backward"]//input[@placeholder]    CTRL+A    BACKSPACE
     Input Text    //div[@data-type="backward"]//input[@placeholder]    ${text}
 
-Select Available Emission Source
-    [Arguments]    @{sources}
-    FOR  ${s}  IN  @{sources}
-        ${checkbox}    Get WebElement    //div[@data-type="forward"]//div[./p[.='${s}']]//input
+Select Available Item
+    [Arguments]    @{items}
+    FOR  ${i}  IN  @{items}
+        ${checkbox}    Get WebElement    //div[@data-type="forward"]//div[./p[.='${i}']]//input
         IF  not $checkbox.is_selected()
-            Click Element    //div[@data-type="forward"]//div[@role="option" and @value='${s}']
+            Click Element    //div[@data-type="forward"]//div[@role="option" and @value='${i}']
         END
     END
 
-Unselect Available Emission Source
-    [Arguments]    @{sources}
-    FOR  ${s}  IN  @{sources}
-        ${checkbox}    Get WebElement    //div[@data-type="forward"]//div[./p[.='${s}']]//input
+Unselect Available Item
+    [Arguments]    @{items}
+    FOR  ${i}  IN  @{items}
+        ${checkbox}    Get WebElement    //div[@data-type="forward"]//div[./p[.='${i}']]//input
         IF  $checkbox.is_selected()
-            Click Element    //div[@data-type="forward"]//div[@role="option" and @value='${s}']
+            Click Element    //div[@data-type="forward"]//div[@role="option" and @value='${i}']
         END
     END
 
-Select Selected Emission Source
-    [Arguments]    @{sources}
-    FOR  ${s}  IN  @{sources}
-        ${checkbox}    Get WebElement    //div[@data-type="backward"]//div[./p[.='${s}']]//input
+Select Selected Item
+    [Arguments]    @{items}
+    FOR  ${i}  IN  @{items}
+        ${checkbox}    Get WebElement    //div[@data-type="backward"]//div[./p[.='${i}']]//input
         IF  not $checkbox.is_selected()
-            Click Element    //div[@data-type="backward"]//div[@role="option" and @value='${s}']
+            Click Element    //div[@data-type="backward"]//div[@role="option" and @value='${i}']
         END
     END
 
-Unselect Selected Emission Source
-    [Arguments]    @{sources}
-    FOR  ${s}  IN  @{sources}
-        ${checkbox}    Get WebElement    //div[@data-type="backward"]//div[./p[.='${s}']]//input
+Unselect Selected Item
+    [Arguments]    @{items}
+    FOR  ${i}  IN  @{items}
+        ${checkbox}    Get WebElement    //div[@data-type="backward"]//div[./p[.='${i}']]//input
         IF  $checkbox.is_selected()
-            Click Element    //div[@data-type="backward"]//div[@role="option" and @value='${s}']
+            Click Element    //div[@data-type="backward"]//div[@role="option" and @value='${i}']
         END
     END
