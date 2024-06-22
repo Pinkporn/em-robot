@@ -12,6 +12,8 @@ Find WebElement
     ...
     ...    ``locator``: Locator to use when searching the element.
     ...
+    ...    ``tag``: Limit searching only to these elements.
+    ...
     ...    ``required``: Raise ``ElementNotFound`` if element not found when ``True``, return ``None`` otherwise.
     ...
     ...    ``parent``: Optional parent ``WebElememt`` to search child elements
@@ -25,10 +27,20 @@ Find WebElement
     ...    | Get WebElement  | //svg |                  | \# Fail: Element with locator '//svg' not found. |
     ...    | Find WebElement | //svg | required=${True} | \# Fail: Element with locator '//svg' not found. |
     ...    | Find WebElement | //svg |                  | \# Return: None                                  |
-    [Arguments]    ${locator}    ${required}=${False}    ${parent}=${None}
+    [Arguments]    ${locator}    ${tag}=${None}    ${required}=${False}    ${parent}=${None}
     # Run Keyword And Return    Evaluate    robot.libraries.BuiltIn.BuiltIn().get_library_instance('SeleniumLibrary')._element_finder.find_element($locator, required=$required, parent=$parent)    modules=robot
     ${selenium}    Get Library Instance    SeleniumLibrary
-    RETURN    ${{$selenium._element_finder.find_element($locator, required=$required, parent=$parent)}}
+    RETURN    ${{$selenium._element_finder.find_element($locator, $tag, $required, $parent)}}
+
+Click Element With Offset
+    [Documentation]    เหมือน Click Element At Coordinates แต่ดีกว่า
+    [Arguments]    ${locator}    ${xoffset}    ${yoffset}
+    ${element}    Get WebElement    ${locator}
+    ${selenium}    Get Library Instance    SeleniumLibrary
+    ${action}    Evaluate
+    ...    selenium.webdriver.common.action_chains.ActionChains($selenium.driver, $selenium.speed)
+    ...    modules=selenium.webdriver.common.action_chains
+    Evaluate    $action.move_to_element_with_offset($element, $xoffset, $yoffset).click().perform()
 
 Check Input Type
     [Documentation]
@@ -57,8 +69,7 @@ Select Date
     ${month}    ${year}    Split String    ${month year}
 
     ${selenium}    Get Library Instance    SeleniumLibrary
-    VAR    ${speed}       ${selenium.speed}
-    Set Selenium Speed    ${{$selenium.speed / 8}}
+    ${speed}    Set Selenium Speed    ${{$selenium.speed / 8}}
     # ดูปีในปฏิทิน
     Wait Until Element Is Visible   //button[contains(@class, 'calendarHeaderLevel') and text()]
     ${calendar year}    Get Text    //button[contains(@class, 'calendarHeaderLevel')]

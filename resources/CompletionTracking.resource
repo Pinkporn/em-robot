@@ -78,23 +78,38 @@ Tracker Group Status Should Be Equal
     ...    values=${False}
 
 Click Tracker Date
-    [Documentation]    คลิก Tracker Date ตาม ``date`` ใน Tracker Group ``name``
-    [Arguments]    ${name}    ${date}
+    [Documentation]    คลิก Tracker Date ตาม ``date`` ใน Tracker Group ``group``
+    [Arguments]    ${group}    ${date}
     ${month}    ${year}    Split String    ${date}
     ${month}    Convert To Upper Case    ${month}
-    # div ที่มี direct descendant เป็น "div ที่มี attribute aria-hidden" และมี "p ที่มีข้อความเท่ากับ name" อยู่ข้างใน
-    VAR    ${tracker div}    //div[./div[@aria-hidden] and .//p[.='${name}']]
+    # div ที่มี direct descendant เป็น "div ที่มี attribute aria-hidden" และมี "p ที่มีข้อความเท่ากับ group" อยู่ข้างใน
+    VAR    ${tracker div}    //div[./div[@aria-hidden] and .//p[.='${group}']]
     # tr ที่มี attribute data-is-collapse และมี "p ที่มีคำว่า year" อยู่ข้างใน
     VAR    ${detail tr}    //tr[@data-is-collapse and .//p[contains(., '${year}')]]
     # หา card ที่แสดงรายละเอียดของ tracker ที่โผล่ลงมาหลังกด Tracker Date
     ${card}    Find WebElement    ${tracker div}${detail tr}
     # คลิก date circle
-    ${circle}    Get WebElement   ${tracker div}//tr[.//p[.='${year}']]//td[@data-key='${month}']/*
-    Execute Javascript    arguments[0].click()    ARGUMENTS    ${circle}
+    # Execute Javascript    arguments[0].click()    ARGUMENTS    ${circle}
+    ${circle}    Get WebElement    ${tracker div}//tr[.//p[.='${year}']]//td[@data-key='${month}']/*
+    # ${width}    ${height}    Get Element Size    ${tracker div}//tr[.//p[.='${year}']]//td[@data-key='${month}']
+    # คลิกนอกวงกลมเพื่อไม่ให้ dialog โผล่
+    Click Element With Offset    ${circle}    0    ${circle.size["height"] // 2 - 1}
     # ถ้าหาไม่เจอ (card ไม่ได้แสดงอยู่) ให้ sleep รอ animation เสร็จ
     IF  $card is None
         Sleep    0.5    # 0.5 เอามาจากการเปิดดู css
     END
+
+Hover Tracker Date
+    [Arguments]    ${group}    ${date}
+    ${month}    ${year}    Split String    ${date}
+    ${month}    Convert To Upper Case    ${month}
+    VAR    ${tracker div}    //div[./div[@aria-hidden] and .//p[.='${group}']]
+    Mouse Over    ${tracker div}//tr[.//p[.='${year}']]//td[@data-key='${month}']
+
+Mouse Out Dialog
+    ${element}    Find WebElement    //div[@role='dialog']
+    IF  $element is None    RETURN
+    Mouse Out    ${element}
 
 Circle Should Only Be Visible In Range
     [Documentation]
@@ -103,7 +118,7 @@ Circle Should Only Be Visible In Range
     ...    ---
     ...    ตรวจสอบว่าใน Fuel มีวงกลมตั้งแต่ Jul 2023 ถึง Jun 2024 เท่านั้น
     ...    | Circle Should Only Be Visible In Range    Fuel    Jul 2023    Jun 2024
-    [Arguments]    ${name}    ${from}    ${to}
+    [Arguments]    ${group}    ${from}    ${to}
     ${from month}    ${from year}    Split String    ${from}
     ${to month}      ${to year}      Split String    ${to}
     ${from year}    Convert To Integer    ${from year}
@@ -117,27 +132,47 @@ Circle Should Only Be Visible In Range
         VAR    ${y}    ${{$i // 12}}
         ${data_key}    Convert To Upper Case    ${MONTHS}[${m}]
         Page Should Contain Element
-        ...    locator=//div[./div[@aria-hidden] and .//p[.='${name}']]//tr[.//p[.='${y}']]//td[@data-key='${data_key}']/*
-        ...    message=There is no circle in '${MONTHS}[${m}] ${y}' of ${name}
+        ...    locator=//div[./div[@aria-hidden] and .//p[.='${group}']]//tr[.//p[.='${y}']]//td[@data-key='${data_key}']/*
+        ...    message=There is no circle in '${MONTHS}[${m}] ${y}' of ${group}
     END
     # ตรวงสอบวงกลมนองช่วงก่อน from
     FOR  ${m}  IN RANGE  0  ${from_month}
         ${data_key}    Convert To Upper Case    ${MONTHS}[${m}]
         Element Should Not Be Visible
-        ...    locator=//div[./div[@aria-hidden] and .//p[.='${name}']]//tr[.//p[.='${from year}']]//td[@data-key='${data_key}']/*
-        ...    message=There is a circle in '${MONTHS}[${m}] ${from year}' of ${name}
+        ...    locator=//div[./div[@aria-hidden] and .//p[.='${group}']]//tr[.//p[.='${from year}']]//td[@data-key='${data_key}']/*
+        ...    message=There is a circle in '${MONTHS}[${m}] ${from year}' of ${group}
     END
     # ตรวงสอบวงกลมนองช่วงหลัง to
     FOR  ${m}  IN RANGE  ${to_month + 1}  12
         ${data_key}    Convert To Upper Case    ${MONTHS}[${m}]
         Element Should Not Be Visible
-        ...    locator=//div[./div[@aria-hidden] and .//p[.='${name}']]//tr[.//p[.='${to year}']]//td[@data-key='${data_key}']/*
-        ...    message=There is a circle in '${MONTHS}[${m}] ${to year}' of ${name}
+        ...    locator=//div[./div[@aria-hidden] and .//p[.='${group}']]//tr[.//p[.='${to year}']]//td[@data-key='${data_key}']/*
+        ...    message=There is a circle in '${MONTHS}[${m}] ${to year}' of ${group}
     END
 
-# Tracker Date Color Should Be Equal
+Tracker Date Color Should Be Equal
+    [Documentation]
+    ...    ตรวจสอบสีของวงกลมใน Tracker Date
+    ...
+    ...    สีที่เป็นไปได้คือ 'green', 'yellow', 'red'
+    [Arguments]    ${group}    ${date}    ${color}
+    ${month}    ${year}    Split String    ${date}
+    ${month}    Convert To Upper Case    ${month}
+    VAR    ${tracker div}    //div[./div[@aria-hidden] and .//p[.='${group}']]
+    ${circle}    Get WebElement    ${tracker div}//tr[.//p[.='${year}']]//td[@data-key='${month}']//div[@aria-haspopup]
+    ${style}    Get Element Attribute    ${circle}    style
+    IF  $color not in $style    Fail    '${date}' circle in '${group}' is not ${color}.
 
-# Emission Source Color Should Be Equal
+Emission Source Color Should Be Equal
+    [Documentation]
+    [Arguments]    ${group}    &{sources}
+    VAR    ${tracker div}    //div[./div[@aria-hidden] and .//p[.='${group}']]
+    FOR  ${s}  IN  @{sources}
+        VAR    ${color}    ${sources}[${s}]
+        ${circle}    Get WebElement    ${tracker div}//div[contains(@class, 'Card')]//div[./p[.='${s}']]//div[@aria-haspopup]
+        ${style}    Get Element Attribute    ${circle}    style
+        IF  $color not in $style    Fail    '${s}' circle in '${group}' is not ${color}.
+    END
 
 # Skip Emission Source
 
@@ -146,8 +181,6 @@ Circle Should Only Be Visible In Range
 # Input Emission Source Remark
 
 # Tracking Records Should Be Equal
-
-# Hover Tracker Date
 
 # Dialog Tracking Records Should Be Equal
 
