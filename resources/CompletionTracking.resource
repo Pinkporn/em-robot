@@ -161,30 +161,139 @@ Tracker Date Color Should Be Equal
     VAR    ${tracker div}    //div[./div[@aria-hidden] and .//p[.='${group}']]
     ${circle}    Get WebElement    ${tracker div}//tr[.//p[.='${year}']]//td[@data-key='${month}']//div[@aria-haspopup]
     ${style}    Get Element Attribute    ${circle}    style
-    IF  $color not in $style    Fail    '${date}' circle in '${group}' is not ${color}.
+    IF  $color not in $style    Fail    '${date}' circle in ${group} is not ${color}.
 
 Emission Source Color Should Be Equal
     [Documentation]
+    ...    ตรวจสอบสีของ Emission Sources ``sources`` ใน Tracker Group ``group``
+    ...
+    ...    ``sources`` ใส่ค่าแบบ ``ชื่อ=สี`` สามารถใส่ข้อมูลได้มากกว่า 1 ชุด
+    ...
+    ...    สีที่เป็นไปได้คือ 'green', 'yellow', 'red', 'gray'
+    ...    ---
+    ...    Examples:
+    ...    | Emission Source Color Should Be Equal | Fuel | Machine 101=yellow |
+    ...    | Emission Source Color Should Be Equal | Energy | Electricity (MEA / PEA)=green | MayaElec=gray |
     [Arguments]    ${group}    &{sources}
     VAR    ${tracker div}    //div[./div[@aria-hidden] and .//p[.='${group}']]
+    VAR    ${card div}    //div[contains(@class, 'Card')]
     FOR  ${s}  IN  @{sources}
         VAR    ${color}    ${sources}[${s}]
-        ${circle}    Get WebElement    ${tracker div}//div[contains(@class, 'Card')]//div[./p[.='${s}']]//div[@aria-haspopup]
+        ${circle}    Get WebElement    ${tracker div}${card div}//div[./p[.='${s}']]//div[@aria-haspopup]
         ${style}    Get Element Attribute    ${circle}    style
-        IF  $color not in $style    Fail    '${s}' circle in '${group}' is not ${color}.
+        IF  $color not in $style    Fail    '${s}' circle in ${group} is not ${color}.
     END
 
-# Skip Emission Source
+Skip Emission Source
+    [Documentation]
+    ...    กด skip Emission Sources ``sources`` ใน Tracker Group ``group``
+    ...
+    ...    สามารถใส่ชื่อ ``sources`` ได้มากกว่า 1 ค่า
+    ...    ---
+    ...    Examples:
+    ...    | Skip Emission Source | Fuel   | Machine 101 |
+    ...    | Skip Emission Source | Energy | Electricity (MEA / PEA) | MayaElec |
+    [Arguments]    ${group}    @{sources}
+    VAR    ${tracker div}    //div[./div[@aria-hidden] and .//p[.='${group}']]
+    VAR    ${card div}    //div[contains(@class, 'Card')]
+    FOR  ${s}  IN  @{sources}
+        VAR    ${button xpath}    ${tracker div}${card div}//div[./div[.='${s}']]//button
+        Click Button    ${button xpath}\[.='Skip']
+        Wait Until Element Is Visible    ${button xpath}\[.='Undo']
+    END
 
-# Undo Skipped Emission Source
+Undo Skipped Emission Source
+    [Documentation]
+    ...    กด undo Emission Sources ``sources`` ใน Tracker Group ``group``
+    ...
+    ...    สามารถใส่ชื่อ ``sources`` ได้มากกว่า 1 ค่า
+    ...    ---
+    ...    Examples:
+    ...    | Skip Emission Source | Fuel   | Machine 101 |
+    ...    | Skip Emission Source | Energy | Electricity (MEA / PEA) | MayaElec |
+    [Arguments]    ${group}    @{sources}
+    VAR    ${tracker div}    //div[./div[@aria-hidden] and .//p[.='${group}']]
+    VAR    ${card div}    //div[contains(@class, 'Card')]
+    FOR  ${s}  IN  @{sources}
+        VAR    ${button xpath}    ${tracker div}${card div}//div[./div[.='${s}']]//button
+        Click Button    ${button xpath}\[.='Undo']
+        Wait Until Element Is Visible    ${button xpath}\[.='Skip']
+    END
 
-# Input Emission Source Remark
+Input Emission Source Remark
+    [Documentation]
+    ...    กดรูปดินสอแล้วใส่ ``remark`` ให้กับ Emission Source ``source`` ใน Tracker Group ``group``
+    ...    ---
+    ...    Examples:
+    ...    | Skip Emission Source | Fuel   | Machine 101 |
+    ...    | Skip Emission Source | Energy | Electricity (MEA / PEA) | MayaElec |
+    [Arguments]    ${group}    ${source}    ${remark}
+    VAR    ${tracker div}    //div[./div[@aria-hidden] and .//p[.='${group}']]
+    VAR    ${card div}    //div[contains(@class, 'Card')]
+    VAR    ${pencil}    ${tracker div}${card div}//div[./div[.='${source}']]//*[local-name()='svg']
+    Click Element    ${pencil}
+    ${input element}    Execute Javascript    return document.activeElement
+    Press Keys    ${None}    CTRL+A    BACKSPACE
+    Input Text    ${input element}    ${remark}
+    Press Keys    ${None}    RETURN
+    Wait Until Element Is Visible    ${pencil}
 
-# Tracking Records Should Be Equal
+Tracking Records Should Be Equal
+    [Documentation]
+    ...    ตรวจสอบ Tracking Records ของ Emission Sources ``sources`` ใน Tracker Group ``group``
+    ...
+    ...    ``sources`` ใส่ค่าแบบ ``ชื่อ=ข้อความ`` สามารถใส่ข้อมูลได้มากกว่า 1 ชุด
+    ...    ---
+    ...    Examples:
+    ...    | Tracking Records Should Be Equal | Fuel   | Machine 101=(1/2) |
+    ...    | Tracking Records Should Be Equal | Energy | Electricity (MEA / PEA)=(1/1) | MayaElec=(0/1) |
+    [Arguments]    ${group}    &{sources}
+    VAR    ${tracker div}    //div[./div[@aria-hidden] and .//p[.='${group}']]
+    VAR    ${card div}    //div[contains(@class, 'Card')]
+    FOR  ${s}  IN  @{sources}
+        VAR    ${expected}    ${sources}[${s}]
+        ${records}    Get Text    ${tracker div}${card div}//div[./div[.='${s}']]/div[@id='tracking-records']/p
+        Should Be Equal    ${records}    ${expected}
+        ...    msg=Tracking records of '${s}' in ${group} has '${records}' instead of '${expected}'
+        ...    values=${False}
+    END
 
-# Dialog Tracking Records Should Be Equal
+Dialog Tracking Records Should Be Equal
+    [Documentation]
+    ...    ตรวจสอบ Tracking Records ของ Emission Sources ``sources`` ใน hover card (dialog)
+    ...
+    ...    ``sources`` ใส่ค่าแบบ ``ชื่อ=ข้อความ`` สามารถใส่ข้อมูลได้มากกว่า 1 ชุด
+    ...    ---
+    ...    Examples:
+    ...    | Dialog Tracking Records Should Be Equal | Machine 101=(1/2) |
+    ...    | Dialog Tracking Records Should Be Equal | Electricity (MEA / PEA)=(1/1) | MayaElec=(0/1) |
+    [Arguments]    &{sources}
+    FOR  ${s}  IN  @{sources}
+        VAR    ${expected}    ${sources}[${s}]
+        ${records}    Get Text    //div[@role="dialog"]//div[./div[.='${s}']]/p
+        Should Be Equal    ${records}    ${expected}
+        ...    msg=Tracking records of '${s}' in dialog has '${records}' instead of '${expected}'
+        ...    values=${False}
+    END
 
-# Dialog Emission Source Color Should Be Equal
+Dialog Emission Source Color Should Be Equal
+    [Documentation]
+    ...    ตรวจสอบสีของ Emission Sources ``sources`` ใน hover card (dialog)
+    ...    
+    ...    ``sources`` ใส่ค่าแบบ ``ชื่อ=สี`` สามารถใส่ข้อมูลได้มากกว่า 1 ชุด
+    ...    
+    ...    สีที่เป็นไปได้คือ 'green', 'yellow', 'red', 'gray'
+    ...    ---
+    ...    Examples:
+    ...    | Dialog Emission Source Color Should Be Equal | Machine 101=yellow |
+    ...    | Dialog Emission Source Color Should Be Equal | Electricity (MEA / PEA)=green | MayaElec=gray |
+    [Arguments]    &{sources}
+    FOR  ${s}  IN  @{sources}
+        VAR    ${color}    ${sources}[${s}]
+        ${circle}    Get WebElement    //div[@role="dialog"]//div[./p[.='${s}']]//div[@aria-haspopup]
+        ${style}    Get Element Attribute    ${circle}    style
+        IF  $color not in $style    Fail    '${s}' circle in dialog is not ${color}.
+    END
 
 # ======== Keywords for Settings ========
 Click Group Setting
