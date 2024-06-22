@@ -363,32 +363,46 @@ Click Stack Button
 
 Search Available
     [Arguments]    ${text}
+    Press Keys    //div[@data-type="forward"]//input[@placeholder]    CTRL+A    BACKSPACE
     Input Text    //div[@data-type="forward"]//input[@placeholder]    ${text}
 
 Search Selected
     [Arguments]    ${text}
+    Press Keys    //div[@data-type="forward"]//input[@placeholder]    CTRL+A    BACKSPACE
     Input Text    //div[@data-type="backward"]//input[@placeholder]    ${text}
 
 Select Available Emission Source
     [Arguments]    @{sources}
     FOR  ${s}  IN  @{sources}
-        Select Checkbox    //div[@data-type="forward"]//div[./p[.='${s}']]//input
+        ${checkbox}    Get WebElement    //div[@data-type="forward"]//div[./p[.='${s}']]//input
+        IF  not $checkbox.is_selected()
+            Click Element    //div[@data-type="forward"]//div[@role="option" and @value='${s}']
+        END
     END
 
 Unselect Available Emission Source
     [Arguments]    @{sources}
     FOR  ${s}  IN  @{sources}
-        Unselect Checkbox    //div[@data-type="forward"]//div[./p[.='${s}']]//input
+        ${checkbox}    Get WebElement    //div[@data-type="forward"]//div[./p[.='${s}']]//input
+        IF  $checkbox.is_selected()
+            Click Element    //div[@data-type="forward"]//div[@role="option" and @value='${s}']
+        END
     END
 
 Select Selected Emission Source
     [Arguments]    @{sources}
     FOR  ${s}  IN  @{sources}
-        Select Checkbox    //div[@data-type="backward"]//div[./p[.='${s}']]//input
+        ${checkbox}    Get WebElement    //div[@data-type="backward"]//div[./p[.='${s}']]//input
+        IF  not $checkbox.is_selected()
+            Click Element    //div[@data-type="backward"]//div[@role="option" and @value='${s}']
+        END
     END
 
 Unselect Selected Emission Source
     [Arguments]    @{sources}
     FOR  ${s}  IN  @{sources}
-        Unselect Checkbox    //div[@data-type="backward"]//div[./p[.='${s}']]//input
+        ${checkbox}    Get WebElement    //div[@data-type="backward"]//div[./p[.='${s}']]//input
+        IF  $checkbox.is_selected()
+            Click Element    //div[@data-type="backward"]//div[@role="option" and @value='${s}']
+        END
     END
