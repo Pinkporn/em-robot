@@ -368,7 +368,7 @@ Search Available
 
 Search Selected
     [Arguments]    ${text}
-    Press Keys    //div[@data-type="forward"]//input[@placeholder]    CTRL+A    BACKSPACE
+    Press Keys    //div[@data-type="backward"]//input[@placeholder]    CTRL+A    BACKSPACE
     Input Text    //div[@data-type="backward"]//input[@placeholder]    ${text}
 
 Select Available Emission Source
