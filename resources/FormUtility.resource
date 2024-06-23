@@ -145,7 +145,8 @@ Select Drop Down By Locator
     END
     VAR    ${option element}    ${POPOVER_XPATH}//div[@role="option" and ./descendant-or-self::*[text()='${option}']]
     Click Element    ${locator}
-    Wait Until Element Is Visible    ${option element}
+    Wait Until Element Is Visible    ${option element}    timeout=3
+    ...    error=Option '${option}' not visible after 3 seconds. Check for case sensitivity again.
     Click Element    ${option element}
 
 MultiSelect Drop Down By Locator
