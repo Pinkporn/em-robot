@@ -265,7 +265,7 @@ Upload Evidences
     [Documentation]    อัปโหลดหลักฐานใน drop zone สามารถใส่ค่าสุดท้ายเป็น ``timeout`` ได้
     ...    ---
     ...    Examples:
-    ...    | Upload Evidences | ${CURDIR}/pic-1.png   |                     | # อัปโหลดไฟล์เดียว |
+    ...    | Upload Evidences | ${CURDIR}/test.pdf    |                     | # อัปโหลดไฟล์เดียว |
     ...    | Upload Evidences | ${CURDIR}/pic-1.png   | ${CURDIR}/pic-2.png | # อัปโหลดสองไฟล์  |
     ...    | Upload Evidences | ${CURDIR}/bigFile.pdf | 30                  | # อัปโหลดไฟล์เดียว รอนานสุด 30 วินาที |
     [Arguments]    @{files}
