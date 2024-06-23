@@ -132,11 +132,7 @@ Add EF 10
     ...    purchased type=Cooling    source=PB-No Expire_EF    unit=kWh    renewable=${False}    
     ...    filling method=Total    Total=0.1500
     Confirm Add EF
-    ${new id}    Get Last Running No
-    WHILE  $new_id <= $id
-        Sleep    0.2
-        ${new id}    Get Last Running No
-    END
+    Wait Until New Running No Is Visible    ${id}
     Element Should Be Visible    (//td[@data-key="fromDate"])[1][text()=" - No Expiration"]
 
 Dup EF

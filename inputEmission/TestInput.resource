@@ -6,7 +6,7 @@ Resource          ../resources/Common.resource
 *** Variables ***
 ${URL}            https://emission-management-web-uat.pages.dev
 ${BROWSER}        Chrome
-${DELAY}          0.05s
+${DELAY}          0.02s
 ${USER EMAIL}     tanomporn.p@gideon-one.com
 ${PASSWORD}       P@ssw0rd
 ${ORGANIZATION}   Porn Corporation

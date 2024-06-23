@@ -21,11 +21,7 @@ Add & Check Emission
     ...    fuel type=${fuel type}    distance=${distance}    unit=${unit}    amount=${amount}    
     Click Element    //button[.//span[text()='Save as Draft']]
     Wait Until Page Contains    Emission created successfully
-    ${new id}    Get Last Running No
-    WHILE  $new_id <= $id
-        Sleep    0.2
-        ${new id}    Get Last Running No
-    END
+    Wait Until New Running No Is Visible    ${id}
     Wait Until Page Contains Element    //td[@data-key="emissions"]/div
     Click Element    //td[@data-key="emissions"]/div
     IF  not $no_emission
