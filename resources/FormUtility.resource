@@ -33,7 +33,11 @@ Find WebElement
     RETURN    ${{$selenium._element_finder.find_element($locator, $tag, $required, $parent)}}
 
 Click Element With Offset
-    [Documentation]    เหมือน Click Element At Coordinates แต่ดีกว่า
+    [Documentation]
+    ...    เหมือน Click Element At Coordinates แต่ดีกว่า
+    ...
+    ...    Click Element At Coordinates จะเอาเม้าชี้ที่ element แล้วขยับเม้าตาม offset แล้วค่อยคลิก
+    ...    แต่ keyword นี้จะเอาเม้าชี้ที่ offset ของ element เลยแล้วค่อยคลิก
     [Arguments]    ${locator}    ${xoffset}    ${yoffset}
     ${element}    Get WebElement    ${locator}
     ${selenium}    Get Library Instance    SeleniumLibrary
@@ -282,9 +286,36 @@ Upload Evidences
     Wait Until Element Is Not Visible    css:.mantine-Dropzone-root .mantine-Loader-root    ${timeout}
 
 Get Last Running No
-    ${element id}    Find WebElement    (//td[@data-idx="0"]//span)[1]
+    [Documentation]    คืนค่าเลข Running No. จากแถวแรกของตาราง
+    ...
+    ...    มักจะใช้คู่กับ Wait Until New Running No Is Visible
+    ...    ---
+    ...    Example:
+    ...    | ${id}    Get Last Running No    # robotcode: ignore
+    ...    | ...
+    ...    | Wait Until New Running No Is Visible    ${id}    # robotcode: ignore
+    ${element id}    Find WebElement    (//td[@data-key="runningNo"]//span)[1]
     IF  $element_id is None
         RETURN    ${0}
     END
     ${running no}    Get Text    ${element id}
     RETURN    ${{int($running_no[3:])}}
+
+Wait Until New Running No Is Visible
+    [Documentation]
+    ...    รอจนกว่าจะเห็นเลข Running No. ที่มีค่าสูงกว่า ``id``
+    ...    จะ error เมื่อรอนานกว่า ``timeout``
+    ...
+    ...    หาก ``timeout`` เป็น ``None`` จะใช้ timeout ของ Selenium
+    [Arguments]    ${id}    ${timeout}=${None}
+    IF  $timeout is None
+        ${selenium}    Get Library Instance    SeleniumLibrary
+        VAR    ${timeout}    ${selenium.timeout}
+    END
+    ${max_time}    Evaluate    time.time() + $timeout    modules=time
+    WHILE  time.time() < $max_time
+        ${new id}    Get Last Running No
+        IF  $new_id > $id    RETURN
+        Sleep    0.2
+    END
+    Fail    New running No. is not visible after ${timeout} seconds.
