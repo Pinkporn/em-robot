@@ -28,6 +28,8 @@ CarbonCal Login
         Click Element                        //p[text() = '${org}']
         Wait Until Page Contains             All Organizations 
         Wait Until Element Is Not Visible    css:.mantine-Overlay-root
+        ...    error=This page takes too long to load. Run again.
+        ...    timeout=10s
         ${current url}    Get Location
         @{words}    Split String    ${current url}    /
         RETURN      ${words}[3]
