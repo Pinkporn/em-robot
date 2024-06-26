@@ -61,11 +61,11 @@ Upload Evidence By Text
     [Documentation]    อัปโหลด ``file_path`` ในแถวที่มีข้อความ ``text`` และเป็นผลลัพท์ลำดับที่ ``result no``
     [Arguments]    ${text}    ${file_path}    ${result no}=1    ${timeout}=${None}
     VAR    ${locator}    (//tr[./td[.='${text}']]//input[@type='file' and not(@accept)])[${result no}]
-    ${upload button}    Get WebElement    ${locator}/following-sibling::*
-    Mouse Over     ${upload button}
+    # ${upload button}    Get WebElement
+    Mouse Over     ${locator}/following-sibling::*
     Choose File    ${locator}    ${file_path}
     Wait Until Element Is Visible    //div[@role="status" and text()='Evidence uploaded successfully']    ${timeout}
-    Mouse Out      ${upload button}
+    Mouse Out      ${locator}/following-sibling::*
 
 Done Upload Evidence
     [Documentation]    กดปุ่ม Done แล้วกดปุ่ม Understand ถ้ามี
@@ -76,4 +76,13 @@ Done Upload Evidence
         Click Button                     //button[.='Understand']
     END
     Wait Until Element Is Not Visible    //section
+
+Click Download Template
+    [Arguments]    ${org}
+    Click Button         //button[.//span[text()='Import Data']]
+    Click Menu Button    Download Template
+    Click Menu Button    ${org}
+    Wait Until Page Contains    Downloading Template... 
+
+    
     
