@@ -137,7 +137,7 @@ Edit EF
     Enter Energy Emission Factor Form     filling method=Separated by Gas    Fossil CH4=0.1    N2O=0.2    SF6=0.3    NF3=0.4
     ${total}    Get Value    //input[@id=//label[.='Total']/@for]
     Should Be Equal As Numbers    ${total}    1
-    Upload Evidences    ${CURDIR}/test.pdf
+    Upload Evidences    ${CURDIR}/../evidences/test.pdf
     Click Element    //button[.//span[text()='Save']]
     Wait Until Element Is Not Visible    //section 
     Wait Until Page Contains    Emission edited successfully

@@ -26,7 +26,7 @@ Setup Everything
 Import Data 01
     [Documentation]    Workspace / Drag & Drop แบบมีครบทุก evidence ในไฟล์
     ${id}    Upload Emission Data File    ${ORGANIZATION}    ${CURDIR}/Robot_Bulk_1.xlsx
-    Upload Evidences    ${CURDIR}/test.pdf
+    Upload Evidences    ${CURDIR}/../evidences/test.pdf
     Wait Until Element Is Visible    //div[text()='Uploaded']
     Done Upload Evidence
     Element Should Be Visible    //td[@data-key="runningNo" and .="${id}"]
@@ -37,7 +37,7 @@ Import Data 02
     
     ${element}    Find WebElement    //tr[./td[.='No file name specified']]
     WHILE    $element is not None
-        Upload Evidence By Text    No file name specified        ${CURDIR}/test.pdf
+        Upload Evidence By Text    No file name specified        ${CURDIR}/../evidences/test.pdf
         ${element}    Find WebElement    //tr[./td[.='No file name specified']]
     END
     Wait Until Element Is Visible    //div[text()='Uploaded']  #เช็คว่ามันอัพโหลดไฟล์แล้วหรือยัง
@@ -49,7 +49,7 @@ Import Data 02
 Import Data 03
     [Documentation]    Sub org. / Drag & Drop แบบมีครบทุก evidence ในไฟล์
     ${id}    Upload Emission Data File    InputEmissionTest    ${CURDIR}/Robot_Bulk_3.xlsx
-    Upload Evidences    ${CURDIR}/test.pdf
+    Upload Evidences    ${CURDIR}/../evidences/test.pdf
     Wait Until Element Is Visible    //div[text()='Uploaded']
     Done Upload Evidence
     Element Should Be Visible    //td[@data-key="runningNo" and .="${id}"]
@@ -57,7 +57,7 @@ Import Data 03
 Import Data 04
     [Documentation]    Sub org. / Drag & Drop ครบทุก evidence มากกว่า 1 ชื่อในไฟล์เดียว
     ${id}    Upload Emission Data File    InputEmissionTest    ${CURDIR}/Robot_Bulk_4.xlsx
-    Upload Evidences    ${CURDIR}/test.pdf    ${CURDIR}/One Test.pdf
+    Upload Evidences    ${CURDIR}/../evidences/test.pdf    ${CURDIR}/../evidences/One test.pdf
     Wait Until Element Is Visible    //div[text()='Uploaded']
     Done Upload Evidence
     Element Should Be Visible    //td[@data-key="runningNo" and .="${id}"]
@@ -65,7 +65,7 @@ Import Data 04
 Import Data 05
     [Documentation]    Workspace / Drag & Drop ไม่ครบทุก evidence ในไฟล์ เพื่อเช็ค modal understand
     ${id}    Upload Emission Data File    ${ORGANIZATION}    ${CURDIR}/Robot_Bulk_5.xlsx
-    Upload Evidences    ${CURDIR}/test.pdf
+    Upload Evidences    ${CURDIR}/../evidences/test.pdf
     Wait Until Element Is Visible    //div[text()='Uploaded']
     Done Upload Evidence
     Element Should Be Visible    //td[@data-key="runningNo" and .="${id}"]
