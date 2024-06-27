@@ -43,25 +43,6 @@ Add Emission Page 1 2
     Click Element                    //form//button[.='${group}']
     Wait Until Element Is Visible    //div[./form and contains(@style, 'translateX(0%)')]
 
-Select Date of Activity
-    [Arguments]    ${from}=${None}    ${to}=${None}
-    IF  $from is None and $to is None
-        ${date button}    Get WebElements    //button[contains(@aria-label, "Date")]
-        IF  $date_button
-            Click Element    ${date button}[0]
-            Press Keys    ${None}    TAB    TAB    RETURN    RETURN
-        END
-        RETURN
-    END
-    Click Element    //form//label[.//*[text()='Date of Activity']]
-    Wait Until Element Is Visible   //button[contains(@class, 'calendarHeaderLevel')]
-    Select Date    ${from}
-    IF  $to is None
-        Press Keys    ${None}    RETURN
-        RETURN
-    END
-    Select Date    ${to}
-
 Input Text With Default
     [Arguments]    ${locator}    ${text}    ${default}
     IF  $text is None

@@ -111,6 +111,25 @@ Select Exact Date
     Wait Until Element Is Visible    ${day button}
     Click Button                     ${day button}
 
+Select Date of Activity
+    [Arguments]    ${from}=${None}    ${to}=${None}
+    IF  $from is None and $to is None
+        ${date button}    Get WebElements    //button[contains(@aria-label, "Date")]
+        IF  $date_button
+            Click Element    ${date button}[0]
+            Press Keys    ${None}    TAB    TAB    RETURN    RETURN
+        END
+        RETURN
+    END
+    Click Element    //form//label[.//*[text()='Date of Activity']]
+    Wait Until Element Is Visible   //button[contains(@class, 'calendarHeaderLevel')]
+    Select Date    ${from}
+    IF  $to is None
+        Press Keys    ${None}    RETURN
+        RETURN
+    END
+    Select Date    ${to}
+
 Select Drop Down
     [Documentation]
     ...    หาแล้วคลิก drop down จาก ``label`` ที่ได้มาแล้วเลือก ``option``
@@ -319,3 +338,8 @@ Wait Until New Running No Is Visible
         Sleep    0.2
     END
     Fail    New running No. is not visible after ${timeout} seconds.
+
+Click Close Modal
+    ${close}    Get WebElement    (//section//header//button)[last()]
+    Click Element   ${close}
+    Wait For Expected Condition    staleness_of    ${close}
