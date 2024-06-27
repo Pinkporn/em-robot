@@ -16,8 +16,5 @@ ${ORG CODE}       gideon-two
 Setup Everything
     Set Selenium Speed    ${DELAY}
     Open Chrome
-    CarbonCal Login    ${URL}    ${USER EMAIL}    ${PASSWORD}    ${ORGANIZATION}
-    Wait Until Element Is Visible    //button[.='Skip']
-    Click Element    //button[.='Skip']
-    Wait Until Element Is Not Visible    //div[@id="body"]
+    EM Login    ${URL}    ${USER EMAIL}    ${PASSWORD}    ${ORGANIZATION}
     Go To Emission Factors

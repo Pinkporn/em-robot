@@ -19,6 +19,6 @@ ${SUB ORG ID}     1663
 Setup Everything
     Set Selenium Speed    ${DELAY}
     Open Chrome
-    CarbonCal Login    ${URL}    ${USER EMAIL}    ${PASSWORD}    ${ORGANIZATION}
+    EM Login    ${URL}    ${USER EMAIL}    ${PASSWORD}    ${ORGANIZATION}
     Go To Input Emission
     Select Orgs Structure Drop Down    ${None}    ${SUB ORG}

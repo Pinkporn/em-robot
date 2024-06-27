@@ -14,9 +14,10 @@ Open Chrome
     Call Method    ${chrome_options}    add_argument    --start-maximized
     Open browser    about:blank    Chrome    options=${chrome_options}
 
-CarbonCal Login
+EM Login
     [Arguments]    ${link}    ${user}    ${pass}    ${org}=${None}
     Go To    ${link}
+    Execute Javascript    localStorage.setItem("showProductTour", "false")
     Wait Until Element Is Visible    //input[@name='email']
     Wait Until Element Is Visible    //input[@name='password']
     Input Text         //input[@name='email']            ${user}

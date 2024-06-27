@@ -19,7 +19,7 @@ Setup Everything
     # Register Keyword To Run On Failure    NOTHING
     Set Selenium Speed    ${DELAY}
     Open Chrome
-    CarbonCal Login    ${URL}    ${USER EMAIL}    ${PASSWORD}    ${ORGANIZATION}
+    EM Login    ${URL}    ${USER EMAIL}    ${PASSWORD}    ${ORGANIZATION}
     Go To Report Templates
     Wait Until Element Is Visible    //li[.='Export History']
     Click Element   //li[.='Export History']
