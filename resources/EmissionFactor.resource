@@ -96,11 +96,11 @@ Generic Emission Factor Form
         ${input id}    Get Id From Label In Modal Form    ${label}
         ${strategy}    Check Input Type    id:${input id}
         IF  $strategy == 'TF'
-            IF    $value is not None    Input Text    id:${input id}    ${value}
+            IF  $value is not None    Input Text    id:${input id}    ${value}
         ELSE IF  $strategy == 'DD'
             Select Drop Down By Locator    id:${input id}    ${value}
         ELSE  # CB
-            IF    $value is not None
+            IF  $value is not None
                 ${checkbox}    Get WebElement    id:${input id}
                 IF  $checkbox.is_selected() != $value    Click Element    ${checkbox}
             END
