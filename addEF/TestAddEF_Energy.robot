@@ -1,26 +1,14 @@
 *** Settings ***
 Documentation     Add Emission Factor Regression Test
-Resource          ../resources/EmissionFactor.resource
-Resource          ../resources/Common.resource
+Resource          TestAddEF.resource
 Suite Setup       Setup Everything
 Test Teardown     Sleep    0.5
 
 *** Variables ***
-${URL}            https://emission-management-web-uat.pages.dev
-${BROWSER}        Chrome
-${DELAY}          0s
-${USER EMAIL}     tanomporn.p@gideon-one.com
-${PASSWORD}       P@ssw0rd
-${ORGANIZATION}   Porn Corporation
-${ORG CODE}       porn-corporation
+
 
 *** Keywords ***
-Setup Everything
-    # Register Keyword To Run On Failure    NOTHING
-    Set Selenium Speed    ${DELAY}
-    Open Chrome
-    CarbonCal Login    ${URL}    ${USER EMAIL}    ${PASSWORD}    ${ORGANIZATION}
-    Go To Emission Factors
+
 
 *** Test Cases ***
 

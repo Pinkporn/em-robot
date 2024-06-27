@@ -7,10 +7,9 @@ Resource          FormUtility.resource
 
 *** Keywords ***
 Go To Emission Factors
-    VAR    ${navlink input}    //div[contains(@class, 'mantine-Flex-root')]/a[6]
-    Click Element    ${navlink input}
-    Wait Until Element Is Visible    ${navlink input}//span[text()='Emission Factors']
-    Click Element    ${navlink input}//span[text()='Emission Factors']
+    Click Element    //h3[text()='Data']
+    Wait Until Element Is Visible    //h3[text()='Emission Factor']
+    Click Element    //h3[text()='Emission Factor']
     Wait Until Element Is Not Visible    //div[contains(@class, 'styles_loadingOverlayContent')]
     Wait Until Element Is Not Visible    //td//span[contains(@class, 'mantine-Loader-root')]
 
@@ -93,14 +92,15 @@ Generic Emission Factor Form
 
     FOR  ${label}  IN  @{others}
         VAR    ${value}    ${others}[${label}]
+        IF  $value == 'SKIP'    CONTINUE
         ${input id}    Get Id From Label In Modal Form    ${label}
         ${strategy}    Check Input Type    id:${input id}
         IF  $strategy == 'TF'
-            IF  $value != 'SKIP' and $value is not None    Input Text    id:${input id}    ${value}
+            IF    $value is not None    Input Text    id:${input id}    ${value}
         ELSE IF  $strategy == 'DD'
-            IF  $value != 'SKIP'    Select Drop Down By Locator    id:${input id}    ${value}
+            Select Drop Down By Locator    id:${input id}    ${value}
         ELSE  # CB
-            IF  $value != 'SKIP' and $value is not None
+            IF    $value is not None
                 ${checkbox}    Get WebElement    id:${input id}
                 IF  $checkbox.is_selected() != $value    Click Element    ${checkbox}
             END
@@ -145,6 +145,35 @@ Enter Energy Emission Factor Form
     ...    Energy Source=${source}
     ...    Unit=${unit}
     ...    Renewable=${renewable}
+
+Enter Fuel Emission Factor Form
+    [Arguments]
+    ...    ${start date}=SKIP    ${end date}=${None}
+    ...    ${publisher}=SKIP
+    ...    ${cert id}=SKIP
+    ...    ${factor type}=SKIP
+    ...    ${activity type}=SKIP
+    ...    ${fuel group}=SKIP
+    ...    ${fuel source}=SKIP
+    ...    ${unit}=SKIP
+    ...    ${filling method}=${None}
+    ...    &{gases}
+
+    ${group}    Get Id From Label In Modal Form    Emission Group
+    ${element}    Get WebElement    id:${group}
+    VAR    ${emission group}    ${{'Fuel' if $element.is_enabled() else 'SKIP'}}
+
+    Generic Emission Factor Form
+    ...    ${start date}    ${end date}
+    ...    ${publisher}     ${cert id}
+    ...    ${emission group}
+    ...    ${filling method}
+    ...    ${gases}
+    ...    Emission Factor Type=${factor type}
+    ...    Activity Type=${activity type}
+    ...    Fuel Group=${fuel group}
+    ...    Fuel=${fuel source}
+    ...    Unit=${unit}
 
 Enter Purchases Emission Factor Form
     [Arguments]
