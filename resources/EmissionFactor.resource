@@ -93,14 +93,15 @@ Generic Emission Factor Form
 
     FOR  ${label}  IN  @{others}
         VAR    ${value}    ${others}[${label}]
+        IF  $value == 'SKIP'    CONTINUE
         ${input id}    Get Id From Label In Modal Form    ${label}
         ${strategy}    Check Input Type    id:${input id}
         IF  $strategy == 'TF'
-            IF  $value != 'SKIP' and $value is not None    Input Text    id:${input id}    ${value}
+            IF  $value is not None    Input Text    id:${input id}    ${value}
         ELSE IF  $strategy == 'DD'
-            IF  $value != 'SKIP'    Select Drop Down By Locator    id:${input id}    ${value}
+            Select Drop Down By Locator    id:${input id}    ${value}
         ELSE  # CB
-            IF  $value != 'SKIP' and $value is not None
+            IF  $value is not None
                 ${checkbox}    Get WebElement    id:${input id}
                 IF  $checkbox.is_selected() != $value    Click Element    ${checkbox}
             END
