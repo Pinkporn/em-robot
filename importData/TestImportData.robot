@@ -16,7 +16,6 @@ ${ORGANIZATION}   Porn Corporation
 
 *** Keywords ***
 Setup Everything
-    # Register Keyword To Run On Failure    NOTHING
     Set Selenium Speed    ${DELAY}
     Open Chrome
     EM Login    ${URL}    ${USER EMAIL}    ${PASSWORD}    ${ORGANIZATION}
@@ -91,7 +90,7 @@ Import Data 07
     Click Menu Button    Upload Evidence
     Wait Until Element Is Visible    //div[contains(@style, 'translateX(0%)')]
     ${name}    Get Text    //td[contains(@class, 'evidenceName')]
-    Upload Evidence By Text    ${name}    ${CURDIR}/BKK-Rayong.pdf
+    Upload Evidence By Text    ${name}    ${CURDIR}/../evidences/BKK-Rayong.pdf
     ${new name}    Get Text    //td[contains(@class, 'evidenceName')]
     Should Not Be Equal    ${new name}    ${name}               
     Should Be Equal    ${new name}    BKK-Rayong.pdf
@@ -109,4 +108,4 @@ Import Data 09
     Wait Until Element Is Visible    //section
     ${file name}    Get Text    //p/span[contains(@class, 'focus')]
     Click Element    //button[.='Delete']
-    Wait Until Page Contains     Deleted ${file name} Successfully 
+    Wait Until Page Contains     Deleted ${file name} Successfully

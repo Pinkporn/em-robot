@@ -25,8 +25,8 @@ Add Product Value Indicator
     Click Menu Button    Add Product Value Indicator
     Wait Until Element Is Visible    //input[@placeholder="Product Value Indicator Name"]
     Input Text    //input[@placeholder="Product Value Indicator Name"]    ${name}
-    Wait Until Element Is Enabled    //button[.='Add']
-    Click Button    //button[.='Add']
+    Wait Until Element Is Enabled    (//button[.='Add'])[last()]
+    Click Button    (//button[.='Add'])[last()]
     Wait Until Page Contains    The product value indicator was successfully created.
 
 Rename Product Value Indicator
@@ -36,7 +36,7 @@ Rename Product Value Indicator
     Click Menu Button    Rename
     Wait Until Element Is Visible    //input[@value='${name}']
     Input Text    //input[@value='${name}']    ${new name}
-    Click Button    //button[.='Add']
+    Click Button    //button[.='Save']
     Wait Until Element Is Visible    //button[.='Confirm']
     Click Button    //button[.='Confirm']
     Wait Until Page Contains    The product value indicator was successfully updated.
@@ -46,8 +46,8 @@ Delete Product Value Indicator
     Click Button    //button[@aria-haspopup and ./*[local-name()='svg']]
     Click Button    //button[.='${name}']//button
     Click Menu Button    Delete
-    Wait Until Element Is Visible    //button[.='Delete']
-    Click Element    //button[.='Delete']
+    Wait Until Element Is Visible    //section//button[.='Delete']
+    Click Element    //section//button[.='Delete']
     Wait Until Page Contains     The product value indicator was successfully deleted.
 
 Click Add Eco Eff
@@ -58,3 +58,28 @@ Click Add Eco Eff
     Select Drop Down    Site    ${site}
     Click Button    //button[.='Next']
     Wait Until Element Is Visible    //div[contains(@style, 'translateX(0%)')]
+
+Enter Eco Efficiency Form
+    [Arguments]        
+    ...    ${from date}=${None}    ${to date}=${None}
+    ...    ${value indicator}=${None}
+    ...    ${impact indicator}=${None}
+    ...    ${amount}=${None}
+    ...    ${remark}=${None}
+    Select Date of Activity    ${from date}    ${to date}
+    Select Drop Down    Product Value Indicator    ${value indicator}
+    Select Drop Down    Environment Impact Indicator    ${impact indicator}
+    IF  $amount is not None    Input Text    name:bank.defaultProductValueAmount.amount    ${amount}   
+    IF  $remark is not None    Input Text    name:remark    ${remark}
+
+Click Confirm Add Eco Eff
+    Click Element    //button[.='Add']
+    Wait Until Page Contains    Eco-Efficiency created successfully    error=Add eco eff fail
+    Wait Until Element Is Not Visible    //section
+
+Require Field Error Message Should Be
+    [Arguments]    ${label}    ${error}
+    ${text}    Get Text    //div[./label/div[text()='${label}']]/p
+    Should Be Equal    ${text}    ${error}   
+
+    
