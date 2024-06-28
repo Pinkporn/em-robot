@@ -63,12 +63,13 @@ Click View Emission
     Click Menu Button    View
 
 Click Delete Emission
+    ${id}    Get Last Running No
     Click Kebab Button In Table
     Click Menu Button    Delete
-    Wait Until Element Is Visible    //section
-    Click Button    //button[.='Delete']
-    Wait Until Page Contains    The emission was successfully deleted.
-    # TODO: ควรแก้ให้รอ id หายเหมือน Click Delete EF
+    Wait Until Element Is Visible    //section//button[.='Delete']
+    Click Element    //section//button[.='Delete']
+    Wait Until Element Is Not Visible    //section
+    Wait Until Page Does Not Contain    EM-${id}
 
 Check Record Emission
     [Arguments]

@@ -35,53 +35,53 @@ Close Unsaved Changes Form
     Wait Until Element Is Not Visible    //section
 
 *** Test Cases ***
-# Add EM 01
-#     [Documentation]    ไม่มี EF ให้เลือก (เพราะ Date เกิน EF ที่มี)
-#     Add Emission Page 1 2    ${ORGANIZATION}    ${SITES}[0]    Fuel
-#     Select Date of Activity    Jan 2023    Jan 2023
-#     Select Drop Down    Asset Name    Bike OU-1
-#     Drop Down Should Not Contain Option    Fuel    ${FUEL}
-#     Close Unsaved Changes Form
+Add EM 01
+    [Documentation]    ไม่มี EF ให้เลือก (เพราะ Date เกิน EF ที่มี)
+    Add Emission Page 1 2    ${ORGANIZATION}    ${SITES}[0]    Fuel
+    Select Date of Activity    Jan 2023    Jan 2023
+    Select Drop Down    Asset Name    Bike OU-1
+    Drop Down Should Not Contain Option    Fuel    ${FUEL}
+    Close Unsaved Changes Form
 
-# Add EM 02
-#     [Documentation]    ไม่มี EF ให้เลือก (เพราะ Date เกิน EF ที่มี)
-#     Add Emission Page 1 2    ${ORGANIZATION}    ${SITES}[0]    Fuel
-#     Select Date of Activity    Jan 2023    Feb 2023
-#     Select Drop Down    Asset Name    Bike OU-1
-#     Drop Down Should Not Contain Option    Fuel    ${FUEL}
-#     Close Unsaved Changes Form
+Add EM 02
+    [Documentation]    ไม่มี EF ให้เลือก (เพราะ Date เกิน EF ที่มี)
+    Add Emission Page 1 2    ${ORGANIZATION}    ${SITES}[0]    Fuel
+    Select Date of Activity    Jan 2023    Feb 2023
+    Select Drop Down    Asset Name    Bike OU-1
+    Drop Down Should Not Contain Option    Fuel    ${FUEL}
+    Close Unsaved Changes Form
     
-# Add EM 03
-#     [Documentation]    ไม่มี EF ให้เลือก (เพราะ Date เกิน EF ที่มี)
-#     Add Emission Page 1 2    ${ORGANIZATION}    ${SITES}[0]    Fuel
-#     Select Date of Activity    Feb 2023    Feb 2023
-#     Select Drop Down    Asset Name    Bike OU-1
-#     Drop Down Should Not Contain Option    Fuel    ${FUEL}
-#     Close Unsaved Changes Form
+Add EM 03
+    [Documentation]    ไม่มี EF ให้เลือก (เพราะ Date เกิน EF ที่มี)
+    Add Emission Page 1 2    ${ORGANIZATION}    ${SITES}[0]    Fuel
+    Select Date of Activity    Feb 2023    Feb 2023
+    Select Drop Down    Asset Name    Bike OU-1
+    Drop Down Should Not Contain Option    Fuel    ${FUEL}
+    Close Unsaved Changes Form
 
-# Add EM 04
-#     [Documentation]    ไม่มี EF ให้เลือก (เพราะ Date เกิน EF ที่มี)
-#     Add Emission Page 1 2    ${ORGANIZATION}    ${SITES}[0]    Fuel
-#     Select Date of Activity    Feb 2023    Mar 2023
-#     Select Drop Down    Asset Name    Bike OU-1
-#     Drop Down Should Not Contain Option    Fuel    ${FUEL}
-#     Close Unsaved Changes Form
+Add EM 04
+    [Documentation]    ไม่มี EF ให้เลือก (เพราะ Date เกิน EF ที่มี)
+    Add Emission Page 1 2    ${ORGANIZATION}    ${SITES}[0]    Fuel
+    Select Date of Activity    Feb 2023    Mar 2023
+    Select Drop Down    Asset Name    Bike OU-1
+    Drop Down Should Not Contain Option    Fuel    ${FUEL}
+    Close Unsaved Changes Form
 
-# Add EM 05
-#     [Documentation]    ไม่มี EF ให้เลือก (เพราะ Date เกิน EF ที่มี)
-#     Add Emission Page 1 2    ${ORGANIZATION}    ${SITES}[0]    Fuel
-#     Select Date of Activity    Mar 2023    Mar 2023
-#     Select Drop Down    Asset Name    Bike OU-1
-#     Drop Down Should Not Contain Option    Fuel    ${FUEL}
-#     Close Unsaved Changes Form
+Add EM 05
+    [Documentation]    ไม่มี EF ให้เลือก (เพราะ Date เกิน EF ที่มี)
+    Add Emission Page 1 2    ${ORGANIZATION}    ${SITES}[0]    Fuel
+    Select Date of Activity    Mar 2023    Mar 2023
+    Select Drop Down    Asset Name    Bike OU-1
+    Drop Down Should Not Contain Option    Fuel    ${FUEL}
+    Close Unsaved Changes Form
 
-# Add EM 06
-#     [Documentation]    ไม่มี EF ให้เลือก (เพราะ Date เกิน EF ที่มี)
-#     Add Emission Page 1 2    ${ORGANIZATION}    ${SITES}[0]    Fuel
-#     Select Date of Activity    Mar 2023    Apr 2023
-#     Select Drop Down    Asset Name    Bike OU-1
-#     Drop Down Should Not Contain Option    Fuel    ${FUEL}
-#     Close Unsaved Changes Form
+Add EM 06
+    [Documentation]    ไม่มี EF ให้เลือก (เพราะ Date เกิน EF ที่มี)
+    Add Emission Page 1 2    ${ORGANIZATION}    ${SITES}[0]    Fuel
+    Select Date of Activity    Mar 2023    Apr 2023
+    Select Drop Down    Asset Name    Bike OU-1
+    Drop Down Should Not Contain Option    Fuel    ${FUEL}
+    Close Unsaved Changes Form
 
 Add EM 07
     [Documentation]    
@@ -214,4 +214,12 @@ Add EM 17
     Wait Until New Running No Is Visible    ${id}
     Check Record Emission    scope 1=60.00 kg    scope 3=50.00 kg    outside of scope=30.00 kg
     Click Delete Emission
+
+Delete All EM
+    [Tags]    delete
+    ${element}    Find WebElement    //td[@data-sticky="action"]//button
+    WHILE    $element is not None
+        Click Delete Emission
+        ${element}    Find WebElement    //td[@data-sticky="action"]//button
+    END
 
