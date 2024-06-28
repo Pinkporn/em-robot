@@ -5,7 +5,6 @@ Resource          ../resources/Common.resource
 
 *** Variables ***
 ${URL}            https://app-uat.zplify.com/
-${BROWSER}        Chrome
 ${DELAY}          0s
 ${USER EMAIL}     tanomporn.p@gideon-one.com
 ${PASSWORD}       P@ssw0rd

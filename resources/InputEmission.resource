@@ -7,10 +7,9 @@ Resource          FormUtility.resource
 
 *** Keywords ***
 Go To Input Emission
-    VAR    ${navlink input}    //div[contains(@class, 'mantine-Flex-root')]/a[2]
-    Click Element    ${navlink input}
-    Wait Until Element Is Visible    ${navlink input}//span[text()='Emissions']
-    Click Element    ${navlink input}//span[text()='Emissions']
+    Click Element    //h3[text()='Emission']
+    Wait Until Element Is Visible    //h3[text()='Input']
+    Click Element    //h3[text()='Input']
     Wait Until Element Is Not Visible    //div[contains(@class, 'styles_loadingOverlayContent')]
     Wait Until Element Is Not Visible    //td//span[contains(@class, 'mantine-Loader-root')]
 
@@ -29,7 +28,7 @@ Go To Input Emission By Url
 
 Add Emission Page 1 2
     [Arguments]    ${org name}    ${site name}    ${group}
-    Click Element    //span[text()='Add Emission']
+    Click Element    //span[.='+ Add Emission']
     VAR    ${org input}    //input[@id=//form//label[text()='Organization']/@for]
     Wait For Expected Condition    element_to_be_clickable    ${{('xpath', $org_input)}}
     Click Element    ${org input}
@@ -69,6 +68,32 @@ Click Delete Emission
     Wait Until Element Is Visible    //section
     Click Button    //button[.='Delete']
     Wait Until Page Contains    The emission was successfully deleted.
+    # TODO: ควรแก้ให้รอ id หายเหมือน Click Delete EF
+
+Check Record Emission
+    [Arguments]
+    ...    ${scope 1}=${None}
+    ...    ${scope 2}=${None}
+    ...    ${scope 3}=${None}
+    ...    ${outside of scope}=${None}
+    ...    ${no emission}=${False}
+
+    IF  $no_emission
+        Element Should Be Visible    (//td[@data-key="emissions"]/div)[1][text()='0.00 kg']
+        RETURN
+    END
+    Wait Until Page Contains Element    //td[@data-key="emissions"]/div
+    Click Element    //td[@data-key="emissions"]/div
+    Wait Until Element Is Visible    //div[@role='dialog']    timeout=1
+    ...    error=No visible dialog. Maybe there is no emission.
+    IF  $scope_1 is not None
+    ...    Element Should Be Visible    //div[@role='dialog']//p[.="Scope 1: ${scope 1}"]
+    IF  $scope_2 is not None
+    ...    Element Should Be Visible    //div[@role='dialog']//p[.="Scope 2: ${scope 2}"]
+    IF  $scope_3 is not None
+    ...    Element Should Be Visible    //div[@role='dialog']//p[.="Scope 3: ${scope 3}"]
+    IF  $outside_of_scope is not None
+    ...    Element Should Be Visible    //div[@role='dialog']//p[.="Outside of Scope: ${outside of scope}"]
 
 # ======== Enter Emission Form ========
 Enter Energy Form

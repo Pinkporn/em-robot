@@ -205,7 +205,20 @@ Enter Purchases Emission Factor Form
 Confirm Add EF
     Click Element    //button[.="Add"]
     Wait Until Element Is Not Visible    //section
-    Wait Until Page Contains    Emission Factor created successfully  
+    Wait Until Page Contains    Emission Factor created successfully
+
+Confirm Add EF Expect Invalid Date
+    Click Element    //button[.="Add"]
+    Wait Until Element Is Visible    //span[contains(text(), "Invalid Start Date or End Date for this emission factor.")]
+    # Wait Until Element Is Not Visible    //span[contains(text(), "Invalid Start Date or End Date for this emission factor.")]
+    Click Close Modal
+
+Confirm Add EF Expect Overlap Date
+    Click Element    //button[.="Add"]
+    Wait Until Element Is Visible    //section//button[.="Understand"]
+    Click Element    //section//button[.="Understand"]
+    Wait Until Element Is Not Visible    //section//button[.="Understand"]
+    Click Close Modal
 
 Click Edit EF
     Click Kebab Button In Table
@@ -216,8 +229,11 @@ Click Duplicate EF
     Click Menu Button    Duplicate
 
 Click Delete EF
+    ${id}    Get Last Running No
     Click Kebab Button In Table
     Click Menu Button    Delete
-    Wait Until Element Is Visible    //section
-    Click Button    //button[.='Delete']
-    Wait Until Page Contains    The emission factor has been successfully deleted.    10s
+    Wait Until Element Is Visible    //section//button[.='Delete']
+    Click Element    //section//button[.='Delete']
+    Wait Until Element Is Not Visible    //section
+    Wait Until Page Does Not Contain    EF-${id}
+
