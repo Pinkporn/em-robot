@@ -73,7 +73,7 @@ Dup Eco Eff
     Click Menu Button    Duplicate
     Wait Until Element Is Visible    //div[contains(@style, 'translateX(0%)')]
     Enter Eco Efficiency Form    from date=Jan 2019    to date=Dec 2019    amount=1000000
-    Upload Evidences    ${CURDIR}/test.pdf
+    Upload Evidences    ${CURDIR}/../evidences/test.pdf
     Click Element    //button[.//span[text()='Save']]
     Wait Until Element Is Not Visible    //section 
     Wait Until Page Contains    Eco-Efficiency duplicated successfully
