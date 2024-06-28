@@ -112,6 +112,9 @@ Select Exact Date
     Click Button                     ${day button}
 
 Select Date of Activity
+    [Documentation]    เลือกช่วงเดือนปีในปฏิทิน
+    ...
+    ...    มักจะได้ใช้ใน form ของ add emission หรือ add eco-efficiency
     [Arguments]    ${from}=${None}    ${to}=${None}
     IF  $from is None and $to is None
         ${date button}    Get WebElements    //button[contains(@aria-label, "Date")]
@@ -340,6 +343,7 @@ Wait Until New Running No Is Visible
     Fail    New running No. is not visible after ${timeout} seconds.
 
 Click Close Modal
+    [Documentation]    กดปิด modal ล่าสุดที่กำลังแสดงอยู่
     ${close}    Get WebElement    (//section//header//button)[last()]
-    Click Element   ${close}
+    Click Element    ${close}
     Wait For Expected Condition    staleness_of    ${close}
