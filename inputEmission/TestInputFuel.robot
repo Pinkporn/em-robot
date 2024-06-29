@@ -16,7 +16,7 @@ Add & Check Fuel Emission
     
     ${id}    Get Last Running No
     Add Emission Page 1 2    ${SUB ORG}    ${site name}    Fuel
-    Enter Fuel Form    asset name=${asset name}    fuel=${fuel name}    
+    Enter Fuel Form    asset name=${asset name}    fuel=${fuel name}
     ...    unit=${unit}    amount=${amount}    asset type=${asset type}
     Click Element    //button[.//span[text()='Save as Draft']]
     Wait Until Page Contains    Emission created successfully

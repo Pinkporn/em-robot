@@ -347,3 +347,12 @@ Click Close Modal
     ${close}    Get WebElement    (//section//header//button)[last()]
     Click Element    ${close}
     Wait For Expected Condition    staleness_of    ${close}
+
+Drop Down Should Not Contain Option
+    [Documentation]    ตรวจสอบว่า drop down ``label`` ไม่มี ``option``
+    [Arguments]    ${label}    ${option}
+    ${input}    Get Id From Label In Modal Form    ${label}
+    Scroll Element Into View    id:${input}
+    Click Element    id:${input}
+    Element Should Not Be Visible    ${POPOVER_XPATH}//span[text()='${option}']
+    ...    message=There is '${option}' option in ${label}.

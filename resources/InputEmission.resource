@@ -69,6 +69,32 @@ Click Delete Emission
     Wait Until Element Is Visible    //section
     Click Button    //button[.='Delete']
     Wait Until Page Contains    The emission was successfully deleted.
+    # TODO: ควรแก้ให้รอ id หายเหมือน Click Delete EF
+
+Check Record Emission
+    [Arguments]
+    ...    ${scope 1}=${None}
+    ...    ${scope 2}=${None}
+    ...    ${scope 3}=${None}
+    ...    ${outside of scope}=${None}
+    ...    ${no emission}=${False}
+
+    IF  $no_emission
+        Element Should Be Visible    (//td[@data-key="emissions"]/div)[1][text()='0.00 kg']
+        RETURN
+    END
+    Wait Until Page Contains Element    //td[@data-key="emissions"]/div
+    Click Element    //td[@data-key="emissions"]/div
+    Wait Until Element Is Visible    //div[@role='dialog']    timeout=1
+    ...    error=No visible dialog. Maybe there is no emission.
+    IF  $scope_1 is not None
+    ...    Element Should Be Visible    //div[@role='dialog']//p[.="Scope 1: ${scope 1}"]
+    IF  $scope_2 is not None
+    ...    Element Should Be Visible    //div[@role='dialog']//p[.="Scope 2: ${scope 2}"]
+    IF  $scope_3 is not None
+    ...    Element Should Be Visible    //div[@role='dialog']//p[.="Scope 3: ${scope 3}"]
+    IF  $outside_of_scope is not None
+    ...    Element Should Be Visible    //div[@role='dialog']//p[.="Outside of Scope: ${outside of scope}"]
 
 # ======== Enter Emission Form ========
 Enter Energy Form
