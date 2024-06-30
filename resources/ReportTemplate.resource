@@ -35,8 +35,8 @@ Add Report Template
     Wait Until Element Is Visible    //section//button[.//span[text()='Next']]
     
     Select Drop Down    Reporting Organization    ${report org}
-    ${input id}    Get Id From Label In Modal Form    Organizations To Be Included In Report
-    MultiSelect Drop Down By Locator    id:${input id}    @{include org}
+    ${input}    Get Element From Label    Organizations To Be Included In Report
+    MultiSelect Drop Down By Locator    ${input}    @{include org}
 
     Click Button    //section//button[.//span[text()='Next']]
     
@@ -60,8 +60,8 @@ Enter Report Details
     ...    ${from base period}=${None}    ${to base period}=${None}
     
     IF  $include_org is not None
-        ${input id}    Get Id From Label In Modal Form    Organizations To Be Included In Report
-        MultiSelect Drop Down By Locator    id:${input id}    @{include org}
+        ${input}    Get Element From Label    Organizations To Be Included In Report
+        MultiSelect Drop Down By Locator    ${input}    @{include org}
     END
 
     IF  $report_name
@@ -74,17 +74,17 @@ Enter Report Details
         VAR    ${to base period}    ${from base period}
     END
     IF  $from_period is not None
-        ${input id}    Get Id From Label In Modal Form    Report Period
-        Wait Until Element Is Visible    id:${input id}
-        Click Element    id:${input id}
+        ${input}    Get Element From Label    Report Period
+        Wait Until Element Is Visible    ${input}
+        Click Element    ${input}
         Select Date    ${from period}
         Select Date    ${to period}
         Wait Until Element Is Not Visible    ${POPOVER_XPATH}
     END
     IF  $from_base_period is not None
-        ${input id}    Get Id From Label In Modal Form    Base Year Period
-        Wait Until Element Is Visible    id:${input id}
-        Click Element    id:${input id}
+        ${input}    Get Element From Label    Base Year Period
+        Wait Until Element Is Visible    ${input}
+        Click Element    ${input}
         Select Date    ${from base period}
         Select Date    ${to base period}
         Wait Until Element Is Not Visible    ${POPOVER_XPATH}
@@ -100,9 +100,9 @@ Enter FR-01
         Input Text    name:detail.creatorName    ${creator}
     END
     IF  $report_date is not None
-        ${input id}    Get Id From Label In Modal Form    Report Date
-        Scroll Element Into View    id:${input id}
-        Click Element    id:${input id}
+        ${input}    Get Element From Label    Report Date
+        Scroll Element Into View    ${input}
+        Click Element    ${input}
         Select Exact Date    ${report date}
         Wait Until Element Is Not Visible    ${POPOVER_XPATH}
     END

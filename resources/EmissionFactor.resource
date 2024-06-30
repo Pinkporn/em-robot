@@ -93,16 +93,15 @@ Generic Emission Factor Form
     FOR  ${label}  IN  @{others}
         VAR    ${value}    ${others}[${label}]
         IF  $value == 'SKIP'    CONTINUE
-        ${input id}    Get Id From Label In Modal Form    ${label}
-        ${strategy}    Check Input Type    id:${input id}
+        ${element}    Get Element From Label    ${label}
+        ${strategy}    Check Input Type    ${element}
         IF  $strategy == 'TF'
-            IF  $value is not None    Input Text    id:${input id}    ${value}
+            IF  $value is not None    Input Text    ${element}    ${value}
         ELSE IF  $strategy == 'DD'
-            Select Drop Down By Locator    id:${input id}    ${value}
+            Select Drop Down By Locator    ${element}    ${value}
         ELSE  # CB
             IF  $value is not None
-                ${checkbox}    Get WebElement    id:${input id}
-                IF  $checkbox.is_selected() != $value    Click Element    ${checkbox}
+                IF  $element.is_selected() != $value    Click Element    ${element}
             END
         END
     END
@@ -113,8 +112,8 @@ Generic Emission Factor Form
 
     FOR  ${gas}  IN  @{gases}
         VAR    ${value}    ${gases}[${gas}]
-        ${input id}    Get Id From Label In Modal Form    ${gas}    compare=.
-        IF    $value != 'SKIP' and $value is not None    Input Text    id:${input id}    ${value}
+        ${element}    Get Element From Label    ${gas}    compare=.
+        IF    $value != 'SKIP' and $value is not None    Input Text    ${element}    ${value}
     END
 
 Enter Energy Emission Factor Form
@@ -130,8 +129,7 @@ Enter Energy Emission Factor Form
     ...    ${filling method}=${None}
     ...    &{gases}
 
-    ${group}    Get Id From Label In Modal Form    Emission Group
-    ${element}    Get WebElement    id:${group}
+    ${element}    Get Element From Label    Emission Group
     VAR    ${emission group}    ${{'Energy' if $element.is_enabled() else 'SKIP'}}
 
     Generic Emission Factor Form
@@ -159,8 +157,7 @@ Enter Fuel Emission Factor Form
     ...    ${filling method}=${None}
     ...    &{gases}
 
-    ${group}    Get Id From Label In Modal Form    Emission Group
-    ${element}    Get WebElement    id:${group}
+    ${element}    Get Element From Label    Emission Group
     VAR    ${emission group}    ${{'Fuel' if $element.is_enabled() else 'SKIP'}}
 
     Generic Emission Factor Form
@@ -187,8 +184,7 @@ Enter Purchases Emission Factor Form
     ...    ${filling method}=${None}
     ...    &{gases}
 
-    ${group}    Get Id From Label In Modal Form    Emission Group
-    ${element}    Get WebElement    id:${group}
+    ${element}    Get Element From Label    Emission Group
     VAR    ${emission group}    ${{'Purchases' if $element.is_enabled() else 'SKIP'}}
 
     Generic Emission Factor Form
