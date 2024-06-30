@@ -58,13 +58,15 @@ Check Input Type
     IF  'mantine-MultiSelect-inputField' in $class  RETURN  MS
     RETURN    TF
 
-Get Id From Label In Modal Form
-    [Documentation]    คืน id ของ input จาก label ที่มี ``text`` ที่ได้รับมา
-    ...    และ ``compare`` คือสิ่งที่จะเอามาเทียบกับ ``text``
-    [Arguments]    ${text}    ${compare}=text()
-    VAR    ${xpath}    (//label[(contains(@class, 'InputWrapper-label') or contains(@class, 'Checkbox-label')) and ./descendant-or-self::*[${compare}='${text}']])[last()]
-    ${input id}    Get Element Attribute    ${xpath}    for
-    RETURN    ${input id}
+Get Element From Label
+    [Documentation]
+    ...    คืน WebElement ที่ id ตรงกับ for attribute ของ label ที่มีข้อความ ``label``
+    ...
+    ...    ``compare`` เป็นวิธีในการหาข้อความ ``label``
+    [Arguments]    ${label}    ${compare}=text()
+    VAR    ${label_for}    (//label[./descendant-or-self::*[${compare}='${label}']]/@for)[last()]
+    ${element}    Get WebElement    //*[@id=${label_for}]
+    RETURN    ${element}
 
 Select Date
     [Documentation]    เลือกเดือนและปีในปฏิทินตาม ``month year`` ด้วยรูปแบบเดือนเว้นวรรคปี เช่น ``Oct 2002``
@@ -144,9 +146,9 @@ Select Drop Down
     ...    | Select Drop Down | Organization | Zpliporn Test | # เลือก org เป็น Zpliporn Test |
     ...    | Select Drop Down | Site         | Building 1    | # เลือก site เป็น Building 1   |
     [Arguments]    ${label}    ${option}=${None}
-    ${drop down}    Get Id From Label In Modal Form    ${label}
-    Scroll Element Into View       id:${drop down}
-    Select Drop Down By Locator    id:${drop down}    ${option}
+    ${drop down}    Get Element From Label    ${label}
+    Scroll Element Into View       ${drop down}
+    Select Drop Down By Locator    ${drop down}    ${option}
 
 Select Drop Down By Locator
     [Documentation]
@@ -351,8 +353,8 @@ Click Close Modal
 Drop Down Should Not Contain Option
     [Documentation]    ตรวจสอบว่า drop down ``label`` ไม่มี ``option``
     [Arguments]    ${label}    ${option}
-    ${input}    Get Id From Label In Modal Form    ${label}
-    Scroll Element Into View    id:${input}
-    Click Element    id:${input}
+    ${input}    Get Element From Label    ${label}
+    Scroll Element Into View    ${input}
+    Click Element    ${input}
     Element Should Not Be Visible    ${POPOVER_XPATH}//span[text()='${option}']
     ...    message=There is '${option}' option in ${label}.
