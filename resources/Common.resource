@@ -17,7 +17,8 @@ Open Chrome
 EM Login
     [Arguments]    ${link}    ${user}    ${pass}    ${org}=${None}
     Go To    ${link}
-    Execute Javascript    localStorage.setItem("showProductTour", "false")
+    Execute Javascript    localStorage.showProductTour = "false"
+    Execute Javascript    localStorage.releaseNotes = `{"version":"\${JSON.parse(localStorage.configsStore).state.configs.version}"}`
     Wait Until Element Is Visible    //input[@name='email']
     Wait Until Element Is Visible    //input[@name='password']
     Input Text         //input[@name='email']            ${user}
