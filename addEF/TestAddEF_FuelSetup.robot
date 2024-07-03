@@ -144,3 +144,57 @@ Add Fuel EF Default2-06
     ...    factor type=Combustion    activity type=Mobile Combustion (On-Road)    fuel group=LPG    fuel source=LPG_A
     ...    unit=kg    filling method=Total    Total=0.6
     Confirm Add EF
+
+Add Fuel EF Default3-01
+    [Tags]    case 3
+    [Documentation]
+    Click Add Emission Factor Button
+    Enter Fuel Emission Factor Form    start date=Apr 2023    end date=May 2023    publisher=EF A    cert id=EF3-001
+    ...    factor type=Combustion    activity type=Mobile Combustion (On-Road)    fuel group=LPG    fuel source=LPG_A
+    ...    unit=kg    filling method=Total    Total=0.1
+    Confirm Add EF
+
+Add Fuel EF Default3-02
+    [Tags]    case 3
+    [Documentation]
+    Click Add Emission Factor Button
+    Enter Fuel Emission Factor Form    start date=Mar 2023    end date=May 2023    publisher=EF A    cert id=EF3-002
+    ...    factor type=Combustion    activity type=Biogenic Emission     fuel source=LPG_A
+    ...    unit=kg    filling method=Total    Total=0.3
+    Confirm Add EF
+
+Add Fuel EF Default3-03
+    [Tags]    case 3
+    [Documentation]
+    Click Add Emission Factor Button
+    Enter Fuel Emission Factor Form    start date=Jun 2023    end date=Jul 2023    publisher=EF A    cert id=EF3-003
+    ...    factor type=Combustion    activity type=Mobile Combustion (On-Road)     fuel group=LPG    fuel source=LPG_A
+    ...    unit=kg    filling method=Total    Total=0.4
+    Confirm Add EF
+
+Add Fuel EF Default3-04
+    [Tags]    case 3
+    [Documentation]
+    Click Add Emission Factor Button
+    Enter Fuel Emission Factor Form    start date=Jun 2023    end date=${None}    publisher=EF A    cert id=EF3-004
+    ...    factor type=Upstream    activity type=Mobile Combustion (On-Road)     fuel source=LPG_A
+    ...    unit=kg    filling method=Separated by Gas    Fossil CH4=0.1    N2O=0.1    SF6=0.1    NF3=0.2
+    Confirm Add EF
+
+Add Fuel EF Default3-05
+    [Tags]    case 3
+    [Documentation]
+    Click Add Emission Factor Button
+    Enter Fuel Emission Factor Form    start date=Aug 2023    end date=Sep 2023    publisher=EF A    cert id=EF3-005
+    ...    factor type=Combustion    activity type=Mobile Combustion (On-Road)    fuel group=LPG    fuel source=LPG_A
+    ...    unit=kg    filling method=Total    Total=0.6
+    Confirm Add EF
+
+Add Fuel EF Default3-06
+    [Tags]    case 3
+    [Documentation]
+    Click Add Emission Factor Button
+    Enter Fuel Emission Factor Form    start date=Jun 2023    end date=Aug 2023    publisher=EF A    cert id=EF3-006
+    ...    factor type=Combustion    activity type=Biogenic Emission     fuel source=LPG_A
+    ...    unit=kg    filling method=Total    Total=0.7
+    Confirm Add EF
