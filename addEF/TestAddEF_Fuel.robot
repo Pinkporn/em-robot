@@ -66,22 +66,22 @@ Add Fuel EF 12
     Confirm Add EF
     Click Delete EF
 
-# Add Fuel EF 13
-#     [Documentation]    EF ไม่ต่อเนื่อง
-#     Click Add Emission Factor Button
-#     Enter Fuel Emission Factor Form    start date=Jan 2023    end date=Jan 2023    publisher=EF A    cert id=EF2-0013
-#     ...    factor type=Combustion    activity type=Mobile Combustion (On-Road)     fuel group=LPG    fuel source=LPG_A
-#     ...    unit=kg    filling method=Total    Total=0.2
-#     Confirm Add EF Expect Invalid Date
+Add Fuel EF 13
+    [Documentation]    EF ไม่ต่อเนื่อง
+    Click Add Emission Factor Button
+    Enter Fuel Emission Factor Form    start date=Jan 2023    end date=Jan 2023    publisher=EF A    cert id=EF2-0013
+    ...    factor type=Combustion    activity type=Mobile Combustion (On-Road)     fuel group=LPG    fuel source=LPG_A
+    ...    unit=kg    filling method=Total    Total=0.2
+    Confirm Add EF Expect Invalid Date
 
-# Add Fuel EF 14
-#     [Documentation]    EF ต่อเนื่องและไม่ทับ
-#     Click Add Emission Factor Button
-#     Enter Fuel Emission Factor Form    start date=Jan 2023    end date=Jan 2023    publisher=EF A    cert id=EF2-0014
-#     ...    factor type=Upstream    activity type=Mobile Combustion (On-Road)    fuel source=LPG_A
-#     ...    unit=kg    filling method=Total    Total=0.2
-#     Confirm Add EF
-#     Click Delete EF
+Add Fuel EF 14
+    [Documentation]    EF ต่อเนื่องและไม่ทับ
+    Click Add Emission Factor Button
+    Enter Fuel Emission Factor Form    start date=Jan 2023    end date=Jan 2023    publisher=EF A    cert id=EF2-0014
+    ...    factor type=Upstream    activity type=Mobile Combustion (On-Road)    fuel source=LPG_A
+    ...    unit=kg    filling method=Total    Total=0.2
+    Confirm Add EF
+    Click Delete EF
 
 Add Fuel EF 15
     [Documentation]    EF ไม่ต่อเนื่อง
@@ -105,7 +105,7 @@ Add Fuel EF 17
     Enter Fuel Emission Factor Form    start date=Jan 2023    end date=Feb 2023    publisher=EF A    cert id=EF2-0017
     ...    factor type=Upstream    activity type=Mobile Combustion (On-Road)    fuel source=LPG_A
     ...    unit=kg    filling method=Total    Total=0.2
-    Confirm Add EF Expect Invalid Date
+    Confirm Add EF Expect Overlap Date
 
 Add Fuel EF 18
     [Documentation]    EF ต่อเนื่องและไม่ทับ
@@ -131,7 +131,7 @@ Add Fuel EF 20
     Enter Fuel Emission Factor Form    start date=Feb 2023    end date=Mar 2023    publisher=EF A    cert id=EF2-0020
     ...    factor type=Upstream    activity type=Mobile Combustion (On-Road)    fuel source=LPG_A
     ...    unit=kg    filling method=Total    Total=0.2
-    Confirm Add EF Expect Invalid Date
+    Confirm Add EF Expect Overlap Date
 
 Add Fuel EF 21
     [Documentation]    EF ทับกับที่มีอยู่แล้ว
@@ -139,7 +139,7 @@ Add Fuel EF 21
     Enter Fuel Emission Factor Form    start date=Feb 2023    end date=Mar 2023    publisher=EF A    cert id=EF2-0021
     ...    factor type=Combustion    activity type=Biogenic Emission    fuel source=LPG_A
     ...    unit=kg    filling method=Total    Total=0.2
-    Confirm Add EF Expect Invalid Date
+    Confirm Add EF Expect Overlap Date
 
 Add Fuel EF 22
     [Documentation]    EF ทับกับที่มีอยู่แล้ว
@@ -147,7 +147,7 @@ Add Fuel EF 22
     Enter Fuel Emission Factor Form    start date=Apr 2023    end date=${None}    publisher=EF A    cert id=EF2-0022
     ...    factor type=Combustion    activity type=Mobile Combustion (On-Road)    fuel group=LPG    fuel source=LPG_A
     ...    unit=kg    filling method=Total    Total=0.2
-    Confirm Add EF Expect Invalid Date
+    Confirm Add EF Expect Overlap Date
 
 Add Fuel EF 23
     [Documentation]    EF ทับกับที่มีอยู่แล้ว
@@ -155,7 +155,7 @@ Add Fuel EF 23
     Enter Fuel Emission Factor Form    start date=Apr 2023    end date=${None}    publisher=EF A    cert id=EF2-0023
     ...    factor type=Upstream    activity type=Mobile Combustion (On-Road)    fuel source=LPG_A
     ...    unit=kg    filling method=Total    Total=0.2
-    Confirm Add EF Expect Invalid Date
+    Confirm Add EF Expect Overlap Date
 
 Add Fuel EF 24
     [Documentation]    EF ทับกับที่มีอยู่แล้ว
@@ -163,7 +163,7 @@ Add Fuel EF 24
     Enter Fuel Emission Factor Form    start date=Apr 2023    end date=${None}    publisher=EF A    cert id=EF2-0024
     ...    factor type=Combustion    activity type=Biogenic Emission    fuel source=LPG_A
     ...    unit=kg    filling method=Total    Total=0.2
-    Confirm Add EF Expect Invalid Date
+    Confirm Add EF Expect Overlap Date
 
 Add Fuel EF 25
     [Documentation]    EF ทับกับที่มีอยู่แล้ว
@@ -171,7 +171,7 @@ Add Fuel EF 25
     Enter Fuel Emission Factor Form    start date=Feb 2023    end date=${None}    publisher=EF A    cert id=EF2-0025
     ...    factor type=Combustion    activity type=Mobile Combustion (On-Road)    fuel group=LPG    fuel source=LPG_A
     ...    unit=kg    filling method=Total    Total=0.2
-    Confirm Add EF Expect Invalid Date
+    Confirm Add EF Expect Overlap Date
 
 Add Fuel EF 26
     [Documentation]    EF ทับกับที่มีอยู่แล้ว
@@ -179,7 +179,7 @@ Add Fuel EF 26
     Enter Fuel Emission Factor Form    start date=Feb 2023    end date=${None}    publisher=EF A    cert id=EF2-0026
     ...    factor type=Upstream    activity type=Mobile Combustion (On-Road)    fuel source=LPG_A
     ...    unit=kg    filling method=Total    Total=0.2
-    Confirm Add EF Expect Invalid Date
+    Confirm Add EF Expect Overlap Date
 
 Add Fuel EF 27
     [Documentation]    EF ทับกับที่มีอยู่แล้ว
@@ -187,7 +187,7 @@ Add Fuel EF 27
     Enter Fuel Emission Factor Form    start date=Feb 2023    end date=${None}    publisher=EF A    cert id=EF2-0027
     ...    factor type=Combustion    activity type=Biogenic Emission    fuel source=LPG_A
     ...    unit=kg    filling method=Total    Total=0.2
-    Confirm Add EF Expect Invalid Date
+    Confirm Add EF Expect Overlap Date
 
 Add Fuel EF 28
     [Documentation]    EF ต่อเนื่องและไม่ทับ
@@ -204,7 +204,7 @@ Add Fuel EF 29
     Enter Fuel Emission Factor Form    start date=May 2023    end date=Jun 2023    publisher=EF A    cert id=EF2-0029
     ...    factor type=Combustion    activity type=Biogenic Emission    fuel source=LPG_A
     ...    unit=kg    filling method=Total    Total=0.2
-    Confirm Add EF Expect Invalid Date
+    Confirm Add EF Expect Overlap Date
 
 Add Fuel EF 30
     [Documentation]    EF ไม่ต่อเนื่อง
@@ -220,7 +220,7 @@ Add Fuel EF 31
     Enter Fuel Emission Factor Form    start date=Sep 2023    end date=Oct 2023    publisher=EF A    cert id=EF2-0031
     ...    factor type=Combustion    activity type=Mobile Combustion (On-Road)    fuel group=LPG    fuel source=LPG_A
     ...    unit=kg    filling method=Total    Total=0.2
-    Confirm Add EF Expect Invalid Date
+    Confirm Add EF Expect Overlap Date
 
 Add Fuel EF 32
     [Documentation]    EF ต่อเนื่องและไม่ทับ
@@ -245,16 +245,15 @@ Add Fuel EF 34
     Enter Fuel Emission Factor Form    start date=Sep 2023    end date=Nov 2023    publisher=EF A    cert id=EF2-0034
     ...    factor type=Upstream    activity type=Mobile Combustion (On-Road)    fuel source=LPG_A
     ...    unit=kg    filling method=Total    Total=0.2
-    Confirm Add EF Expect Invalid Date
+    Confirm Add EF Expect Overlap Date
 
 Add Fuel EF 35
-    [Documentation]    EF ต่อเนื่องและไม่ทับ
+    [Documentation]    EF ทับกับที่มีอยู่แล้ว
     Click Add Emission Factor Button
     Enter Fuel Emission Factor Form    start date=Nov 2023    end date=Dec 2023    publisher=EF A    cert id=EF2-0035
     ...    factor type=Upstream    activity type=Mobile Combustion (On-Road)    fuel source=LPG_A
     ...    unit=kg    filling method=Total    Total=0.2
-    Confirm Add EF
-    Click Delete EF
+    Confirm Add EF Expect Overlap Date
 
 Add Fuel EF 36
     [Documentation]    EF ไม่ต่อเนื่อง
@@ -262,4 +261,4 @@ Add Fuel EF 36
     Enter Fuel Emission Factor Form    start date=Dec 2023    end date=${None}    publisher=EF A    cert id=EF2-0036
     ...    factor type=Upstream    activity type=Mobile Combustion (On-Road)    fuel source=LPG_A
     ...    unit=kg    filling method=Total    Total=0.2
-    Confirm Add EF Expect Invalid Date
+    Confirm Add EF Expect Overlap Date
