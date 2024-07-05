@@ -50,7 +50,7 @@ Add Eco Eff 03
     Click Confirm Add Eco Eff
     
 Add Eco Eff 04
-    [Documentation]    
+    [Documentation]    Check Activity Date ซ้ำ
     Click Add Eco Eff    ${ORGANIZATION}    ${SITES}[2]
     Enter Eco Efficiency Form    from date=Apr 2023    to date=Jun 2023    amount=1000000
     Require Field Error Message Should Be    Date of Activity    
@@ -59,6 +59,7 @@ Add Eco Eff 04
     Click Close Modal
 
 Edit Eco Eff
+    [Documentation]     Edit amout จากจำนวนติดลบ เป็นจำนวนเต็ม
     Click Kebab Button In Table
     Click Menu Button    Edit
     Enter Eco Efficiency Form   amount=59000
@@ -67,13 +68,13 @@ Edit Eco Eff
     Wait Until Page Contains    Eco-Efficiency edited successfully
 
 Dup Eco Eff
-    [Documentation]
+    [Documentation]     Dup แล้วมา อัพโหลด evidence / Case N/A เลือกวันที่ที่ไม่มี emission มาสร้าง eco-eff
     Click Kebab Button In Table
     ${id}    Get Last Running No   
     Click Menu Button    Duplicate
     Wait Until Element Is Visible    //div[contains(@style, 'translateX(0%)')]
     Enter Eco Efficiency Form    from date=Jan 2019    to date=Dec 2019    amount=1000000
-    Upload Evidences    ${CURDIR}/../evidences/test.pdf
+    Upload Evidences    ${EXECDIR}/evidences/test.pdf
     Click Element    //button[.//span[text()='Save']]
     Wait Until Element Is Not Visible    //section 
     Wait Until Page Contains    Eco-Efficiency duplicated successfully
@@ -82,7 +83,7 @@ Dup Eco Eff
     Should Be Equal    ${N/A}    N/A
 
 Require field
-    [Documentation]    
+    [Documentation]    Check Require Field
     Click Add Eco Eff    ${ORGANIZATION}    ${SITES}[0]
     Click Element    //button[.='Add']
     Require Field Error Message Should Be    Date of Activity    Required

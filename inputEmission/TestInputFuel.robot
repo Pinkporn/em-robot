@@ -123,7 +123,8 @@ Dup Emission Fuel
 Edit Emisison Fuel
     Click Edit Emission
     Enter Fuel Form    publisher=IPCC    unit=TJ
-    Upload Evidences    ${CURDIR}/../evidences/test.pdf
+    # Upload Evidences    ${CURDIR}/test.pdf
+    Upload Evidences    ${EXECDIR}/evidences/test.pdf
     Click Element    //button[.//span[text()='Add']]
     Wait Until Element Is Not Visible    //section
     Wait Until Page Contains    Emission edited successfully
