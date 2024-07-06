@@ -359,12 +359,12 @@ Drop Down Should Not Contain Option
     ...    message=There is '${option}' option in ${label}.
 
 Field Message Should Be
-    [Documentation]    fail ถ้าข้อความ error ที่พบใน ``label`` ไม่ตรงกับ ``expected``
+    [Documentation]    fail ถ้าข้อความที่พบสำหรับ field ``label`` ไม่ตรงกับ ``expected``
     [Arguments]    ${label}    ${expected}    ${compare}=text()
     VAR    ${xpath}    //div[./label[./descendant-or-self::*[${compare}='${label}']]]//p[text()]
     Wait Until Element Is Visible    ${xpath}
-    ...    timeout=0.5    error="${label}" error message is not found.
+    ...    timeout=0.5    error="${label}" field message is not found.
     ${msg}    Get Text    ${xpath}
     Should Be Equal    ${msg}    ${expected}
-    ...    msg=Expected error message to be "${expected}". Found "${msg}" instead.
+    ...    msg=Expect message to be "${expected}". Found "${msg}" instead.
     ...    values=${False}
