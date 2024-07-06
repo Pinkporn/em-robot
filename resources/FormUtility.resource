@@ -281,11 +281,10 @@ Click Kebab Button In Table
     Wait Until Element Is Visible    (//tbody/tr[${condition}]//td[last()]//button)[${result no}]
     Click Button                     (//tbody/tr[${condition}]//td[last()]//button)[${result no}]
 
-Click Menu Button
+Click ${menu} Menu Button
     [Documentation]
     ...    กดปุ่ม ``menu`` ในเมนูที่กำลังแสดงอยู่
     ...    มักจะใช้กับเมนูที่แสดงจากการปุ่มสามจุด
-    [Arguments]    ${menu}
     Wait Until Element Is Visible    (//div[@role="menu"])[last()]//button[.='${menu}']
     Click Button                     (//div[@role="menu"])[last()]//button[.='${menu}']
 
@@ -293,9 +292,9 @@ Upload Evidences
     [Documentation]    อัปโหลดหลักฐานใน drop zone สามารถใส่ค่าสุดท้ายเป็น ``timeout`` ได้
     ...    ---
     ...    Examples:
-    ...    | Upload Evidences | ${CURDIR}/test.pdf    |                     | # อัปโหลดไฟล์เดียว |
-    ...    | Upload Evidences | ${CURDIR}/pic-1.png   | ${CURDIR}/pic-2.png | # อัปโหลดสองไฟล์  |
-    ...    | Upload Evidences | ${CURDIR}/bigFile.pdf | 30                  | # อัปโหลดไฟล์เดียว รอนานสุด 30 วินาที |
+    ...    | Upload Evidences | \${EXECDIR}/evidences/test.pdf |              | # อัปโหลดไฟล์เดียว |
+    ...    | Upload Evidences | \${CURDIR}/pic-1.png   | \${CURDIR}/pic-2.png | # อัปโหลดสองไฟล์  |
+    ...    | Upload Evidences | \${CURDIR}/bigFile.pdf | 30                   | # อัปโหลดไฟล์เดียว รอนานสุด 30 วินาที |
     [Arguments]    @{files}
     TRY
         ${timeout}    Evaluate    SeleniumLibrary.utils._convert_timeout($files[-1])    modules=SeleniumLibrary.utils
@@ -315,9 +314,9 @@ Get Last Running No
     ...    มักจะใช้คู่กับ Wait Until New Running No Is Visible
     ...    ---
     ...    Example:
-    ...    | ${id}    Get Last Running No    # robotcode: ignore
+    ...    | \${id}    Get Last Running No
     ...    | ...
-    ...    | Wait Until New Running No Is Visible    ${id}    # robotcode: ignore
+    ...    | Wait Until New Running No Is Visible    \${id}
     ${element id}    Find WebElement    (//td[@data-key="runningNo"]//span)[1]
     IF  $element_id is None
         RETURN    ${0}
@@ -358,3 +357,14 @@ Drop Down Should Not Contain Option
     Click Element    ${input}
     Element Should Not Be Visible    ${POPOVER_XPATH}//span[text()='${option}']
     ...    message=There is '${option}' option in ${label}.
+
+Field Message Should Be
+    [Documentation]    fail ถ้าข้อความ error ที่พบใน ``label`` ไม่ตรงกับ ``expected``
+    [Arguments]    ${label}    ${expected}    ${compare}=text()
+    VAR    ${xpath}    //div[./label[./descendant-or-self::*[${compare}='${label}']]]//p[text()]
+    Wait Until Element Is Visible    ${xpath}
+    ...    timeout=0.5    error="${label}" error message is not found.
+    ${msg}    Get Text    ${xpath}
+    Should Be Equal    ${msg}    ${expected}
+    ...    msg=Expected error message to be "${expected}". Found "${msg}" instead.
+    ...    values=${False}
