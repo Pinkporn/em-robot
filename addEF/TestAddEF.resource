@@ -1,5 +1,5 @@
 *** Settings ***
-Documentation     Common resource for Input Emission test
+Documentation     Common resource for adding Emission Factor
 Resource          ../resources/EmissionFactor.resource
 Resource          ../resources/Common.resource
 
@@ -17,3 +17,15 @@ Setup Everything
     Open Chrome
     EM Login    ${URL}    ${USER EMAIL}    ${PASSWORD}    ${ORGANIZATION}
     Go To Emission Factors
+
+Custom EF Teardown
+    Sleep    0.5
+    IF  $TEST_STATUS == 'FAIL'
+        ${modal}    Find WebElement    //section
+        IF  $modal is None    RETURN
+        Click Close Modal
+        # Close again if there is more than one modal
+        ${modal}    Find WebElement    //section
+        IF  $modal is None    RETURN
+        Click Close Modal
+    END
