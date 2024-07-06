@@ -11,64 +11,146 @@ Test Teardown     Sleep    0.5
 
 
 *** Test Cases ***
-Add Purchase EF Default1-01
-    [Tags]    case 1
-    [Documentation]
+
+Add Purchase EF 7
+    [Documentation]    EF ต่อเนื่องและไม่ทับ
     Click Add Emission Factor Button
-    Enter Purchases Emission Factor Form    start date=Apr 2023    end date=May 2023    publisher=EF A    cert id=EFP-001
-    ...    factor type=Lifecycle    purchase group=Pulp and Paper    goods and services=Good A
+    Enter Purchases Emission Factor Form    start date=Jan 2023    end date=Jan 2023    publisher=EF B    cert id=EFP-007
+    ...    factor type=Upstream    purchase group=Chemicals    goods and services=Good B
     ...    unit=kg    filling method=Total    Total=0.1
     Confirm Add EF
+    Click Delete EF
 
-Add Purchase EF Default1-02
-    [Tags]    case 1
-    [Documentation]
+
+Add Purchase EF 8
+    [Documentation]    EF ไม่ต่อเนื่อง
     Click Add Emission Factor Button
-    Enter Purchases Emission Factor Form    start date=Feb 2023    end date=May 2023    publisher=EF B    cert id=EFP-002
+    Enter Purchases Emission Factor Form    start date=Jan 2023    end date=Feb 2023    publisher=EF A    cert id=EFP-008
+    ...    factor type=Full Lifecycle    purchase group=Pulp and Paper    goods and services=Good A
+    ...    unit=kg    filling method=Total    Total=0.1
+    Confirm Add EF Expect Invalid Date
+
+Add Purchase EF 9
+    [Documentation]    EF ทับกับที่มีอยู่แล้ว
+    Click Add Emission Factor Button
+    Enter Purchases Emission Factor Form    start date=Jan 2023    end date=Apr 2023    publisher=EF A    cert id=EFP-009
+    ...    factor type=Full Lifecycle    purchase group=Pulp and Paper    goods and services=Good A
+    ...    unit=kg    filling method=Total    Total=0.1
+    Confirm Add EF Expect Overlap Date
+
+Add Purchase EF 10
+    [Documentation]    EF ทับกับที่มีอยู่แล้ว
+    Click Add Emission Factor Button
+     Enter Purchases Emission Factor Form    start date=Jan 2023    end date=Feb 2023    publisher=EF B    cert id=EFP-010
     ...    factor type=Upstream    purchase group=Chemicals    goods and services=Good B
-    ...    unit=kg    filling method=Total    Total=0.2
-    Confirm Add EF
+    ...    unit=kg    filling method=Total    Total=0.1
+    Confirm Add EF Expect Overlap Date
 
-Add Purchase EF Default1-03
-    [Tags]    case 1
-    [Documentation]
+Add Purchase EF 11
+    [Documentation]    EF ต่อเนื่องและไม่ทับ
     Click Add Emission Factor Button
-    Enter Purchases Emission Factor Form    start date=Apr 2023    end date=May 2023    publisher=EF C    cert id=EFP-003
-    ...    factor type=Lifecycle    purchase group=Others    goods and services=Good C
-    ...    unit=kg    filling method=Total    Total=0.3
+    Enter Purchases Emission Factor Form    start date=Feb 2023    end date=Mar 2023    publisher=EF A    cert id=EFP-011
+    ...    factor type=Full Lifecycle    purchase group=Pulp and Paper    goods and services=Good A
+    ...    unit=kg    filling method=Total    Total=0.1
     Confirm Add EF
+    Click Delete EF
 
-Add Purchase EF Default1-04
-    [Tags]    case 1
-    [Documentation]
+Add Purchase EF 12
+    [Documentation]    EF ต่อเนื่องและไม่ทับ
     Click Add Emission Factor Button
-    Enter Purchases Emission Factor Form    start date=Jun 2023    end date=Jul 2023    publisher=EF A    cert id=EFP-004
+     Enter Purchases Emission Factor Form    start date=Feb 2023    end date=Mar 2023    publisher=EF C    cert id=EFP-012
+    ...    factor type=Full Lifecycle    purchase group=Other    goods and services=Good C
+    ...    unit=kg    filling method=Total    Total=0.1
+    Confirm Add EF
+    Click Delete EF
+
+Add Purchase EF 13
+    [Documentation]    EF ทับกับที่มีอยู่แล้ว
+    Click Add Emission Factor Button
+     Enter Purchases Emission Factor Form    start date=Feb 2023    end date=Apr 2023    publisher=EF C    cert id=EFP-013
+    ...    factor type=Full Lifecycle    purchase group=Other    goods and services=Good C
+    ...    unit=kg    filling method=Total    Total=0.1
+    Confirm Add EF Expect Overlap Date
+
+Add Purchase EF 14
+    [Documentation]    EF ต่อเนื่องและไม่ทับ
+    Click Add Emission Factor Button
+     Enter Purchases Emission Factor Form    start date=Feb 2023    end date=Mar 2023    publisher=EF C    cert id=EFP-014
+    ...    factor type=Full Lifecycle    purchase group=Other    goods and services=Good C
+    ...    unit=kg    filling method=Total    Total=0.1
+    Confirm Add EF
+    Click Delete EF
+
+Add Purchase EF 15
+    [Documentation]    EF ทับกับที่มีอยู่แล้ว
+    Click Add Emission Factor Button
+    Enter Purchases Emission Factor Form    start date=Apr 2023    end date=${None}    publisher=EF A    cert id=EFP-015
+    ...    factor type=Full Lifecycle    purchase group=Pulp and Paper    goods and services=Good A
+    ...    unit=kg    filling method=Total    Total=0.1
+    Confirm Add EF Expect Overlap Date
+
+Add Purchase EF 16
+    [Documentation]    EF ทับกับที่มีอยู่แล้ว
+    Click Add Emission Factor Button
+     Enter Purchases Emission Factor Form    start date=Apr 2023    end date=${None}    publisher=EF C    cert id=EFP-016
+    ...    factor type=Full Lifecycle    purchase group=Other    goods and services=Good C
+    ...    unit=kg    filling method=Total    Total=0.1
+    Confirm Add EF Expect Overlap Date
+
+Add Purchase EF 17
+    [Documentation]    EF ทับกับที่มีอยู่แล้ว
+    Click Add Emission Factor Button
+     Enter Purchases Emission Factor Form    start date=Mar 2023    end date=${None}    publisher=EF B    cert id=EFP-017
+    ...    factor type=Upstream    purchase group=Chemicals    goods and services=Good B
+    ...    unit=kg    filling method=Total    Total=0.1
+    Confirm Add EF Expect Overlap Date
+
+Add Purchase EF 18
+    [Documentation]    EF ทับกับที่มีอยู่แล้ว
+    Click Add Emission Factor Button
+     Enter Purchases Emission Factor Form    start date=Jun 2023    end date=Aug    publisher=EF B    cert id=EFP-018
+    ...    factor type=Upstream    purchase group=Chemicals    goods and services=Good B
+    ...    unit=kg    filling method=Total    Total=0.1
+    Confirm Add EF Expect Overlap Date
+
+Add Purchase EF 19
+    [Documentation]    EF ทับกับที่มีอยู่แล้ว
+    Click Add Emission Factor Button
+     Enter Purchases Emission Factor Form    start date=Sep 2023    end date=Oct 2023    publisher=EF A    cert id=EFP-019
     ...    factor type=Upstream    purchase group=Pulp and Paper    goods and services=Good A
-    ...    unit=kg    filling method=Separated by Gas    Fossil CH4=0.1    N2O=0.1    SF6=0.1    NF3=0.1
-    Confirm Add EF
+    ...    unit=kg    filling method=Total    Total=0.1
+    Confirm Add EF Expect Overlap Date
 
-Add Purchase EF Default1-05
-    [Tags]    case 1
-    [Documentation]
+Add Purchase EF 20
+    [Documentation]    EF ต่อเนื่องและไม่ทับ
     Click Add Emission Factor Button
-    Enter Purchases Emission Factor Form    start date=Aug 2023    end date=${None}    publisher=EF C    cert id=EFP-005
-    ...    factor type=Lifecycle    purchase group=Others    goods and services=Good C
-    ...    unit=kg    filling method=Total    Total=0.5
-    Confirm Add EF
-
-Add Purchase EF Default1-06
-    [Tags]    case 1
-    [Documentation]
-    Click Add Emission Factor Button
-    Enter Purchases Emission Factor Form    start date=Aug 2023    end date=Sep 2023    publisher=EF A    cert id=EFP-006
+     Enter Purchases Emission Factor Form    start date=Oct 2023    end date=Nov 2023    publisher=EF A    cert id=EFP-020
     ...    factor type=Upstream    purchase group=Pulp and Paper    goods and services=Good A
-    ...    unit=kg    filling method=Total    Total=0.6
+    ...    unit=kg    filling method=Total    Total=0.1
     Confirm Add EF
+    Click Delete EF
 
-Delete All EF
-    [Tags]    delete
-    ${element}    Find WebElement    //td[@data-sticky="action"]//button
-    WHILE    $element is not None
-        Click Delete EF
-        ${element}    Find WebElement    //td[@data-sticky="action"]//button
-    END
+Add Purchase EF 21
+    [Documentation]    EF ทับกับที่มีอยู่แล้ว
+    Click Add Emission Factor Button
+    Enter Purchases Emission Factor Form    start date=Nov 2023    end date=Dec 2023    publisher=EF A    cert id=EFP-021
+    ...    factor type=Full Lifecycle    purchase group=Pulp and Paper    goods and services=Good A
+    ...    unit=kg    filling method=Total    Total=0.1
+    Confirm Add EF Expect Invalid Date
+
+Add Purchase EF 22
+    [Documentation]    EF ทับกับที่มีอยู่แล้ว
+    Click Add Emission Factor Button
+     Enter Purchases Emission Factor Form    start date=Sep 2023    end date=Nov 2023    publisher=EF C    cert id=EFP-022
+    ...    factor type=Full Lifecycle    purchase group=Other    goods and services=Good C
+    ...    unit=kg    filling method=Total    Total=0.1
+    Confirm Add EF Expect Overlap Date
+
+Add Purchase EF 23
+    [Documentation]    EF ทับกับที่มีอยู่แล้ว
+    Click Add Emission Factor Button
+     Enter Purchases Emission Factor Form    start date=Nov 2023    end date=${None}    publisher=EF C    cert id=EFP-023
+    ...    factor type=Full Lifecycle    purchase group=Other    goods and services=Good C
+    ...    unit=kg    filling method=Total    Total=0.1
+    Confirm Add EF Expect Overlap Date
+

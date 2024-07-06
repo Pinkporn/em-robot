@@ -198,6 +198,30 @@ Enter Purchases Emission Factor Form
     ...    Goods / Services=${goods and services}
     ...    Unit=${unit}
 
+Enter Water Emission Factor Form
+    [Arguments]
+    ...    ${start date}=SKIP    ${end date}=${None}
+    ...    ${publisher}=SKIP
+    ...    ${cert id}=SKIP
+    ...    ${factor type}=SKIP
+    ...    ${water type}=SKIP
+    ...    ${unit}=SKIP
+    ...    ${filling method}=${None}
+    ...    &{gases}
+
+    ${element}    Get Element From Label    Emission Group
+    VAR    ${emission group}    ${{'Water' if $element.is_enabled() else 'SKIP'}}
+
+    Generic Emission Factor Form
+    ...    ${start date}    ${end date}
+    ...    ${publisher}     ${cert id}
+    ...    ${emission group}
+    ...    ${filling method}
+    ...    ${gases}
+    ...    Emission Factor Type=${factor type}
+    ...    Water Type=${water type}
+    ...    Unit=${unit}
+
 Confirm Add EF
     Click Element    //button[.="Add"]
     Wait Until Element Is Not Visible    //section
