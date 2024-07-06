@@ -1,6 +1,6 @@
 *** Settings ***
 Documentation     Add Emission Factor Regression Test
-Resource          TestAddEF.resource
+Resource          ${EXECDIR}/addEF/TestAddEF.resource
 Suite Setup       Setup Everything
 Test Teardown     Sleep    0.5
 
@@ -11,7 +11,6 @@ Test Teardown     Sleep    0.5
 
 
 *** Test Cases ***
-
 Add Purchase EF 7
     [Documentation]    EF ต่อเนื่องและไม่ทับ
     Click Add Emission Factor Button
@@ -20,7 +19,6 @@ Add Purchase EF 7
     ...    unit=kg    filling method=Total    Total=0.1
     Confirm Add EF
     Click Delete EF
-
 
 Add Purchase EF 8
     [Documentation]    EF ไม่ต่อเนื่อง

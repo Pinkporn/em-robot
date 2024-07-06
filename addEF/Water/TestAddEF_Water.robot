@@ -1,6 +1,6 @@
 *** Settings ***
 Documentation     Add Emission Factor Regression Test
-Resource          TestAddEF.resource
+Resource          ${EXECDIR}/addEF/TestAddEF.resource
 Suite Setup       Setup Everything
 Test Teardown     Sleep    0.5
 
@@ -11,7 +11,6 @@ Test Teardown     Sleep    0.5
 
 
 *** Test Cases ***
-
 Add Water EF 7
     [Documentation]    EF ต่อเนื่องและไม่ทับ
     Click Add Emission Factor Button
@@ -20,7 +19,6 @@ Add Water EF 7
     ...    unit=m3    filling method=Total    Total=0.1
     Confirm Add EF
     Click Delete EF
-
 
 Add Water EF 8
     [Documentation]    EF ไม่ต่อเนื่อง

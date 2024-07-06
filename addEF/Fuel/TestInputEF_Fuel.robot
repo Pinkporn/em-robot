@@ -1,7 +1,7 @@
 *** Settings ***
 Documentation     Input Emission from Fuel custom factor test
-Resource          ../resources/InputEmission.resource
-Resource          ../resources/Common.resource
+Resource          ${EXECDIR}/resources/InputEmission.resource
+Resource          ${EXECDIR}/resources/Common.resource
 Suite Setup       Setup Everything
 Test Teardown     Custom Teardown
 

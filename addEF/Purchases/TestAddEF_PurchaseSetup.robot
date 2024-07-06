@@ -1,6 +1,6 @@
 *** Settings ***
 Documentation     Add Emission Factor Regression Test
-Resource          TestAddEF.resource
+Resource          ${EXECDIR}/addEF/TestAddEF.resource
 Suite Setup       Setup Everything
 Test Teardown     Sleep    0.5
 

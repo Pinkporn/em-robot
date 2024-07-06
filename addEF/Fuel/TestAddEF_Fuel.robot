@@ -1,6 +1,6 @@
 *** Settings ***
 Documentation     Add Emission Factor Regression Test
-Resource          TestAddEF.resource
+Resource          ${EXECDIR}/addEF/TestAddEF.resource
 Suite Setup       Setup Everything
 Test Teardown     Sleep    0.5
 
@@ -11,7 +11,6 @@ Test Teardown     Sleep    0.5
 
 
 *** Test Cases ***
-
 Add Fuel EF 7
     [Documentation]    ทับกับที่มี แต่คนละ Activity Type
     Click Add Emission Factor Button
