@@ -53,7 +53,7 @@ Add Eco Eff 04
     [Documentation]    Check Activity Date ซ้ำ
     Click Add Eco Eff    ${ORGANIZATION}    ${SITES}[2]
     Enter Eco Efficiency Form    from date=Apr 2023    to date=Jun 2023    amount=1000000
-    Require Field Error Message Should Be    Date of Activity    
+    Field Message Should Be    Date of Activity
     ...    You've already added this eco-efficiency for this period. Please select a different period or edit the existing eco-efficiency.
     Element Should Be Disabled    //button[.='Add']
     Click Close Modal
@@ -61,7 +61,7 @@ Add Eco Eff 04
 Edit Eco Eff
     [Documentation]     Edit amout จากจำนวนติดลบ เป็นจำนวนเต็ม
     Click Kebab Button In Table
-    Click Menu Button    Edit
+    Click Edit Menu Button
     Enter Eco Efficiency Form   amount=59000
     Click Element    //button[.//span[text()='Save']]
     Wait Until Element Is Not Visible    //section 
@@ -71,7 +71,7 @@ Dup Eco Eff
     [Documentation]     Dup แล้วมา อัพโหลด evidence / Case N/A เลือกวันที่ที่ไม่มี emission มาสร้าง eco-eff
     Click Kebab Button In Table
     ${id}    Get Last Running No   
-    Click Menu Button    Duplicate
+    Click Duplicate Menu Button
     Wait Until Element Is Visible    //div[contains(@style, 'translateX(0%)')]
     Enter Eco Efficiency Form    from date=Jan 2019    to date=Dec 2019    amount=1000000
     Upload Evidences    ${EXECDIR}/evidences/test.pdf
@@ -86,12 +86,12 @@ Require field
     [Documentation]    Check Require Field
     Click Add Eco Eff    ${ORGANIZATION}    ${SITES}[0]
     Click Element    //button[.='Add']
-    Require Field Error Message Should Be    Date of Activity    Required
-    Require Field Error Message Should Be    Product Value Indicator    Required
-    Require Field Error Message Should Be    Environment Impact Indicator    Required
+    Field Message Should Be    Date of Activity    Required
+    Field Message Should Be    Product Value Indicator    Required
+    Field Message Should Be    Environment Impact Indicator    Required
     Enter Eco Efficiency Form    from date=Jan 2021    to date=Dec 2021
     Click Element    //button[.='Add']
-    Require Field Error Message Should Be    Amount of Product Value Indicator    Required
+    Field Message Should Be    Amount of Product Value Indicator    Required
     Click Close Modal
     
 Delete indicator 

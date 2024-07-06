@@ -66,7 +66,7 @@ Get Tracker Group Status
     ${status}    Get Text    ${element}
     RETURN    ${status}
 
-Tracker Group Status Should Be Equal
+Tracker Group Status Should Be
     [Documentation]
     ...    Fail เมื่อ Tracker Group ชื่อ ``name`` มีสถานะไม่ตรงกับ ``expected``
     ...
@@ -150,7 +150,7 @@ Circle Should Only Be Visible In Range
         ...    message=There is a circle in '${MONTHS}[${m}] ${to year}' of ${group}
     END
 
-Tracker Date Color Should Be Equal
+Tracker Date Color Should Be
     [Documentation]
     ...    ตรวจสอบสีของวงกลมใน Tracker Date
     ...
@@ -163,7 +163,7 @@ Tracker Date Color Should Be Equal
     ${style}    Get Element Attribute    ${circle}    style
     IF  $color not in $style    Fail    '${date}' circle in ${group} is not ${color}.
 
-Item Color Should Be Equal
+Item Color Should Be
     [Documentation]
     ...    ตรวจสอบสีของ ``items`` ใน Tracker Group ``group``
     ...
@@ -172,8 +172,8 @@ Item Color Should Be Equal
     ...    สีที่เป็นไปได้คือ 'green', 'yellow', 'red', 'gray'
     ...    ---
     ...    Examples:
-    ...    | Item Color Should Be Equal | Fuel   | Machine 101=yellow |
-    ...    | Item Color Should Be Equal | Energy | Electricity (MEA / PEA)=green | MayaElec=gray |
+    ...    | Item Color Should Be | Fuel   | Machine 101=yellow |
+    ...    | Item Color Should Be | Energy | Electricity (MEA / PEA)=green | MayaElec=gray |
     [Arguments]    ${group}    &{items}
     VAR    ${tracker div}    //div[./div[@aria-hidden] and .//p[.='${group}']]
     VAR    ${card div}    //div[contains(@class, 'Card')]
@@ -237,15 +237,15 @@ Input Item Remark
     Press Keys    ${None}    RETURN
     Wait Until Element Is Visible    ${pencil}
 
-Tracking Records Should Be Equal
+Tracking Records Should Be
     [Documentation]
     ...    ตรวจสอบ Tracking Records ของ ``items`` ใน Tracker Group ``group``
     ...
     ...    ``items`` ใส่ค่าแบบ ``ชื่อ=ข้อความ`` สามารถใส่ข้อมูลได้มากกว่า 1 ชุด
     ...    ---
     ...    Examples:
-    ...    | Tracking Records Should Be Equal | Fuel   | Machine 101=(1/2) |
-    ...    | Tracking Records Should Be Equal | Energy | Electricity (MEA / PEA)=(1/1) | MayaElec=(0/1) |
+    ...    | Tracking Records Should Be | Fuel   | Machine 101=(1/2) |
+    ...    | Tracking Records Should Be | Energy | Electricity (MEA / PEA)=(1/1) | MayaElec=(0/1) |
     [Arguments]    ${group}    &{items}
     VAR    ${tracker div}    //div[./div[@aria-hidden] and .//p[.='${group}']]
     VAR    ${card div}    //div[contains(@class, 'Card')]
@@ -257,15 +257,15 @@ Tracking Records Should Be Equal
         ...    values=${False}
     END
 
-Dialog Tracking Records Should Be Equal
+Dialog Tracking Records Should Be
     [Documentation]
     ...    ตรวจสอบ Tracking Records ของ ``items`` ใน hover card (dialog)
     ...
     ...    ``items`` ใส่ค่าแบบ ``ชื่อ=ข้อความ`` สามารถใส่ข้อมูลได้มากกว่า 1 ชุด
     ...    ---
     ...    Examples:
-    ...    | Dialog Tracking Records Should Be Equal | Machine 101=(1/2) |
-    ...    | Dialog Tracking Records Should Be Equal | Electricity (MEA / PEA)=(1/1) | MayaElec=(0/1) |
+    ...    | Dialog Tracking Records Should Be | Machine 101=(1/2) |
+    ...    | Dialog Tracking Records Should Be | Electricity (MEA / PEA)=(1/1) | MayaElec=(0/1) |
     [Arguments]    &{items}
     FOR  ${i}  IN  @{items}
         VAR    ${expected}    ${items}[${i}]
@@ -275,7 +275,7 @@ Dialog Tracking Records Should Be Equal
         ...    values=${False}
     END
 
-Dialog Item Color Should Be Equal
+Dialog Item Color Should Be
     [Documentation]
     ...    ตรวจสอบสีของ ``items`` ใน hover card (dialog)
     ...    
@@ -284,8 +284,8 @@ Dialog Item Color Should Be Equal
     ...    สีที่เป็นไปได้คือ 'green', 'yellow', 'red', 'gray'
     ...    ---
     ...    Examples:
-    ...    | Dialog Item Color Should Be Equal | Machine 101=yellow |
-    ...    | Dialog Item Color Should Be Equal | Electricity (MEA / PEA)=green | MayaElec=gray |
+    ...    | Dialog Item Color Should Be | Machine 101=yellow |
+    ...    | Dialog Item Color Should Be | Electricity (MEA / PEA)=green | MayaElec=gray |
     [Arguments]    &{items}
     FOR  ${i}  IN  @{items}
         VAR    ${color}    ${items}[${i}]
@@ -334,7 +334,7 @@ Increment Item Record
 Deselect Item
     [Arguments]    ${name}
     Click Button    //div[@data-type and ./div='${name}']//button[.='']
-    Click Menu Button    Deselect
+    Click Deselect Menu Button
 
 Save Settings
     [Documentation]    เลือกวันที่ใน modal แล้วกด apply

@@ -31,7 +31,7 @@ Upload Emission Data File
     [Arguments]    ${org}    ${file_path}    ${timeout}=30
 
     Click Button         //button[.//span[text()='Import Data']]
-    Click Menu Button    Upload File
+    Click Upload File Menu Button
     # === Zplify version ===
     # Click Button    //button[.//span[text()='Upload File']]
 
@@ -80,8 +80,8 @@ Done Upload Evidence
 Click Download Template
     [Arguments]    ${org}
     Click Button         //button[.//span[text()='Import Data']]
-    Click Menu Button    Download Template
-    Click Menu Button    ${org}
+    Click Download Template Menu Button
+    Click ${org} Menu Button
     Wait Until Page Contains    Downloading Template... 
 
     
