@@ -2,7 +2,7 @@
 Documentation     Add Emission Factor Regression Test
 Resource          ${EXECDIR}/addEF/TestAddEF.resource
 Suite Setup       Setup Everything
-Test Teardown     Sleep    0.5
+Test Teardown     Custom EF Teardown
 
 *** Variables ***
 

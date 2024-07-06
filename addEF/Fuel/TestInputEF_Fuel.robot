@@ -1,38 +1,16 @@
 *** Settings ***
-Documentation     Input Emission from Fuel custom factor test
-Resource          ${EXECDIR}/resources/InputEmission.resource
-Resource          ${EXECDIR}/resources/Common.resource
+Documentation     Input Emission Test for custom Fuel emission factor
+Resource          ${EXECDIR}/addEF/TestInputEf.resource
 Suite Setup       Setup Everything
 Test Teardown     Custom Teardown
 
 *** Variables ***
-${URL}            https://app-uat.zplify.com/
-${DELAY}          0s
-${USER EMAIL}     tanomporn.p@gideon-one.com
-${PASSWORD}       P@ssw0rd
-${ORGANIZATION}   Gideon Two
 @{SITES}          Site OU
 ${FUEL}           LPG_A (On-road vehicle)
 ${PUBLISHER}      EF A
 
 *** Keywords ***
-Setup Everything
-    Set Selenium Speed    ${DELAY}
-    Open Chrome
-    EM Login    ${URL}    ${USER EMAIL}    ${PASSWORD}    ${ORGANIZATION}
-    Go To Input Emission
 
-Custom Teardown
-    Sleep    0.5
-    Run Keyword If Test Failed    Close Unsaved Changes Form
-
-Close Unsaved Changes Form
-    ${modal}    Find WebElement    //section
-    IF  $modal is None    RETURN
-    Click Element    (//section//header//button)[last()]
-    Wait Until Element Is Visible    //button[.='Confirm']
-    Click Element    //button[.='Confirm']
-    Wait Until Element Is Not Visible    //section
 
 *** Test Cases ***
 # Add EM1-01
