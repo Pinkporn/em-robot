@@ -126,7 +126,7 @@ Click Go Back To List Report
 
 Click Edit Report
     Click Kebab Button In Table
-    Click Menu Button    Edit
+    Click Edit Menu Button
     Wait Until Element Is Visible    //input[@placeholder="Select Organizations To Be Included In Report"]/preceding-sibling::*
     Wait Until Element Is Visible    name:detail.creatorName
     Wait For Condition
@@ -135,12 +135,12 @@ Click Edit Report
 
 Click Export Report
     Click Kebab Button In Table
-    Click Menu Button    Export
+    Click Export Menu Button
     Wait Until Page Contains    Template exported successfully    10s
 
 Click Delete Report
     Click Kebab Button In Table
-    Click Menu Button    Delete
+    Click Delete Menu Button
     Wait Until Element Is Visible    //button[.='Delete']
     Click Element    //button[.='Delete']
     Wait Until Page Contains    Template deleted successfully

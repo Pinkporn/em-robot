@@ -27,11 +27,11 @@ Setup Everything
 *** Test Cases ***
 Download History Report
     Click Kebab Button In Table
-    Click Menu Button    Download
+    Click Download Menu Button
 
 Delete History Report
     Click Kebab Button In Table
-    Click Menu Button    Delete
+    Click Delete Menu Button
     Wait Until Element Is Visible    //button[.='Delete']
     Click Element    //button[.='Delete']
     Wait Until Page Contains    History Deleted Successfully

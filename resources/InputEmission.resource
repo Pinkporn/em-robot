@@ -52,20 +52,20 @@ Input Text With Default
 
 Click Edit Emission
     Click Kebab Button In Table
-    Click Menu Button    Edit
+    Click Edit Menu Button
 
 Click Duplicate Emission
     Click Kebab Button In Table
-    Click Menu Button    Duplicate
+    Click Duplicate Menu Button
 
 Click View Emission
     Click Kebab Button In Table
-    Click Menu Button    View
+    Click View Menu Button
 
 Click Delete Emission
     ${id}    Get Last Running No
     Click Kebab Button In Table
-    Click Menu Button    Delete
+    Click Delete Menu Button
     Wait Until Element Is Visible    //section//button[.='Delete']
     Click Element    //section//button[.='Delete']
     Wait Until Element Is Not Visible    //section
