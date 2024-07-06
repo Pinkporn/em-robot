@@ -24,23 +24,11 @@ Add & Check Emission
     Click Element    //button[.//span[text()='Save as Draft']]
     Wait Until Page Contains    Emission created successfully
     Wait Until New Running No Is Visible    ${id}
-    Wait Until Page Contains Element    //td[@data-key="emissions"]/div
-    Click Element    //td[@data-key="emissions"]/div
-    IF  not $no_emission
-        Wait Until Element Is Visible    //div[@role='dialog']
-    END
-    IF  $scope_2 is not None    
-        Element Should Be Visible    //p[text()='Scope 2: ' and text()='${scope 2}']
-    END
-    IF  $scope_3 is not None
-        Element Should Be Visible    //p[text()='Scope 3: ' and text()='${scope 3}']
-    END
-    IF  $outside_of_scope is not None
-        Element Should Be Visible    //p[text()='Outside of Scope: ' and text()='${outside of scope}']
-    END
-    IF  ${no emission}
-        Element Should Be Visible    (//td[@data-key="emissions"]/div)[1][text()='0.00 kg']
-    END
+    Check Record Emission
+    ...    scope 2=${scope 2}
+    ...    scope 3=${scope 3}
+    ...    outside of scope=${outside of scope}
+    ...    no emission=${no emission}
     IF  $delete
         Click Delete Emission
     END
@@ -75,7 +63,7 @@ Add Energy 05
     ${id}    Get Last Running No
     Add Emission Page 1 2    ${SUB ORG}    ${SITE NAMES}[0]   Energy
     Enter Energy Form    source=รีนิว    amount=100    unit=tonne
-    Element Should Be Visible    //p[text()='The selected energy source is Renewable.']
+    Field Message Should Be    Energy Source    The selected energy source is Renewable.
     Click Element    //button[.//span[text()='Save as Draft']]
     Wait Until Page Contains    Emission created successfully
     ${new id}    Get Last Running No
