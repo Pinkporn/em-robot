@@ -366,5 +366,5 @@ Field Message Should Be
     ...    timeout=0.5    error="${label}" field message is not found.
     ${msg}    Get Text    ${xpath}
     Should Be Equal    ${msg}    ${expected}
-    ...    msg=Expect message to be "${expected}". Found "${msg}" instead.
+    ...    msg=Expected message to be "${expected}". Found "${msg}" instead.
     ...    values=${False}
