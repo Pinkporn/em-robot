@@ -72,7 +72,7 @@ Import Data 05
 Import Data 06
     [Documentation]    Upload file fail เพื่อเช็ค Modal Try Again #ชื่อ Org. ผิด
     Click Button         //button[.//span[text()='Import Data']]
-    Click Menu Button    Upload File
+    Click Upload File Menu Button
     Wait Until Element Is Visible    //div[./form and contains(@style, 'translateX(0%)')]
     Select Drop Down    Organization    InputEmissionTest    
     Click Button        //button[.//span[text()='Next']]
@@ -87,7 +87,7 @@ Import Data 06
 Import Data 07
     [Documentation]    Edit / Replace file
     Click Kebab Button In Table
-    Click Menu Button    Upload Evidence
+    Click Upload Evidence Menu Button
     Wait Until Element Is Visible    //div[contains(@style, 'translateX(0%)')]
     ${name}    Get Text    //td[contains(@class, 'evidenceName')]
     Upload Evidence By Text    ${name}    ${CURDIR}/../evidences/BKK-Rayong.pdf
@@ -99,12 +99,12 @@ Import Data 07
 Import Data 08
     [Documentation]    Download excel
     Click Kebab Button In Table
-    Click Menu Button    Download Excel
+    Click Download Excel Menu Button
 
 Import Data 09
     [Documentation]    Delete excel
     Click Kebab Button In Table
-    Click Menu Button    Delete
+    Click Delete Menu Button
     Wait Until Element Is Visible    //section
     ${file name}    Get Text    //p/span[contains(@class, 'focus')]
     Click Element    //button[.='Delete']

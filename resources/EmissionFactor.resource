@@ -242,16 +242,16 @@ Confirm Add EF Expect Overlap Date
 
 Click Edit EF
     Click Kebab Button In Table
-    Click Menu Button    Edit
+    Click Edit Menu Button
 
 Click Duplicate EF
     Click Kebab Button In Table
-    Click Menu Button    Duplicate
+    Click Duplicate Menu Button
 
 Click Delete EF
     ${id}    Get Last Running No
     Click Kebab Button In Table
-    Click Menu Button    Delete
+    Click Delete Menu Button
     Wait Until Element Is Visible    //section//button[.='Delete']
     Click Element    //section//button[.='Delete']
     Wait Until Element Is Not Visible    //section

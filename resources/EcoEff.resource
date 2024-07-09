@@ -22,7 +22,7 @@ Add Product Value Indicator
     ...    then click Add Product Value Indicator button
     [Arguments]    ${name}
     Click Button    //button[@aria-haspopup and ./*[local-name()='svg']]
-    Click Menu Button    Add Product Value Indicator
+    Click Add Product Value Indicator Menu Button
     Wait Until Element Is Visible    //input[@placeholder="Product Value Indicator Name"]
     Input Text    //input[@placeholder="Product Value Indicator Name"]    ${name}
     Wait Until Element Is Enabled    (//button[.='Add'])[last()]
@@ -33,7 +33,7 @@ Rename Product Value Indicator
     [Arguments]    ${name}    ${new name}
     Click Button    //button[@aria-haspopup and ./*[local-name()='svg']]
     Click Button    //button[.='${name}']//button
-    Click Menu Button    Rename
+    Click Rename Menu Button
     Wait Until Element Is Visible    //input[@value='${name}']
     Input Text    //input[@value='${name}']    ${new name}
     Click Button    //button[.='Save']
@@ -45,7 +45,7 @@ Delete Product Value Indicator
     [Arguments]    ${name}
     Click Button    //button[@aria-haspopup and ./*[local-name()='svg']]
     Click Button    //button[.='${name}']//button
-    Click Menu Button    Delete
+    Click Delete Menu Button
     Wait Until Element Is Visible    //section//button[.='Delete']
     Click Element    //section//button[.='Delete']
     Wait Until Page Contains     The product value indicator was successfully deleted.
@@ -76,10 +76,3 @@ Click Confirm Add Eco Eff
     Click Element    //button[.='Add']
     Wait Until Page Contains    Eco-Efficiency created successfully    error=Add eco eff fail
     Wait Until Element Is Not Visible    //section
-
-Require Field Error Message Should Be
-    [Arguments]    ${label}    ${error}
-    ${text}    Get Text    //div[./label/div[text()='${label}']]/p
-    Should Be Equal    ${text}    ${error}   
-
-    
