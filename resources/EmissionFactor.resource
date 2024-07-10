@@ -224,17 +224,28 @@ Enter Water Emission Factor Form
 
 Confirm Add EF
     Click Element    //button[.="Add"]
+    Wait Until Toast Finish Loading
+    Toast Status Should Be    Successful
+    Toast Message Should Be    Emission Factor created successfully
     Wait Until Element Is Not Visible    //section
-    Wait Until Page Contains    Emission Factor created successfully
 
 Confirm Add EF Expect Invalid Date
     Click Element    //button[.="Add"]
-    Wait Until Element Is Visible    //span[contains(text(), "Invalid Start Date or End Date for this emission factor.")]
-    # Wait Until Element Is Not Visible    //span[contains(text(), "Invalid Start Date or End Date for this emission factor.")]
+    Wait Until Toast Finish Loading
+    Toast Status Should Be    Failed
+    VAR    ${invalid date message}    SEPARATOR=
+    ...    Invalid Start Date or End Date for this emission factor.\n
+    ...    \n
+    ...    Please make sure that the start date is adjacent to
+    ...     the end date of the previous emission factor with the same attributes.
+    Toast Message Should Be    ${invalid date message}
+    ...    error=Expected toast message:\n"<TEXT>"\nFound:\n"<ACTUAL_TEXT>"
     Click Close Modal
 
 Confirm Add EF Expect Overlap Date
     Click Element    //button[.="Add"]
+    Wait Until Toast Finish Loading
+    Toast Status Should Be    Failed
     Wait Until Element Is Visible    //section//button[.="Understand"]
     Click Element    //section//button[.="Understand"]
     Wait Until Element Is Not Visible    //section//button[.="Understand"]

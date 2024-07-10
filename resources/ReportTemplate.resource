@@ -136,23 +136,31 @@ Click Edit Report
 Click Export Report
     Click Kebab Button In Table
     Click Export Menu Button
-    Wait Until Page Contains    Template exported successfully    10s
+    Wait Until Toast Finish Loading    10s
+    Toast Status Should Be    Successful
+    Toast Message Should Be    Template exported successfully
 
 Click Delete Report
     Click Kebab Button In Table
     Click Delete Menu Button
     Wait Until Element Is Visible    //button[.='Delete']
     Click Element    //button[.='Delete']
-    Wait Until Page Contains    Template deleted successfully
-    
+    Wait Until Toast Finish Loading
+    Toast Status Should Be    Successful
+    Toast Message Should Be    Template deleted successfully
+
 Click Save Report
     Click Element    //button[.='Save']
-    Wait Until Page Contains    The report template was successfully saved
+    Wait Until Toast Finish Loading
+    Toast Status Should Be    Successful
+    Toast Message Should Be    The report template was successfully saved
 
 Click Save & Report
     Click Element    //button[.='Save & Export']
-    Wait Until Page Contains    The report template was successfully saved
-    Wait Until Page Contains    Template exported successfully    10s
+    Wait Until Toast Finish Loading    timeout=1    toast no=2
+    Toast Status Should Be    Successful    toast no=2
+    Toast Message Should Be    The report template was successfully saved    toast no=2
+    Wait Until Toast Finish Loading    10
+    Toast Status Should Be    Successful
+    Toast Message Should Be    Template exported successfully
     Click Go Back To List Report
-
-
