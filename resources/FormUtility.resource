@@ -374,6 +374,8 @@ Get Toast Status
     ...
     ...    ค่าที่สามารถคืนได้คือ "SUCCESS", "FAIL", "LOADING" และ "UNKNOWN"
     ...    และคืนค่า ``None`` ถ้าไม่เจอ toast status
+    ...
+    ...    อ่านเพิ่มเติมที่ [https://github.com/Pinkporn/em-robot/pull/9#get-toast-status| pull request 9]
     [Arguments]    ${toast no}=1    @{}    ${required}=${False}
     VAR    ${symbol_xpath}    ((//div[@role='status'])[${toast no}]/..//div[not(node())])[last()]
     ${status}    Find WebElement    ${symbol_xpath}    required=${required}
@@ -398,6 +400,8 @@ Get Toast Text
     ...    บางครั้ง toast มีมากกว่า 1 ข้อความเช่น error toast ที่มี code อยู่ข้างล่าง
     ...    โดยค่าเริ่มต้น ``result`` คือ 1 แปลว่าคืนข้อความปกติของ toast
     ...    สามารถใส่ ``result`` เป็น last() ได้ถ้าหากต้องการตรวจสอบข้อความจาก error code แทน
+    ...
+    ...    อ่านเพิ่มเติมที่ [https://github.com/Pinkporn/em-robot/pull/9#get-toast-text| pull request 9]
     [Arguments]    ${toast no}=1    ${result}=1
     ${status_text}    Get Text    ((//div[@role='status'])[${toast no}]/descendant-or-self::*[text()])[${result}]
     RETURN    ${status_text}
@@ -408,6 +412,8 @@ Wait Until Toast Finish Loading
     ...    ``timeout``: Fail ถ้ารอนานเกินเวลาที่กำหนด
     ...
     ...    ``toast no`` คือลำดับความใหม่ของ toast
+    ...
+    ...    อ่านเพิ่มเติมที่ [https://github.com/Pinkporn/em-robot/pull/9#wait-until-toast-finish-loading| pull request 9]
     [Arguments]    ${timeout}=${None}    ${toast no}=1
     IF  $timeout is None
         ${selenium}    Get Library Instance    SeleniumLibrary
@@ -435,6 +441,8 @@ Toast Status Should Be
     ...    และแทนที่ <ACTUAL_TEXT> ด้วยข้อความของ toast
     ...
     ...    ``toast no`` คือลำดับความใหม่ของ toast
+    ...
+    ...    อ่านเพิ่มเติมที่ [https://github.com/Pinkporn/em-robot/pull/9#toast-status-should-be| pull request 9]
     [Arguments]
     ...    ${status}
     ...    ${error}=Toast status: expected "<STATUS>", found "<ACTUAL_STATUS>" with message "<ACTUAL_TEXT>"
@@ -465,6 +473,8 @@ Toast Message Should Be
     ...
     ...    สามารถใส่ ``error`` ถ้าต้องการกำหนดข้อความ error เองเมื่อข้อความไม่ถูกต้อง
     ...    keyword จะแทนที่ <TEXT> ด้วย ``text`` และแทนที่ <ACTUAL_TEXT> ด้วยข้อความของ toast
+    ...
+    ...    อ่านเพิ่มเติมที่ [https://github.com/Pinkporn/em-robot/pull/9#toast-message-should-be| pull request 9]
     [Arguments]
     ...    ${text}
     ...    ${condition}=$text == $actual_text
