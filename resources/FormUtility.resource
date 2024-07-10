@@ -364,3 +364,105 @@ Field Message Should Be
     Should Be Equal    ${msg}    ${expected}
     ...    msg=Expected message to be "${expected}". Found "${msg}" instead.
     ...    values=${False}
+
+Get Toast Status
+    [Documentation]    คืนค่าสถานะของ toast อันที่ ``toast no``
+    ...
+    ...    ``toast no``=1 คือ toast ใหม่ล่าสุด
+    ...    ``toast no``=2 คือ toast ที่มาก่อนใหม่ล่าสุด
+    ...
+    ...    ค่าที่สามารถคืนได้คือ "SUCCESS", "FAIL", "LOADING" และ "UNKNOWN"
+    ...    และคืนค่า ``None`` ถ้าไม่เจอ toast status
+    [Arguments]    ${toast no}=1    @{}    ${required}=${False}
+    VAR    ${symbol_xpath}    ((//div[@role='status'])[${toast no}]/..//div[not(node())])[last()]
+    ${status}    Find WebElement    ${symbol_xpath}    required=${required}
+    IF  $status is None    RETURN
+    ${rgba}    Evaluate    ${status.value_of_css_property("background-color")}[4:]
+    IF  $rgba[1] > $rgba[0] and $rgba[1] > $rgba[2]
+        RETURN    SUCCESS
+    ELSE IF  $rgba[0] > $rgba[1] and $rgba[0] > $rgba[2]
+        RETURN    FAIL
+    ELSE IF  $rgba[3] == 0
+        RETURN    LOADING
+    ELSE
+        RETURN    UNKNOWN
+    END
+
+Get Toast Text
+    [Documentation]    คืนค่าข้อความของ toast อันที่ ``toast no``
+    ...
+    ...    ``toast no``=1 คือ toast ใหม่ล่าสุด
+    ...    ``toast no``=2 คือ toast ที่มาก่อนใหม่ล่าสุด
+    ...
+    ...    บางครั้ง toast มีมากกว่า 1 ข้อความเช่น error toast ที่มี code อยู่ข้างล่าง
+    ...    โดยค่าเริ่มต้น ``result`` คือ 1 แปลว่าคืนข้อความปกติของ toast
+    ...    สามารถใส่ ``result`` เป็น last() ได้ถ้าหากต้องการตรวจสอบข้อความจาก error code แทน
+    [Arguments]    ${toast no}=1    ${result}=1
+    ${status_text}    Get Text    ((//div[@role='status'])[${toast no}]/descendant-or-self::*[text()])[${result}]
+    RETURN    ${status_text}
+
+Wait Until Toast Finish Loading
+    [Documentation]    รอจนกว่า toast จะ load เสร็จ
+    [Arguments]    ${timeout}=${None}    ${toast no}=1
+    IF  $timeout is None
+        ${selenium}    Get Library Instance    SeleniumLibrary
+        VAR    ${timeout}    ${selenium.timeout}
+    ELSE
+        ${timeout}    Evaluate    robot.utils.timestr_to_secs($timeout)    modules=robot.utils
+    END
+    ${max_time}    Evaluate    time.time() + $timeout    modules=time
+    Wait Until Element Is Visible    (//div[@role='status'])[${toast no}]    ${timeout}
+    WHILE  time.time() < $max_time
+        ${status}    Get Toast Status    ${toast no}
+        IF  $status != 'LOADING'    RETURN
+        Sleep    0.2
+    END
+    Fail    Toast is still loading after ${timeout} seconds.
+
+Toast Status Should Be
+    [Documentation]    ตรวจสอบว่า toast มีสถานะเป็น ``status``
+    ...
+    ...    ``status`` ที่เป็นไปได้คือ Successful, Failed และ Loading
+    ...
+    ...    สามารถใส่ ``error`` ถ้าต้องการกำหนดข้อความ error เองเมื่อสถานะไม่ตรง
+    ...    สำหรับ ``error`` keyword จะแทนที่ <STATUS> ด้วย ``status``
+    ...    แทนที่ <ACTUAL_STATUS> ด้วยสถานะที่พบของ toast
+    ...    และแทนที่ <ACTUAL_TEXT> ด้วยข้อความของ toast
+    [Arguments]
+    ...    ${status}
+    ...    ${error}=Toast status: expected "<STATUS>", found "<ACTUAL_STATUS>" with message "<ACTUAL_TEXT>"
+    ...    ${toast no}=1
+
+    ${actual_status}    Get Toast Status    ${toast no}
+    VAR    ${status}    ${{ {'Successful':'SUCCESS', 'Failed':'FAIL', 'Loading':'LOADING'}.get($status, $status) }}
+    IF  $actual_status != $status
+        ${actual_text}    Get Toast Text    ${toast no}
+        ${error}    Replace String    ${error}    <STATUS>           ${status}
+        ${error}    Replace String    ${error}    <ACTUAL_STATUS>    ${actual_status}
+        ${error}    Replace String    ${error}    <ACTUAL_TEXT>      ${actual_text}
+        Fail    ${error}
+    END
+
+Toast Message Should Be
+    [Documentation]    เปรียบเทียบ ``text`` กับข้อความของ toast
+    ...
+    ...    ``condition`` ใช้สำหรับการตรวจสอบข้อความ fail เมื่อ ``condition`` เป็นเท็จ
+    ...    ใช้ ``$text == $actual_text`` เมื่อต้องการดูว่าข้อความเหมือนกัน
+    ...    ใช้ ``$text in $actual_text`` เมื่อต้องการดูว่า ``text`` อยู่ในข้อความของ toast
+    ...
+    ...    บางครั้ง error toast มีมากกว่า 1 ข้อความเช่นมี code อยู่ข้างล่าง
+    ...    โดยค่าเริ่มต้น ``result`` คือ 1 แปลว่าตรวจข้อความปกติของ toast
+    ...    สามารถใส่ ``result`` เป็น last() ได้ถ้าหากต้องการตรวจสอบข้อความจาก error code แทน
+    ...
+    ...    สามารถใส่ ``error`` ถ้าต้องการกำหนดข้อความ error เองเมื่อข้อความไม่ถูกต้อง
+    ...    keyword จะแทนที่ <TEXT> ด้วย ``text`` และแทนที่ <ACTUAL_TEXT> ด้วยข้อความของ toast
+    [Arguments]
+    ...    ${text}
+    ...    ${condition}=$text == $actual_text
+    ...    ${toast no}=1
+    ...    ${result}=1
+    ...    ${error}=Toast message: expected "<TEXT>", found "<ACTUAL_TEXT>"
+
+    ${actual_text}    Get Toast Text    ${toast no}    ${result}
+    IF  not (${condition})
+    ...    Fail    ${{ $error.replace("<TEXT>", $text).replace("<ACTUAL_TEXT>", $actual_text) }}
