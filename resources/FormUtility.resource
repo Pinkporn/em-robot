@@ -328,6 +328,8 @@ Wait Until New Running No Is Visible
     IF  $timeout is None
         ${selenium}    Get Library Instance    SeleniumLibrary
         VAR    ${timeout}    ${selenium.timeout}
+    ELSE
+        ${timeout}    Evaluate    robot.utils.timestr_to_secs($timeout)    modules=robot.utils
     END
     ${max_time}    Evaluate    time.time() + $timeout    modules=time
     WHILE  time.time() < $max_time
