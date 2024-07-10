@@ -369,7 +369,7 @@ Get Toast Status
     [Documentation]    คืนค่าสถานะของ toast อันที่ ``toast no``
     ...
     ...    ``toast no``=1 คือ toast ใหม่ล่าสุด
-    ...    ``toast no``=2 คือ toast ที่มาก่อนใหม่ล่าสุด
+    ...    ``toast no``=2 คือ toast ใหม่ลองลงมา
     ...
     ...    ค่าที่สามารถคืนได้คือ "SUCCESS", "FAIL", "LOADING" และ "UNKNOWN"
     ...    และคืนค่า ``None`` ถ้าไม่เจอ toast status
