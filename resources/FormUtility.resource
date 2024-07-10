@@ -368,6 +368,7 @@ Field Message Should Be
 Get Toast Status
     [Documentation]    คืนค่าสถานะของ toast อันที่ ``toast no``
     ...
+    ...    ``toast no`` คือลำดับความใหม่ของ toast
     ...    ``toast no``=1 คือ toast ใหม่ล่าสุด
     ...    ``toast no``=2 คือ toast ใหม่ลองลงมา
     ...
@@ -403,6 +404,10 @@ Get Toast Text
 
 Wait Until Toast Finish Loading
     [Documentation]    รอจนกว่า toast จะ load เสร็จ
+    ...
+    ...    ``timeout``: Fail ถ้ารอนานเกินเวลาที่กำหนด
+    ...
+    ...    ``toast no`` คือลำดับความใหม่ของ toast
     [Arguments]    ${timeout}=${None}    ${toast no}=1
     IF  $timeout is None
         ${selenium}    Get Library Instance    SeleniumLibrary
@@ -428,6 +433,8 @@ Toast Status Should Be
     ...    สำหรับ ``error`` keyword จะแทนที่ <STATUS> ด้วย ``status``
     ...    แทนที่ <ACTUAL_STATUS> ด้วยสถานะที่พบของ toast
     ...    และแทนที่ <ACTUAL_TEXT> ด้วยข้อความของ toast
+    ...
+    ...    ``toast no`` คือลำดับความใหม่ของ toast
     [Arguments]
     ...    ${status}
     ...    ${error}=Toast status: expected "<STATUS>", found "<ACTUAL_STATUS>" with message "<ACTUAL_TEXT>"
@@ -449,6 +456,8 @@ Toast Message Should Be
     ...    ``condition`` ใช้สำหรับการตรวจสอบข้อความ fail เมื่อ ``condition`` เป็นเท็จ
     ...    ใช้ ``$text == $actual_text`` เมื่อต้องการดูว่าข้อความเหมือนกัน
     ...    ใช้ ``$text in $actual_text`` เมื่อต้องการดูว่า ``text`` อยู่ในข้อความของ toast
+    ...
+    ...    ``toast no`` คือลำดับความใหม่ของ toast
     ...
     ...    บางครั้ง error toast มีมากกว่า 1 ข้อความเช่นมี code อยู่ข้างล่าง
     ...    โดยค่าเริ่มต้น ``result`` คือ 1 แปลว่าตรวจข้อความปกติของ toast
