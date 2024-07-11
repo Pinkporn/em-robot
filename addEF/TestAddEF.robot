@@ -3,7 +3,7 @@ Documentation     Add Emission Factor Regression Test
 Resource          ../resources/EmissionFactor.resource
 Resource          ../resources/Common.resource
 Suite Setup       Setup Everything
-Test Teardown     Sleep    0.5
+Test Teardown     Custom Teardown
 
 *** Variables ***
 ${URL}            https://emission-management-web-uat.pages.dev
@@ -22,6 +22,14 @@ Setup Everything
     EM Login    ${URL}    ${USER EMAIL}    ${PASSWORD}    ${ORGANIZATION}
     Go To Emission Factors
 
+Custom Teardown
+    Sleep    0.5
+    IF  $TEST_STATUS == 'FAIL'
+        ${modal}    Find WebElement    //section
+        IF  $modal is None    RETURN
+        Click Close Modal
+    END
+
 *** Test Cases ***
 
 Add EF Default  
@@ -37,8 +45,8 @@ Add EF 01
     Click Add Emission Factor Button
     Enter Energy Emission Factor Form    start date=Apr 2021    end date=Jun 2021
     ...    publisher=Renew    cert id=TGO CFP 21-04-01    factor type=Combustion
-    ...    purchased type=Heat    source=Renew_EF    unit=kWh    
-    Element Should Be Visible    //p[text()='The selected energy source is Renewable.']
+    ...    purchased type=Heat    source=Renew_EF    unit=kWh
+    Field Message Should Be    Energy Source    The selected energy source is Renewable.
     Element Should Be Disabled    //input[@id=//label[text()='Renewable']/@for]
     Press Keys    ${None}    ESC
 
@@ -56,7 +64,7 @@ Add EF 03
     Enter Energy Emission Factor Form    start date=Apr 2021    end date=Jun 2021
     ...    publisher=Renew    cert id=TGO CFP 21-04-02    factor type=Combustion
     ...    purchased type=Heat    source=Renew_EF    unit=GJ
-    Element Should Be Visible    //p[text()='The selected energy source is Renewable.']
+    Field Message Should Be    Energy Source    The selected energy source is Renewable.
     Element Should Be Disabled    //input[@id=//label[text()='Renewable']/@for]
     Click Element    //button[.="Add"]
     Wait Until Element Is Visible    //section//div[text()='Overlapping Effective Date!'] 
@@ -75,7 +83,7 @@ Add EF 04
     Confirm Add EF
 
 Add EF 05
-    [Documentation]    EF Renew:Default    Publisher=Renew A    Source=Renew_EF 2    Is Renew=Yes   
+    [Documentation]    EF Renew:Default    Publisher=Renew A    Source=Renew_EF 2    Is Renew=Yes
     Click Add Emission Factor Button
     Enter Energy Emission Factor Form    start date=Apr 2021    end date=Jun 2021
     ...    publisher=Renew A    cert id=TGO CFP 21-04-03    factor type=Combustion
@@ -83,18 +91,20 @@ Add EF 05
     Confirm Add EF
 
 Add EF 06
-    [Documentation]    EF Renew:Default        Purchased Type=Stream    Is Renew=Yes   
+    [Documentation]    EF Renew:Default        Purchased Type=Stream    Is Renew=Yes
     Click Add Emission Factor Button
     Enter Energy Emission Factor Form    start date=Jul 2021    end date=Sep 2021
     ...    publisher=Renew    cert id=TGO CFP 21-04-04    factor type=Combustion
     ...    purchased type=Steam    source=Renew_EF    unit=kWh    renewable=${True}
     Click Element    //button[.="Add"]
-    Wait Until Page Contains     There's already emission factor with the same emission source but different purchased energy type. Please select the same purchased energy type.   
+    Wait Until Toast Finish Loading
+    Toast Status Should Be    Failed
+    Toast Message Should Be    There's already emission factor with the same emission source but different purchased energy type. Please select the same purchased energy type.   
     Wait Until Element Is Visible    //section//button
     Click Button    //section//button
 
 Add EF 07
-    [Documentation]    EF Renew:Default    Source=Renew_EF 3    Is Renew=No    #by gas   
+    [Documentation]    EF Renew:Default    Source=Renew_EF 3    Is Renew=No    #by gas
     Click Add Emission Factor Button
     Enter Energy Emission Factor Form    start date=Jan 2021    end date=Mar 2021
     ...    publisher=Renew    cert id=TGO CFP 21-04-05    factor type=Combustion
@@ -105,7 +115,7 @@ Add EF 07
     Confirm Add EF
 
 Add EF 08
-    [Documentation]    EF Renew:Default    EF type=Upstream    Is Renew=Yes   
+    [Documentation]    EF Renew:Default    EF type=Upstream    Is Renew=Yes
     Click Add Emission Factor Button
     Enter Energy Emission Factor Form    start date=Jan 2021    end date=Mar 2021
     ...    publisher=Renew    cert id=TGO CFP 21-04-06    factor type=Upstream
@@ -119,7 +129,9 @@ Add EF 09
     ...    publisher=Renew    cert id=TGO CFP 21-04-06    factor type=Upstream
     ...    purchased type=Heat    source=Renew_EF    unit=kWh    renewable=${True}
     Click Element    //button[.="Add"]
-    Wait Until Page Contains     Unable to add GHGs emission factors. Please check the certification.
+    Wait Until Toast Finish Loading
+    Toast Status Should Be    Failed
+    Toast Message Should Be     Unable to add GHGs emission factors. Please check the certification.
     Wait Until Element Is Visible    //section//button
     Click Button    //section//button
 
@@ -129,7 +141,7 @@ Add EF 10
     Click Add Emission Factor Button
     Enter Energy Emission Factor Form    start date=Apr 2021    end date=${None}
     ...    publisher=PB-No Expire    cert id=TGO CFP 21-04-07    factor type=Combustion
-    ...    purchased type=Cooling    source=PB-No Expire_EF    unit=kWh    renewable=${False}    
+    ...    purchased type=Cooling    source=PB-No Expire_EF    unit=kWh    renewable=${False}
     ...    filling method=Total    Total=0.1500
     Confirm Add EF
     Wait Until New Running No Is Visible    ${id}
@@ -140,8 +152,10 @@ Dup EF
     Wait Until Element Is Visible    //section
     Enter Energy Emission Factor Form    cert id=TGO CFP 21-04-08    factor type=Upstream
     Click Element    //button[.//span[text()='Save']]
-    Wait Until Element Is Not Visible    //section 
-    Wait Until Page Contains    Emission duplicated successfully
+    Wait Until Toast Finish Loading
+    Toast Status Should Be    Successful
+    Toast Message Should Be    Emission duplicated successfully
+    Wait Until Element Is Not Visible    //section
 
 Edit EF
     Click Edit EF
@@ -151,8 +165,10 @@ Edit EF
     Should Be Equal As Numbers    ${total}    1
     Upload Evidences    ${EXECDIR}/evidences/test.pdf
     Click Element    //button[.//span[text()='Save']]
-    Wait Until Element Is Not Visible    //section 
-    Wait Until Page Contains    Emission edited successfully
+    Wait Until Toast Finish Loading
+    Toast Status Should Be    Successful
+    Toast Message Should Be    Emission edited successfully
+    Wait Until Element Is Not Visible    //section
 
 Delete EF
     Click Delete EF
