@@ -63,6 +63,7 @@ Add Water EF Default1-06
     Enter Water Emission Factor Form    start date=Aug 2023    end date=Sep 2023    publisher=EF A    cert id=EFW-006
     ...    factor type=Upstream        water type=Water A
     ...    unit=m3    filling method=Total    Total=0.6
+    Upload Evidences    ${EXECDIR}/evidences/test.pdf 
     Confirm Add EF
 
 # Delete All EF

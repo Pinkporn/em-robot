@@ -13,59 +13,59 @@ ${PUBLISHER}      EF A
 
 
 *** Test Cases ***
-# Add EM1-01
-#     [Tags]    case 1
-#     [Documentation]    ไม่มี EF ให้เลือก (เพราะ Date เกิน EF ที่มี)
-#     Add Emission Page 1 2    ${ORGANIZATION}    ${SITES}[0]    Fuel
-#     Select Date of Activity    Jan 2023    Jan 2023
-#     Select Drop Down    Asset Name    Bike OU-1
-#     Drop Down Should Not Contain Option    Fuel    ${FUEL}
-#     Close Unsaved Changes Form
+Add EM1-01
+    [Tags]    case 1
+    [Documentation]    ไม่มี EF ให้เลือก (เพราะ Date เกิน EF ที่มี)
+    Add Emission Page 1 2    ${ORGANIZATION}    ${SITES}[0]    Fuel
+    Select Date of Activity    Jan 2023    Jan 2023
+    Select Drop Down    Asset Name    Bike OU-1
+    Drop Down Should Not Contain Option    Fuel    ${FUEL}
+    Close Unsaved Changes Form
 
-# Add EM1-02
-#     [Tags]    case 1
-#     [Documentation]    ไม่มี EF ให้เลือก (เพราะ Date เกิน EF ที่มี)
-#     Add Emission Page 1 2    ${ORGANIZATION}    ${SITES}[0]    Fuel
-#     Select Date of Activity    Jan 2023    Feb 2023
-#     Select Drop Down    Asset Name    Bike OU-1
-#     Drop Down Should Not Contain Option    Fuel    ${FUEL}
-#     Close Unsaved Changes Form
+Add EM1-02
+    [Tags]    case 1
+    [Documentation]    ไม่มี EF ให้เลือก (เพราะ Date เกิน EF ที่มี)
+    Add Emission Page 1 2    ${ORGANIZATION}    ${SITES}[0]    Fuel
+    Select Date of Activity    Jan 2023    Feb 2023
+    Select Drop Down    Asset Name    Bike OU-1
+    Drop Down Should Not Contain Option    Fuel    ${FUEL}
+    Close Unsaved Changes Form
     
-# Add EM1-03
-#     [Tags]    case 1
-#     [Documentation]    ไม่มี EF ให้เลือก (เพราะ Date เกิน EF ที่มี)
-#     Add Emission Page 1 2    ${ORGANIZATION}    ${SITES}[0]    Fuel
-#     Select Date of Activity    Feb 2023    Feb 2023
-#     Select Drop Down    Asset Name    Bike OU-1
-#     Drop Down Should Not Contain Option    Fuel    ${FUEL}
-#     Close Unsaved Changes Form
+Add EM1-03
+    [Tags]    case 1
+    [Documentation]    ไม่มี EF ให้เลือก (เพราะ Date เกิน EF ที่มี)
+    Add Emission Page 1 2    ${ORGANIZATION}    ${SITES}[0]    Fuel
+    Select Date of Activity    Feb 2023    Feb 2023
+    Select Drop Down    Asset Name    Bike OU-1
+    Drop Down Should Not Contain Option    Fuel    ${FUEL}
+    Close Unsaved Changes Form
 
-# Add EM1-04
-#     [Tags]    case 1
-#     [Documentation]    ไม่มี EF ให้เลือก (เพราะ Date เกิน EF ที่มี)
-#     Add Emission Page 1 2    ${ORGANIZATION}    ${SITES}[0]    Fuel
-#     Select Date of Activity    Feb 2023    Mar 2023
-#     Select Drop Down    Asset Name    Bike OU-1
-#     Drop Down Should Not Contain Option    Fuel    ${FUEL}
-#     Close Unsaved Changes Form
+Add EM1-04
+    [Tags]    case 1
+    [Documentation]    ไม่มี EF ให้เลือก (เพราะ Date เกิน EF ที่มี)
+    Add Emission Page 1 2    ${ORGANIZATION}    ${SITES}[0]    Fuel
+    Select Date of Activity    Feb 2023    Mar 2023
+    Select Drop Down    Asset Name    Bike OU-1
+    Drop Down Should Not Contain Option    Fuel    ${FUEL}
+    Close Unsaved Changes Form
 
-# Add EM1-05
-#     [Tags]    case 1
-#     [Documentation]    ไม่มี EF ให้เลือก (เพราะ Date เกิน EF ที่มี)
-#     Add Emission Page 1 2    ${ORGANIZATION}    ${SITES}[0]    Fuel
-#     Select Date of Activity    Mar 2023    Mar 2023
-#     Select Drop Down    Asset Name    Bike OU-1
-#     Drop Down Should Not Contain Option    Fuel    ${FUEL}
-#     Close Unsaved Changes Form
+Add EM1-05
+    [Tags]    case 1
+    [Documentation]    ไม่มี EF ให้เลือก (เพราะ Date เกิน EF ที่มี)
+    Add Emission Page 1 2    ${ORGANIZATION}    ${SITES}[0]    Fuel
+    Select Date of Activity    Mar 2023    Mar 2023
+    Select Drop Down    Asset Name    Bike OU-1
+    Drop Down Should Not Contain Option    Fuel    ${FUEL}
+    Close Unsaved Changes Form
 
-# Add EM1-06
-#     [Tags]    case 1
-#     [Documentation]    ไม่มี EF ให้เลือก (เพราะ Date เกิน EF ที่มี)
-#     Add Emission Page 1 2    ${ORGANIZATION}    ${SITES}[0]    Fuel
-#     Select Date of Activity    Mar 2023    Apr 2023
-#     Select Drop Down    Asset Name    Bike OU-1
-#     Drop Down Should Not Contain Option    Fuel    ${FUEL}
-#     Close Unsaved Changes Form
+Add EM1-06
+    [Tags]    case 1
+    [Documentation]    ไม่มี EF ให้เลือก (เพราะ Date เกิน EF ที่มี)
+    Add Emission Page 1 2    ${ORGANIZATION}    ${SITES}[0]    Fuel
+    Select Date of Activity    Mar 2023    Apr 2023
+    Select Drop Down    Asset Name    Bike OU-1
+    Drop Down Should Not Contain Option    Fuel    ${FUEL}
+    Close Unsaved Changes Form
 
 Add EM2-01
     [Tags]    case 2
@@ -264,59 +264,59 @@ Add EM2-17
     Check Record Emission    scope 1=60.00 kg    scope 3=50.00 kg    outside of scope=30.00 kg
     Click Delete Emission
 
-# Add EM3-01
-#     [Tags]    case 3
-#     [Documentation]    ไม่มี EF ให้เลือก (เพราะ Date เกิน EF ที่มี)
-#     Add Emission Page 1 2    ${ORGANIZATION}    ${SITES}[0]    Fuel
-#     Select Date of Activity    Jan 2023    Jan 2023
-#     Select Drop Down    Asset Name    Bike OU-1
-#     Drop Down Should Not Contain Option    Fuel    ${FUEL}
-#     Close Unsaved Changes Form
+Add EM3-01
+    [Tags]    case 3
+    [Documentation]    ไม่มี EF ให้เลือก (เพราะ Date เกิน EF ที่มี)
+    Add Emission Page 1 2    ${ORGANIZATION}    ${SITES}[0]    Fuel
+    Select Date of Activity    Jan 2023    Jan 2023
+    Select Drop Down    Asset Name    Bike OU-1
+    Drop Down Should Not Contain Option    Fuel    ${FUEL}
+    Close Unsaved Changes Form
 
-# Add EM3-02
-#     [Tags]    case 3
-#     [Documentation]    ไม่มี EF ให้เลือก (เพราะ Date เกิน EF ที่มี)
-#     Add Emission Page 1 2    ${ORGANIZATION}    ${SITES}[0]    Fuel
-#     Select Date of Activity    Jan 2023    Feb 2023
-#     Select Drop Down    Asset Name    Bike OU-1
-#     Drop Down Should Not Contain Option    Fuel    ${FUEL}
-#     Close Unsaved Changes Form
+Add EM3-02
+    [Tags]    case 3
+    [Documentation]    ไม่มี EF ให้เลือก (เพราะ Date เกิน EF ที่มี)
+    Add Emission Page 1 2    ${ORGANIZATION}    ${SITES}[0]    Fuel
+    Select Date of Activity    Jan 2023    Feb 2023
+    Select Drop Down    Asset Name    Bike OU-1
+    Drop Down Should Not Contain Option    Fuel    ${FUEL}
+    Close Unsaved Changes Form
     
-# Add EM3-03
-#     [Tags]    case 3
-#     [Documentation]    ไม่มี EF ให้เลือก (มีแต่ Upstream ไม่ได้ ต้องมี Combustion)
-#     Add Emission Page 1 2    ${ORGANIZATION}    ${SITES}[0]    Fuel
-#     Select Date of Activity    Feb 2023    Feb 2023
-#     Select Drop Down    Asset Name    Bike OU-1
-#     Drop Down Should Not Contain Option    Fuel    ${FUEL}
-#     Close Unsaved Changes Form
+Add EM3-03
+    [Tags]    case 3
+    [Documentation]    ไม่มี EF ให้เลือก (มีแต่ Upstream ไม่ได้ ต้องมี Combustion)
+    Add Emission Page 1 2    ${ORGANIZATION}    ${SITES}[0]    Fuel
+    Select Date of Activity    Feb 2023    Feb 2023
+    Select Drop Down    Asset Name    Bike OU-1
+    Drop Down Should Not Contain Option    Fuel    ${FUEL}
+    Close Unsaved Changes Form
 
-# Add EM3-04
-#     [Tags]    case 3
-#     [Documentation]    ไม่มี EF ให้เลือก (เดือน FEB มีแต่ Upstream)
-#     Add Emission Page 1 2    ${ORGANIZATION}    ${SITES}[0]    Fuel
-#     Select Date of Activity    Feb 2023    Mar 2023
-#     Select Drop Down    Asset Name    Bike OU-1
-#     Drop Down Should Not Contain Option    Fuel    ${FUEL}
-#     Close Unsaved Changes Form
+Add EM3-04
+    [Tags]    case 3
+    [Documentation]    ไม่มี EF ให้เลือก (เดือน FEB มีแต่ Upstream)
+    Add Emission Page 1 2    ${ORGANIZATION}    ${SITES}[0]    Fuel
+    Select Date of Activity    Feb 2023    Mar 2023
+    Select Drop Down    Asset Name    Bike OU-1
+    Drop Down Should Not Contain Option    Fuel    ${FUEL}
+    Close Unsaved Changes Form
 
-# Add EM3-05
-#     [Tags]    case 3
-#     [Documentation]    ไม่มี EF ให้เลือก (เดือน MAR มีแต่ Biogenic ไม่มี Stationary/Mobile)
-#     Add Emission Page 1 2    ${ORGANIZATION}    ${SITES}[0]    Fuel
-#     Select Date of Activity    Mar 2023    Mar 2023
-#     Select Drop Down    Asset Name    Bike OU-1
-#     Drop Down Should Not Contain Option    Fuel    ${FUEL}
-#     Close Unsaved Changes Form
+Add EM3-05
+    [Tags]    case 3
+    [Documentation]    ไม่มี EF ให้เลือก (เดือน MAR มีแต่ Biogenic ไม่มี Stationary/Mobile)
+    Add Emission Page 1 2    ${ORGANIZATION}    ${SITES}[0]    Fuel
+    Select Date of Activity    Mar 2023    Mar 2023
+    Select Drop Down    Asset Name    Bike OU-1
+    Drop Down Should Not Contain Option    Fuel    ${FUEL}
+    Close Unsaved Changes Form
 
-# Add EM3-06
-#     [Tags]    case 3
-#     [Documentation]    ไม่มี EF ให้เลือก (เดือน MAR มีแต่ Biogenic ไม่มี Stationary/Mobile)
-#     Add Emission Page 1 2    ${ORGANIZATION}    ${SITES}[0]    Fuel
-#     Select Date of Activity    Mar 2023    Apr 2023
-#     Select Drop Down    Asset Name    Bike OU-1
-#     Drop Down Should Not Contain Option    Fuel    ${FUEL}
-#     Close Unsaved Changes Form
+Add EM3-06
+    [Tags]    case 3
+    [Documentation]    ไม่มี EF ให้เลือก (เดือน MAR มีแต่ Biogenic ไม่มี Stationary/Mobile)
+    Add Emission Page 1 2    ${ORGANIZATION}    ${SITES}[0]    Fuel
+    Select Date of Activity    Mar 2023    Apr 2023
+    Select Drop Down    Asset Name    Bike OU-1
+    Drop Down Should Not Contain Option    Fuel    ${FUEL}
+    Close Unsaved Changes Form
 
 Add EM3-07
     [Tags]    case 3

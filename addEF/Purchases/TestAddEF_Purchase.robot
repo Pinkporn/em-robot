@@ -106,10 +106,10 @@ Add Purchase EF 17
 Add Purchase EF 18
     [Documentation]    EF ทับกับที่มีอยู่แล้ว
     Click Add Emission Factor Button
-     Enter Purchases Emission Factor Form    start date=Jun 2023    end date=Aug    publisher=EF B    cert id=EFP-018
+     Enter Purchases Emission Factor Form    start date=Jun 2023    end date=Aug 2023    publisher=EF B    cert id=EFP-018
     ...    factor type=Upstream    purchase group=Chemicals    goods and services=Good B
     ...    unit=kg    filling method=Total    Total=0.1
-    Confirm Add EF Expect Overlap Date
+    Confirm Add EF Expect Invalid Date
 
 Add Purchase EF 19
     [Documentation]    EF ทับกับที่มีอยู่แล้ว
