@@ -14,13 +14,10 @@ Add & Check Fuel Emission
     ...    ${scope 1}=${None}    ${scope 3}=${None}    ${outside of scope}=${None}
     ...    ${delete}=${True}
     
-    ${id}    Get Last Running No
     Add Emission Page 1 2    ${SUB ORG}    ${site name}    Fuel
     Enter Fuel Form    asset name=${asset name}    fuel=${fuel name}
     ...    unit=${unit}    amount=${amount}    asset type=${asset type}
-    Click Element    //button[.//span[text()='Save as Draft']]
-    Wait Until Page Contains    Emission created successfully
-    Wait Until New Running No Is Visible    ${id}
+    Save Emission As Draft
     Check Record Emission
     ...    scope 1=${scope 1}
     ...    scope 3=${scope 3}
@@ -114,8 +111,7 @@ Dup Emission Fuel
 Edit Emisison Fuel
     Click Edit Emission
     Enter Fuel Form    publisher=IPCC    unit=TJ
-    # Upload Evidences    ${CURDIR}/test.pdf
-    Upload Evidences    ${EXECDIR}/evidences/test.pdf
+    Upload Evidences    ${CURDIR}/../evidences/test.pdf
     Click Element    //button[.//span[text()='Add']]
     Wait Until Element Is Not Visible    //section
     Wait Until Page Contains    Emission edited successfully

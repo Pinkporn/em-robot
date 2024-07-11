@@ -15,13 +15,10 @@ Add & Check Emission
     ...    ${no emission}=${False}
     ...    ${delete}=${True}
     
-    ${id}    Get Last Running No
     Add Emission Page 1 2    ${SUB ORG}    ${site name}    Outsourcing Waste Disposal
     Enter Outsourcing Waste Disposal Form         category=${category}    waste type=${waste type}    
     ...    treatment=${treatment}    amount=${amount}
-    Click Element    //button[.//span[text()='Save as Draft']]
-    Wait Until Page Contains    Emission created successfully
-    Wait Until New Running No Is Visible    ${id}
+    Save Emission As Draft
     Check Record Emission
     ...    scope 1=${scope 1}
     ...    scope 3=${scope 3}

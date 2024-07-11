@@ -72,6 +72,14 @@ Click Delete Emission
     Wait Until Element Is Not Visible    //section
     Wait Until Page Does Not Contain    EM-${id}
 
+Save Emission As Draft
+    ${id}    Get Last Running No
+    Click Element    //button[.='Save as Draft']
+    Wait Until Toast Finish Loading
+    Toast Status Should Be    Successful
+    Toast Message Should Be    Emission created successfully
+    Wait Until New Running No Is Visible    ${id}
+
 Check Record Emission
     [Arguments]
     ...    ${scope 1}=${None}
