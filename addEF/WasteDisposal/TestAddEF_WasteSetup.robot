@@ -73,9 +73,11 @@ Dup Waste EF Default1-06
     Wait Until Element Is Visible    //section
     Input Text    name:certificateId    EFWD-007
     Select Drop Down    Waste Treatment    Sanitary Landfill    
-    Click Element    //button[.//span[text()='Save']]
-    Wait Until Element Is Not Visible    //section 
-    Wait Until Page Contains    Emission duplicated successfully
+    Click Element    //button[.='Save']
+    Wait Until Toast Finish Loading
+    Toast Status Should Be    Successful
+    Toast Message Should Be    Emission duplicated successfully
+    Wait Until Element Is Not Visible    //section
 
 Edit EF Waste EF Default1-06
     Click Edit EF
@@ -83,9 +85,11 @@ Edit EF Waste EF Default1-06
     Enter Energy Emission Factor Form     filling method=Separated by Gas    Fossil CH4=0.1    N2O=0.1    SF6=0.2    NF3=0.2
     ${total}    Get Value    //input[@id=//label[.='Total']/@for]
     Should Be Equal As Numbers    ${total}    0.6
-    Click Element    //button[.//span[text()='Save']]
-    Wait Until Element Is Not Visible    //section 
-    Wait Until Page Contains    Emission edited successfully
+    Click Element    //button[.='Save']
+    Wait Until Toast Finish Loading
+    Toast Status Should Be    Successful
+    Toast Message Should Be    Emission edited successfully
+    Wait Until Element Is Not Visible    //section
     Click Delete EF
 
 Delete All EF

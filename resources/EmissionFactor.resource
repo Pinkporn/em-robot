@@ -257,21 +257,18 @@ Confirm Add EF Expect Invalid Date
     Click Element    //button[.="Add"]
     Wait Until Toast Finish Loading
     Toast Status Should Be    Failed
-        VAR    ${invalid date message}    SEPARATOR=
+    VAR    ${invalid date message}    SEPARATOR=
     ...    Invalid Start Date or End Date for this emission factor.\n
     ...    \n Please make sure that the start date is adjacent to the end date of the previous emission factor with the same attributes.
     Toast Message Should Be    ${invalid date message}
     ...    error=Expected toast message:\n"<TEXT>"\nFound:\n"<ACTUAL_TEXT>"
     Click Close Modal
 
-Confirm Add EF Expect Duplicate Cert.
+Confirm Add EF Expect Duplicate Cert
     Click Element    //button[.="Add"]
     Wait Until Toast Finish Loading
     Toast Status Should Be    Failed
-        VAR    ${invalid date message}    SEPARATOR=
-    ...    Unable to add GHGs emission factors. Please check the certification.
-    Toast Message Should Be    ${invalid date message}
-    ...    error=Expected toast message:\n"<TEXT>"\nFound:\n"<ACTUAL_TEXT>"
+    Toast Message Should Be    Unable to add GHGs emission factors. Please check the certification.
     Click Close Modal
 
 Confirm Add EF Expect Overlap Date
