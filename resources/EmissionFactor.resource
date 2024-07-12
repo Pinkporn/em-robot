@@ -222,6 +222,30 @@ Enter Water Emission Factor Form
     ...    Water Type=${water type}
     ...    Unit=${unit}
 
+Enter Waste Disposal Emission Factor Form
+    [Arguments]
+    ...    ${start date}=SKIP    ${end date}=${None}
+    ...    ${publisher}=SKIP
+    ...    ${cert id}=SKIP
+    ...    ${waste type}=SKIP
+    ...    ${waste treatment}=SKIP
+    ...    ${unit}=SKIP
+    ...    ${filling method}=${None}
+    ...    &{gases}
+
+    ${element}    Get Element From Label    Emission Group
+    VAR    ${emission group}    ${{'Outsourcing Waste Disposal' if $element.is_enabled() else 'SKIP'}}
+
+    Generic Emission Factor Form
+    ...    ${start date}    ${end date}
+    ...    ${publisher}     ${cert id}
+    ...    ${emission group}
+    ...    ${filling method}
+    ...    ${gases}
+    ...    Waste Type=${waste type}
+    ...    Waste Treatment=${waste treatment}
+    ...    Unit=${unit}
+
 Confirm Add EF
     Click Element    //button[.="Add"]
     Wait Until Toast Finish Loading
@@ -233,11 +257,19 @@ Confirm Add EF Expect Invalid Date
     Click Element    //button[.="Add"]
     Wait Until Toast Finish Loading
     Toast Status Should Be    Failed
-    VAR    ${invalid date message}    SEPARATOR=
+        VAR    ${invalid date message}    SEPARATOR=
     ...    Invalid Start Date or End Date for this emission factor.\n
-    ...    \n
-    ...    Please make sure that the start date is adjacent to
-    ...     the end date of the previous emission factor with the same attributes.
+    ...    \n Please make sure that the start date is adjacent to the end date of the previous emission factor with the same attributes.
+    Toast Message Should Be    ${invalid date message}
+    ...    error=Expected toast message:\n"<TEXT>"\nFound:\n"<ACTUAL_TEXT>"
+    Click Close Modal
+
+Confirm Add EF Expect Duplicate Cert.
+    Click Element    //button[.="Add"]
+    Wait Until Toast Finish Loading
+    Toast Status Should Be    Failed
+        VAR    ${invalid date message}    SEPARATOR=
+    ...    Unable to add GHGs emission factors. Please check the certification.
     Toast Message Should Be    ${invalid date message}
     ...    error=Expected toast message:\n"<TEXT>"\nFound:\n"<ACTUAL_TEXT>"
     Click Close Modal
