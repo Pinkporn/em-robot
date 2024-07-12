@@ -64,7 +64,9 @@ Upload Evidence By Text
     # ${upload button}    Get WebElement
     Mouse Over     ${locator}/following-sibling::*
     Choose File    ${locator}    ${file_path}
-    Wait Until Element Is Visible    //div[@role="status" and text()='Evidence uploaded successfully']    ${timeout}
+    Wait Until Toast Finish Loading    ${timeout}
+    Toast Status Should Be    Successful
+    Toast Message Should Be    Evidence uploaded successfully
     Mouse Out      ${locator}/following-sibling::*
 
 Done Upload Evidence
@@ -83,6 +85,3 @@ Click Download Template
     Click Download Template Menu Button
     Click ${org} Menu Button
     Wait Until Page Contains    Downloading Template... 
-
-    
-    
