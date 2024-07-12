@@ -127,7 +127,7 @@ Add EM2-07
     Add Emission Page 1 2    ${ORGANIZATION}    ${SITES}[0]    Fuel
     Enter Fuel Form    from date=Apr 2023    to date=Apr 2023    asset name=Bike OU-1    
     ...    fuel=${FUEL}    publisher=${PUBLISHER}    amount=100
-    Save Emission As Draft
+    Save Emission
     Check Record Emission    scope 1=10.00 kg
     Click Delete Emission
 
@@ -137,7 +137,7 @@ Add EM2-08
     Add Emission Page 1 2    ${ORGANIZATION}    ${SITES}[0]    Fuel
     Enter Fuel Form    from date=Apr 2023    to date=May 2023    asset name=Bike OU-1    
     ...    fuel=${FUEL}    publisher=${PUBLISHER}    amount=100
-    Save Emission As Draft
+    Save Emission
     Check Record Emission    scope 1=10.00 kg    scope 3=10.16 kg
     Click Delete Emission
 
@@ -147,7 +147,7 @@ Add EM2-09
     Add Emission Page 1 2    ${ORGANIZATION}    ${SITES}[0]    Fuel
     Enter Fuel Form    from date=Apr 2023    to date=Jun 2023    asset name=Bike OU-1    
     ...    fuel=${FUEL}    publisher=${PUBLISHER}    amount=100
-    Save Emission As Draft
+    Save Emission
     Check Record Emission    scope 1=19.89 kg    scope 3=23.30 kg
     Click Delete Emission
 
@@ -157,7 +157,7 @@ Add EM2-10
     Add Emission Page 1 2    ${ORGANIZATION}    ${SITES}[0]    Fuel
     Enter Fuel Form    from date=Apr 2023    to date=Oct 2023    asset name=Bike OU-1    
     ...    fuel=${FUEL}    publisher=${PUBLISHER}    amount=100
-    Save Emission As Draft
+    Save Emission
     Check Record Emission    scope 1=40.05 kg    scope 3=38.64 kg
     Click Delete Emission
 
@@ -167,7 +167,7 @@ Add EM2-11
     Add Emission Page 1 2    ${ORGANIZATION}    ${SITES}[0]    Fuel
     Enter Fuel Form    from date=Jun 2023    to date=Jul 2023    asset name=Bike OU-1    
     ...    fuel=${FUEL}    publisher=${PUBLISHER}    amount=100
-    Save Emission As Draft
+    Save Emission
     Check Record Emission    scope 1=40.00 kg    scope 3=50.00 kg
     Click Delete Emission
 
@@ -177,7 +177,7 @@ Add EM2-12
     Add Emission Page 1 2    ${ORGANIZATION}    ${SITES}[0]    Fuel
     Enter Fuel Form    from date=Jun 2023    to date=Sep 2023    asset name=Bike OU-1    
     ...    fuel=${FUEL}    publisher=${PUBLISHER}    amount=100
-    Save Emission As Draft
+    Save Emission
     Check Record Emission    scope 1=50.00 kg    scope 3=50.00 kg
     Click Delete Emission
 
@@ -187,7 +187,7 @@ Add EM2-13
     Add Emission Page 1 2    ${ORGANIZATION}    ${SITES}[0]    Fuel
     Enter Fuel Form    from date=Jun 2023    to date=Oct 2023    asset name=Bike OU-1    
     ...    fuel=${FUEL}    publisher=${PUBLISHER}    amount=100
-    Save Emission As Draft
+    Save Emission
     Check Record Emission    scope 1=52.03 kg    scope 3=50.00 kg    outside of scope=18.04 kg
     Click Delete Emission
 
@@ -197,7 +197,7 @@ Add EM2-14
     Add Emission Page 1 2    ${ORGANIZATION}    ${SITES}[0]    Fuel
     Enter Fuel Form    from date=Aug 2023    to date=Sep 2023    asset name=Bike OU-1    
     ...    fuel=${FUEL}    publisher=${PUBLISHER}    amount=100
-    Save Emission As Draft
+    Save Emission
     Check Record Emission    scope 1=60.00 kg    scope 3=50.00 kg    outside of scope=30.00 kg
     Click Delete Emission
 
@@ -207,7 +207,7 @@ Add EM2-15
     Add Emission Page 1 2    ${ORGANIZATION}    ${SITES}[0]    Fuel
     Enter Fuel Form    from date=Aug 2023    to date=Dec 2023    asset name=Bike OU-1    
     ...    fuel=${FUEL}    publisher=${PUBLISHER}    amount=100
-    Save Emission As Draft
+    Save Emission
     Check Record Emission    scope 1=60.00 kg    scope 3=50.00 kg    outside of scope=30.00 kg
     Click Delete Emission
 
@@ -217,7 +217,7 @@ Add EM2-16
     Add Emission Page 1 2    ${ORGANIZATION}    ${SITES}[0]    Fuel
     Enter Fuel Form    from date=Oct 2023    to date=Dec 2023    asset name=Bike OU-1    
     ...    fuel=${FUEL}    publisher=${PUBLISHER}    amount=100
-    Save Emission As Draft
+    Save Emission
     Check Record Emission    scope 1=60.00 kg    scope 3=50.00 kg    outside of scope=30.00 kg
     Click Delete Emission
 
@@ -227,7 +227,7 @@ Add EM2-17
     Add Emission Page 1 2    ${ORGANIZATION}    ${SITES}[0]    Fuel
     Enter Fuel Form    from date=Nov 2023    to date=Dec 2023    asset name=Bike OU-1    
     ...    fuel=${FUEL}    publisher=${PUBLISHER}    amount=100
-    Save Emission As Draft
+    Save Emission
     Check Record Emission    scope 1=60.00 kg    scope 3=50.00 kg    outside of scope=30.00 kg
     Click Delete Emission
 
@@ -291,7 +291,7 @@ Add EM3-07
     Add Emission Page 1 2    ${ORGANIZATION}    ${SITES}[0]    Fuel
     Enter Fuel Form    from date=Apr 2023    to date=Apr 2023    asset name=Bike OU-1    
     ...    fuel=${FUEL}    publisher=${PUBLISHER}    amount=100
-    Save Emission As Draft
+    Save Emission
     Check Record Emission    scope 1=10.00 kg    outside of scope=30.00 kg
     Click Delete Emission
 
@@ -301,7 +301,7 @@ Add EM3-08
     Add Emission Page 1 2    ${ORGANIZATION}    ${SITES}[0]    Fuel
     Enter Fuel Form    from date=Apr 2023    to date=May 2023    asset name=Bike OU-1    
     ...    fuel=${FUEL}    publisher=${PUBLISHER}    amount=100
-    Save Emission As Draft
+    Save Emission
     Check Record Emission    scope 1=10.00 kg    outside of scope=30.00 kg
     Click Delete Emission
 
@@ -311,7 +311,7 @@ Add EM3-09
     Add Emission Page 1 2    ${ORGANIZATION}    ${SITES}[0]    Fuel
     Enter Fuel Form    from date=Apr 2023    to date=Jun 2023    asset name=Bike OU-1    
     ...    fuel=${FUEL}    publisher=${PUBLISHER}    amount=100
-    Save Emission As Draft
+    Save Emission
     Check Record Emission    scope 1=19.89 kg        scope 3=16.48 kg    outside of scope=43.19 kg
     Click Delete Emission
 
@@ -321,7 +321,7 @@ Add EM3-10
     Add Emission Page 1 2    ${ORGANIZATION}    ${SITES}[0]    Fuel
     Enter Fuel Form    from date=Apr 2023    to date=Oct 2023    asset name=Bike OU-1    
     ...    fuel=${FUEL}    publisher=${PUBLISHER}    amount=100
-    Save Emission As Draft
+    Save Emission
     Check Record Emission    scope 1=40.05 kg        scope 3=35.75 kg    outside of scope=58.60 kg
     Click Delete Emission
 
@@ -331,7 +331,7 @@ Add EM3-11
     Add Emission Page 1 2    ${ORGANIZATION}    ${SITES}[0]    Fuel
     Enter Fuel Form    from date=Jun 2023    to date=Jul 2023    asset name=Bike OU-1    
     ...    fuel=${FUEL}    publisher=${PUBLISHER}    amount=100
-    Save Emission As Draft
+    Save Emission
     Check Record Emission    scope 1=40.00 kg        scope 3=50.00 kg    outside of scope=70.00 kg
     Click Delete Emission
 
@@ -341,7 +341,7 @@ Add EM3-12
     Add Emission Page 1 2    ${ORGANIZATION}    ${SITES}[0]    Fuel
     Enter Fuel Form    from date=Jun 2023    to date=Sep 2023    asset name=Bike OU-1    
     ...    fuel=${FUEL}    publisher=${PUBLISHER}    amount=100
-    Save Emission As Draft
+    Save Emission
     Check Record Emission    scope 1=50.00 kg        scope 3=50.00 kg    outside of scope=70.00 kg
     Click Delete Emission
 
@@ -351,7 +351,7 @@ Add EM3-13
     Add Emission Page 1 2    ${ORGANIZATION}    ${SITES}[0]    Fuel
     Enter Fuel Form    from date=Jun 2023    to date=Oct 2023    asset name=Bike OU-1    
     ...    fuel=${FUEL}    publisher=${PUBLISHER}    amount=100
-    Save Emission As Draft
+    Save Emission
     Check Record Emission    scope 1=52.03 kg        scope 3=50.00 kg    outside of scope=70.00 kg
     Click Delete Emission
 
@@ -361,7 +361,7 @@ Add EM3-14
     Add Emission Page 1 2    ${ORGANIZATION}    ${SITES}[0]    Fuel
     Enter Fuel Form    from date=Aug 2023    to date=Sep 2023    asset name=Bike OU-1    
     ...    fuel=${FUEL}    publisher=${PUBLISHER}    amount=100
-    Save Emission As Draft
+    Save Emission
     Check Record Emission    scope 1=60.00 kg        scope 3=50.00 kg    outside of scope=70.00 kg
     Click Delete Emission
 
@@ -371,7 +371,7 @@ Add EM3-15
     Add Emission Page 1 2    ${ORGANIZATION}    ${SITES}[0]    Fuel
     Enter Fuel Form    from date=Aug 2023    to date=Dec 2023    asset name=Bike OU-1    
     ...    fuel=${FUEL}    publisher=${PUBLISHER}    amount=100
-    Save Emission As Draft
+    Save Emission
     Check Record Emission    scope 1=60.00 kg        scope 3=50.00 kg    outside of scope=70.00 kg
     Click Delete Emission
 
@@ -381,7 +381,7 @@ Add EM3-16
     Add Emission Page 1 2    ${ORGANIZATION}    ${SITES}[0]    Fuel
     Enter Fuel Form    from date=Oct 2023    to date=Dec 2023    asset name=Bike OU-1    
     ...    fuel=${FUEL}    publisher=${PUBLISHER}    amount=100
-    Save Emission As Draft
+    Save Emission
     Check Record Emission    scope 1=60.00 kg        scope 3=50.00 kg    outside of scope=70.00 kg
     Click Delete Emission
 
@@ -391,7 +391,7 @@ Add EM3-17
     Add Emission Page 1 2    ${ORGANIZATION}    ${SITES}[0]    Fuel
     Enter Fuel Form    from date=Nov 2023    to date=Dec 2023    asset name=Bike OU-1    
     ...    fuel=${FUEL}    publisher=${PUBLISHER}    amount=100
-    Save Emission As Draft
+    Save Emission
     Check Record Emission    scope 1=60.00 kg        scope 3=50.00 kg    outside of scope=70.00 kg
     Click Delete Emission
 

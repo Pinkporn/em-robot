@@ -17,7 +17,7 @@ Add & Check Fuel Emission
     Add Emission Page 1 2    ${SUB ORG}    ${site name}    Fuel
     Enter Fuel Form    asset name=${asset name}    fuel=${fuel name}
     ...    unit=${unit}    amount=${amount}    asset type=${asset type}
-    Save Emission As Draft
+    Save Emission
     Check Record Emission
     ...    scope 1=${scope 1}
     ...    scope 3=${scope 3}

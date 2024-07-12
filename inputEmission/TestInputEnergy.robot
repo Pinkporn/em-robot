@@ -20,7 +20,7 @@ Add & Check Emission
     Add Emission Page 1 2    ${SUB ORG}    ${site name}   Energy
     Enter Energy Form    asset type=${asset type}   asset name=${asset name}
     ...    source=${source}    unit=${unit}    amount=${amount}    resell=${resell}
-    Save Emission As Draft
+    Save Emission
     Check Record Emission
     ...    scope 2=${scope 2}
     ...    scope 3=${scope 3}

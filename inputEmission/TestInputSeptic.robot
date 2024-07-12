@@ -16,7 +16,7 @@ Add & Check Emission
     
     Add Emission Page 1 2    ${SUB ORG}    ${site name}    Septic Tank
     Enter Septic Tank Form   ${from date}    ${to date}     amount=${amount}    &{days}
-    Save Emission As Draft
+    Save Emission
     Check Record Emission
     ...    scope 1=${scope 1}
     ...    scope 3=${scope 3}

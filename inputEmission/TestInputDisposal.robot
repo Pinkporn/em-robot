@@ -18,7 +18,7 @@ Add & Check Emission
     Add Emission Page 1 2    ${SUB ORG}    ${site name}    Outsourcing Waste Disposal
     Enter Outsourcing Waste Disposal Form         category=${category}    waste type=${waste type}    
     ...    treatment=${treatment}    amount=${amount}
-    Save Emission As Draft
+    Save Emission
     Check Record Emission
     ...    scope 1=${scope 1}
     ...    scope 3=${scope 3}

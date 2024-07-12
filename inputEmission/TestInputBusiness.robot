@@ -18,7 +18,7 @@ Add & Check Emission
     Add Emission Page 1 2    ${SUB ORG}    ${site name}    Business Travel
     Enter Employee Commuting or Business Travel Form   mode=${mode}    haul=${haul}    
     ...    flight class=${flight class}    distance=${distance}    unit=${unit}    amount=${amount}    
-    Save Emission As Draft
+    Save Emission
     Check Record Emission
     ...    scope 1=${scope 1}
     ...    scope 3=${scope 3}

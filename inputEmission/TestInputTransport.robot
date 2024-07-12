@@ -20,7 +20,7 @@ Add & Check Emission
     Add Emission Page 1 2    ${SUB ORG}    ${site name}    Outsourcing Transport
     Enter Outsourcing Transport Form   goods type=${goods type}    goods name=${goods name}    source=${source}
     ...    distance=${distance}    distance unit=${distance unit}     loading=${loading}    loading unit=${loading unit}   
-    Save Emission As Draft
+    Save Emission
     Check Record Emission
     ...    scope 1=${scope 1}
     ...    scope 3=${scope 3}

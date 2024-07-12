@@ -33,7 +33,7 @@ Add EM-3
     Add Emission Page 1 2    ${ORGANIZATION}    ${SITES}[0]    Purchases
     Enter Purchases Form    from date=Apr 2023    to date=Apr 2023    goods services=${GOODS}[0]
     ...    publisher=${PUBLISHER}[0]    unit=${UNIT}    amount=100
-    Save Emission As Draft
+    Save Emission
     Check Record Emission    scope 3=10.00 kg
     Click Delete Emission
 
@@ -42,7 +42,7 @@ Add EM-4
     Add Emission Page 1 2    ${ORGANIZATION}    ${SITES}[0]    Purchases
     Enter Purchases Form    from date=Apr 2023    to date=May 2023    goods services=${GOODS}[0]
     ...    publisher=${PUBLISHER}[0]    unit=${UNIT}    amount=100
-    Save Emission As Draft
+    Save Emission
     Check Record Emission    scope 3=10.00 kg
     Click Delete Emission
 
@@ -51,7 +51,7 @@ Add EM-5
     Add Emission Page 1 2    ${ORGANIZATION}    ${SITES}[0]    Purchases
     Enter Purchases Form    from date=Apr 2023    to date=Jun 2023    goods services=${GOODS}[0]
     ...    publisher=${PUBLISHER}[0]    unit=${UNIT}    amount=100
-    Save Emission As Draft
+    Save Emission
     Check Record Emission    scope 3=19.89 kg
     Click Delete Emission
 
@@ -60,7 +60,7 @@ Add EM-6
     Add Emission Page 1 2    ${ORGANIZATION}    ${SITES}[0]    Purchases
     Enter Purchases Form    from date=Apr 2023    to date=Oct 2023    goods services=${GOODS}[0]
     ...    publisher=${PUBLISHER}[0]    unit=${UNIT}    amount=100
-    Save Emission As Draft
+    Save Emission
     Check Record Emission    scope 3=40.05 kg
     Click Delete Emission
 
@@ -69,7 +69,7 @@ Add EM-7
     Add Emission Page 1 2    ${ORGANIZATION}    ${SITES}[0]    Purchases
     Enter Purchases Form    from date=Jun 2023    to date=Jul 2023    goods services=${GOODS}[0]
     ...    publisher=${PUBLISHER}[0]    unit=${UNIT}    amount=100
-    Save Emission As Draft
+    Save Emission
     Check Record Emission    scope 3=40.00 kg
     Click Delete Emission
 
@@ -78,7 +78,7 @@ Add EM-8
     Add Emission Page 1 2    ${ORGANIZATION}    ${SITES}[0]    Purchases
     Enter Purchases Form    from date=Jun 2023    to date=Oct 2023    goods services=${GOODS}[0]
     ...    publisher=${PUBLISHER}[0]    unit=${UNIT}    amount=100
-    Save Emission As Draft
+    Save Emission
     Check Record Emission    scope 3=52.03 kg
     Click Delete Emission
 
@@ -87,7 +87,7 @@ Add EM-9
     Add Emission Page 1 2    ${ORGANIZATION}    ${SITES}[0]    Purchases
     Enter Purchases Form    from date=Aug 2023    to date=Sep 2023    goods services=${GOODS}[0]
     ...    publisher=${PUBLISHER}[0]    unit=${UNIT}    amount=100
-    Save Emission As Draft
+    Save Emission
     Check Record Emission    scope 3=60.00 kg
     Click Delete Emission
 
@@ -96,7 +96,7 @@ Add EM-10
     Add Emission Page 1 2    ${ORGANIZATION}    ${SITES}[0]    Purchases
     Enter Purchases Form    from date=Aug 2023    to date=Dec 2023    goods services=${GOODS}[0]
     ...    publisher=${PUBLISHER}[0]    unit=${UNIT}    amount=100
-    Save Emission As Draft
+    Save Emission
     Check Record Emission    scope 3=60.00 kg
     Click Delete Emission
 
@@ -105,7 +105,7 @@ Add EM-11
     Add Emission Page 1 2    ${ORGANIZATION}    ${SITES}[0]    Purchases
     Enter Purchases Form    from date=Oct 2023    to date=Dec 2023    goods services=${GOODS}[0]    vendor=Purchase Thailand
     ...    publisher=${PUBLISHER}[0]    unit=${UNIT}    amount=100    capital goods=true    name=ขวด 1.5 ลิตร    remark=3 เดือนสุดท้ายของปี
-    Save Emission As Draft
+    Save Emission
     Check Record Emission    scope 3=60.00 kg
     Click Delete Emission
 
@@ -128,7 +128,7 @@ Add EM-14
     Add Emission Page 1 2    ${ORGANIZATION}    ${SITES}[0]    Purchases
     Enter Purchases Form    from date=Oct 2023    to date=Dec 2023    goods services=${GOODS}[1]
     ...    publisher=${PUBLISHER}[1]    unit=${UNIT}    amount=100
-    Save Emission As Draft
+    Save Emission
     Check Record Emission    scope 3=20.00 kg
     Click Delete Emission
 
@@ -137,7 +137,7 @@ Add EM-15
     Add Emission Page 1 2    ${ORGANIZATION}    ${SITES}[0]    Purchases
     Enter Purchases Form    from date=Feb 2023    to date=Mar 2023    goods services=${GOODS}[1]
     ...    publisher=${PUBLISHER}[1]    unit=${UNIT}    amount=100
-    Save Emission As Draft
+    Save Emission
     Check Record Emission    scope 3=20.00 kg
     Click Delete Emission
 
@@ -146,7 +146,7 @@ Add EM-16
     Add Emission Page 1 2    ${ORGANIZATION}    ${SITES}[0]    Purchases
     Enter Purchases Form    from date=Feb 2023    to date=May 2023    goods services=${GOODS}[1]
     ...    publisher=${PUBLISHER}[1]    unit=${UNIT}    amount=100
-    Save Emission As Draft
+    Save Emission
     Check Record Emission    scope 3=20.00 kg
     Click Delete Emission
 
@@ -169,7 +169,7 @@ Add EM-19
     Add Emission Page 1 2    ${ORGANIZATION}    ${SITES}[0]    Purchases
     Enter Purchases Form    from date=Apr 2023    to date=Apr 2023    goods services=${GOODS}[2]
     ...    publisher=${PUBLISHER}[2]    unit=${UNIT}    amount=100
-    Save Emission As Draft
+    Save Emission
     Check Record Emission    scope 3=30.00 kg
     Click Delete Emission
 
@@ -178,7 +178,7 @@ Add EM-20
     Add Emission Page 1 2    ${ORGANIZATION}    ${SITES}[0]    Purchases
     Enter Purchases Form    from date=Apr 2023    to date=May 2023    goods services=${GOODS}[2]
     ...    publisher=${PUBLISHER}[2]    unit=${UNIT}    amount=100
-    Save Emission As Draft
+    Save Emission
     Check Record Emission    scope 3=30.00 kg
     Click Delete Emission
 
@@ -187,7 +187,7 @@ Add EM-21
     Add Emission Page 1 2    ${ORGANIZATION}    ${SITES}[0]    Purchases
     Enter Purchases Form    from date=Apr 2023    to date=Jun 2023    goods services=${GOODS}[2]
     ...    publisher=${PUBLISHER}[2]    unit=${UNIT}    amount=100
-    Save Emission As Draft
+    Save Emission
     Check Record Emission    scope 3=36.59 kg
     Click Delete Emission
 
@@ -196,7 +196,7 @@ Add EM-22
     Add Emission Page 1 2    ${ORGANIZATION}    ${SITES}[0]    Purchases
     Enter Purchases Form    from date=Apr 2023    to date=Oct 2023    goods services=${GOODS}[2]
     ...    publisher=${PUBLISHER}[2]    unit=${UNIT}    amount=100
-    Save Emission As Draft
+    Save Emission
     Check Record Emission    scope 3=44.30 kg
     Click Delete Emission
 
@@ -205,7 +205,7 @@ Add EM-23
     Add Emission Page 1 2    ${ORGANIZATION}    ${SITES}[0]    Purchases
     Enter Purchases Form    from date=Jun 2023    to date=Oct 2023    goods services=${GOODS}[2]
     ...    publisher=${PUBLISHER}[2]    unit=${UNIT}    amount=100
-    Save Emission As Draft
+    Save Emission
     Check Record Emission    scope 3=50.00 kg
     Click Delete Emission
 
@@ -214,7 +214,7 @@ Add EM-24
     Add Emission Page 1 2    ${ORGANIZATION}    ${SITES}[0]    Purchases
     Enter Purchases Form    from date=Aug 2023    to date=Dec 2023    goods services=${GOODS}[2]
     ...    publisher=${PUBLISHER}[2]    unit=${UNIT}    amount=100
-    Save Emission As Draft
+    Save Emission
     Check Record Emission    scope 3=50.00 kg
     Click Delete Emission
 
@@ -224,12 +224,7 @@ Add EM-25
     Enter Purchases Form    from date=Oct 2023    to date=Dec 2023    goods services=${GOODS}[2]
     ...    publisher=${PUBLISHER}[2]    unit=${UNIT}    amount=100
     Upload Evidences    ${EXECDIR}/evidences/test.pdf
-    ${id}    Get Last Running No
-    Click Element    //button[.='Add']
-    Wait Until Toast Finish Loading
-    Toast Status Should Be    Successful
-    Toast Message Should Be    Emission created successfully
-    Wait Until New Running No Is Visible    ${id}
+    Save Emission    Add
     Check Record Emission    scope 3=50.00 kg
     Click Delete Emission
 
