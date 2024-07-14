@@ -13,18 +13,16 @@ ${USER EMAIL}     tanomporn.p@gideon-one.com
 ${PASSWORD}       P@ssw0rd
 ${ORGANIZATION}   Porn Corporation
 ${ORG CODE}       porn-corporation
-@{SITES}    Building 1    Warehouse 1    Manufacturing 1
+@{SITES}          Building 1    Warehouse 1    Manufacturing 1
 
 *** Keywords ***
 Setup Everything
-    # Register Keyword To Run On Failure    NOTHING
     Set Selenium Speed    ${DELAY}
     Open Chrome
     EM Login    ${URL}    ${USER EMAIL}    ${PASSWORD}    ${ORGANIZATION}
     Go To Eco Eff
 
 *** Test Cases ***
-
 Create indicator
     Add Product Value Indicator    Indicator
 
@@ -63,8 +61,10 @@ Edit Eco Eff
     Click Edit Menu Button
     Enter Eco Efficiency Form   amount=59000
     Click Element    //button[.//span[text()='Save']]
-    Wait Until Element Is Not Visible    //section 
-    Wait Until Page Contains    Eco-Efficiency edited successfully
+    Wait Until Element Is Not Visible    //section
+    Wait Until Toast Finish Loading
+    Toast Status Should Be    Successful
+    Toast Message Should Be    Eco-Efficiency edited successfully
 
 Dup Eco Eff
     [Documentation]
@@ -75,8 +75,10 @@ Dup Eco Eff
     Enter Eco Efficiency Form    from date=Jan 2019    to date=Dec 2019    amount=1000000
     Upload Evidences    ${CURDIR}/../evidences/test.pdf
     Click Element    //button[.//span[text()='Save']]
-    Wait Until Element Is Not Visible    //section 
-    Wait Until Page Contains    Eco-Efficiency duplicated successfully
+    Wait Until Element Is Not Visible    //section
+    Wait Until Toast Finish Loading
+    Toast Status Should Be    Successful
+    Toast Message Should Be    Eco-Efficiency duplicated successfully
     Wait Until New Running No Is Visible    ${id}
     ${N/A}    Get Text    //td[@data-key="ecoEfficiencyAmount"]/p
     Should Be Equal    ${N/A}    N/A
@@ -104,8 +106,9 @@ Add indicator in modal
     Input Text    //input[@placeholder="Product Value Indicator Name"]    Indicator B
     Wait Until Element Is Enabled    (//button[.='Add'])[last()]
     Click Button    (//button[.='Add'])[last()]
-    Wait Until Page Contains    The product value indicator was successfully created.
-
+    Wait Until Toast Finish Loading
+    Toast Status Should Be    Successful
+    Toast Message Should Be    The product value indicator was successfully created.
     Enter Eco Efficiency Form    from date=Jan 2022    to date=Dec 2022    amount=150000
     Click Confirm Add Eco Eff
 
