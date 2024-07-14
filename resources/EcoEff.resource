@@ -27,7 +27,9 @@ Add Product Value Indicator
     Input Text    //input[@placeholder="Product Value Indicator Name"]    ${name}
     Wait Until Element Is Enabled    (//button[.='Add'])[last()]
     Click Button    (//button[.='Add'])[last()]
-    Wait Until Page Contains    The product value indicator was successfully created.
+    Wait Until Toast Finish Loading
+    Toast Status Should Be    Successful
+    Toast Message Should Be    The product value indicator was successfully created.
 
 Rename Product Value Indicator
     [Arguments]    ${name}    ${new name}
@@ -39,7 +41,9 @@ Rename Product Value Indicator
     Click Button    //button[.='Save']
     Wait Until Element Is Visible    //button[.='Confirm']
     Click Button    //button[.='Confirm']
-    Wait Until Page Contains    The product value indicator was successfully updated.
+    Wait Until Toast Finish Loading
+    Toast Status Should Be    Successful
+    Toast Message Should Be    The product value indicator was successfully updated.
 
 Delete Product Value Indicator
     [Arguments]    ${name}
@@ -48,7 +52,9 @@ Delete Product Value Indicator
     Click Delete Menu Button
     Wait Until Element Is Visible    //section//button[.='Delete']
     Click Element    //section//button[.='Delete']
-    Wait Until Page Contains     The product value indicator was successfully deleted.
+    Wait Until Toast Finish Loading
+    Toast Status Should Be    Successful
+    Toast Message Should Be     The product value indicator was successfully deleted.
 
 Click Add Eco Eff
     [Arguments]    ${org}    ${site}
@@ -74,5 +80,7 @@ Enter Eco Efficiency Form
 
 Click Confirm Add Eco Eff
     Click Element    //button[.='Add']
-    Wait Until Page Contains    Eco-Efficiency created successfully    error=Add eco eff fail
+    Wait Until Toast Finish Loading
+    Toast Status Should Be    Successful
+    Toast Message Should Be    Eco-Efficiency created successfully
     Wait Until Element Is Not Visible    //section
