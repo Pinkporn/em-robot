@@ -34,7 +34,7 @@ Add Waste Disposal EF 18
     Enter Waste Disposal Emission Factor Form    start date=Jan 2023    end date=Apr 2023    publisher=EF A    cert id=EFWD-018
     ...    waste type=Wood    waste treatment=Landfil
     ...    unit=tonne    filling method=Total    Total=0.1
-    Confirm Add EF Expect Invalid Date
+    Confirm Add EF Expect Overlap Date
 
 Add Waste Disposal EF 19
     [Documentation]    EF ทับกับที่มีอยู่แล้ว
@@ -174,7 +174,8 @@ Add Waste Disposal EF 35
     Enter Waste Disposal Emission Factor Form    start date=Oct 2023    end date=${None}    publisher=EF A    cert id=EFWD35
     ...    waste type=Wood    waste treatment=Landfill
     ...    unit=tonne    filling method=Total    Total=0.1
-    Confirm Add EF Expect Invalid Date
+    Confirm Add EF
+    Click Delete EF
 
 Add Waste Disposal EF 36
     [Documentation]    EF ทับกับที่มีอยู่แล้ว
@@ -190,8 +191,7 @@ Add Waste Disposal EF 37
     Enter Waste Disposal Emission Factor Form    start date=Nov 2023    end date=Dec 2023    publisher=EF B    cert id=EFWD-037
     ...    waste type=Wood    waste treatment=Combustion
     ...    unit=tonne    filling method=Total    Total=0.1
-    Confirm Add EF
-    Click Delete EF
+    Confirm Add EF Expect Overlap Date
 
 Add Waste Disposal EF 38
     [Documentation]    EF ไม่ต่อเนื่อง
@@ -199,7 +199,7 @@ Add Waste Disposal EF 38
     Enter Waste Disposal Emission Factor Form    start date=Dec 2023    end date=${None}    publisher=EF B    cert id=EFWD36
     ...    waste type=Wood    waste treatment=Combustion
     ...    unit=tonne    filling method=Total    Total=0.1
-    Confirm Add EF Expect Invalid Date
+    Confirm Add EF Expect Overlap Date
 
 Add Waste Disposal EF 39
     [Documentation]    Cert. ซ้ำ
