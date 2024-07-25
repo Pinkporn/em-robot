@@ -83,14 +83,6 @@ Check Element Select Activity Type : Biogenic
     Drop Down Should Not Contain Option    Emission Factor Type    Upstream
     Click Close Modal
 
-Delete All EF
-    [Tags]    delete
-    ${element}    Find WebElement    //td[@data-sticky="action"]//button
-    WHILE    $element is not None
-        Click Delete EF
-        ${element}    Find WebElement    //td[@data-sticky="action"]//button
-    END
-
 Add Fuel EF Default2-01
     [Tags]    case 2
     [Documentation]
@@ -198,3 +190,11 @@ Add Fuel EF Default3-06
     ...    factor type=Combustion    activity type=Biogenic Emission     fuel source=LPG_A
     ...    unit=kg    filling method=Total    Total=0.7
     Confirm Add EF
+
+# Delete All EF
+#     [Tags]    delete
+#     ${element}    Find WebElement    //td[@data-sticky="action"]//button
+#     WHILE    $element is not None
+#         Click Delete EF
+#         ${element}    Find WebElement    //td[@data-sticky="action"]//button
+#     END

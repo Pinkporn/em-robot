@@ -280,6 +280,22 @@ Confirm Add EF Expect Overlap Date
     Wait Until Element Is Not Visible    //section//button[.="Understand"]
     Click Close Modal
 
+Confirm Add EF Expect Different Fuel Group
+    Click Element    //button[.="Add"]
+    Wait Until Toast Finish Loading
+    Toast Status Should Be    Failed
+    Toast Message Should Be    There's already emission factor with the same fuel but different fuel group. Please select the same fuel group.
+    Click Close Modal
+
+Confirm Add EF Expect Different EF Type
+    Click Element    //button[.="Add"]
+    Wait Until Toast Finish Loading
+    Toast Status Should Be    Failed
+    Toast Message Should Be    There is already an identical emission factor with a different emission factor type. Please select different period, emission factor publisher, emission source, or unit to create this emission factor.
+    Click Close Modal
+    
+    
+
 Click Edit EF
     Click Kebab Button In Table
     Click Edit Menu Button

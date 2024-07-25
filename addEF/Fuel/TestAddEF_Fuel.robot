@@ -236,7 +236,8 @@ Add Fuel EF 33
     Enter Fuel Emission Factor Form    start date=Oct 2023    end date=${None}    publisher=EF A    cert id=EF2-0033
     ...    factor type=Combustion    activity type=Mobile Combustion (On-Road)    fuel group=LPG    fuel source=LPG_A
     ...    unit=kg    filling method=Total    Total=0.2
-    Confirm Add EF Expect Invalid Date
+    Confirm Add EF
+    Click Delete EF
 
 Add Fuel EF 34
     [Documentation]    EF ทับกับที่มีอยู่แล้ว
@@ -261,3 +262,11 @@ Add Fuel EF 36
     ...    factor type=Upstream    activity type=Mobile Combustion (On-Road)    fuel source=LPG_A
     ...    unit=kg    filling method=Total    Total=0.2
     Confirm Add EF Expect Overlap Date
+
+Add Fuel EF 37
+    [Documentation]    Fuel Group ต่างกัน
+    Click Add Emission Factor Button
+    Enter Fuel Emission Factor Form    start date=Oct 2023    end date=Nov 2023    publisher=EF A    cert id=EF1-0037
+    ...    factor type=Combustion    activity type=Mobile Combustion (On-Road)    fuel group=Coal    fuel source=LPG_A
+    ...    unit=kg    filling method=Total    Total=0.1
+    Confirm Add EF Expect Different Fuel Group

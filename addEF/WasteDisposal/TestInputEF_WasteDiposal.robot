@@ -62,7 +62,7 @@ Add EM1-04
 
 Add EM1-05
     [Tags]    cat1    #Waste Generated in Operations
-    [Documentation]    OCT ใช้ EF ต่อจาก SEP
+    [Documentation]    ไม่มี EF ให้เลือก (เพราะ Date เกิน EF ที่มี)
     Add Emission Page 1 2    ${ORGANIZATION}    ${SITES}[0]    Outsourcing Waste Disposal
     Select Date of Activity    Mar 2023    Oct 2023
     Select Drop Down    Category    Waste Generated in Operations
@@ -491,7 +491,7 @@ Add EM2-04
 
 Add EM2-05
     [Tags]    cat2    #End-of-Life Treatment of Sold Products
-    [Documentation]    OCT ใช้ EF ต่อจาก SEP
+    [Documentation]    ไม่มี EF ให้เลือก (เพราะ Date เกิน EF ที่มี)
     Add Emission Page 1 2    ${ORGANIZATION}    ${SITES}[0]    Outsourcing Waste Disposal
     Select Date of Activity    Mar 2023    Oct 2023
     Select Drop Down    Category    End-of-Life Treatment of Sold Products
