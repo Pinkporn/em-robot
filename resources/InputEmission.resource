@@ -6,6 +6,13 @@ Resource          FormUtility.resource
 
 
 *** Keywords ***
+# Go To Input Emission
+#     Click Element    //h3[text()='Emission']
+#     Wait Until Element Is Visible    //h3[text()='Input']
+#     Click Element    //h3[text()='Input']
+#     Wait Until Element Is Not Visible    //div[contains(@class, 'styles_loadingOverlayContent')]
+#     Wait Until Element Is Not Visible    //td//span[contains(@class, 'mantine-Loader-root')]
+
 Go To Input Emission
     Click Element    //h3[text()='Emission']
     Wait Until Element Is Visible    //h3[text()='Input']
@@ -233,6 +240,7 @@ Enter Other Fugitive Emission Form
     [Arguments]
     ...    ${from date}=${None}    ${to date}=${None}
     ...    ${source}=${None}
+    ...    ${unit}=${None}
     ...    ${publisher}=${None}
     ...    ${vendor}=${None}
     ...    ${amount}=${None}
@@ -241,6 +249,7 @@ Enter Other Fugitive Emission Form
     Select Date of Activity    ${from date}    ${to date}
     Select Drop Down    Emission Source     ${source}
     Select Drop Down    Emission Factor Publisher    ${publisher}
+    Select Drop Down    Unit    ${unit}
     IF  $vendor is not None
         Input Text    name:otherFugitiveEmission.vendor    ${vendor}
     END

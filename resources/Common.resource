@@ -28,7 +28,7 @@ EM Login
     IF  $org is not None
         Wait Until Element Is Visible        //p[text() = '${org}']
         Click Element                        //p[text() = '${org}']
-        Wait Until Page Contains             All Organizations 
+        Wait Until Page Contains             Welcome To Zplify! 🎉 
         Wait Until Element Is Not Visible    css:.mantine-Overlay-root
         ...    error=This page takes too long to load. Run again.
         ...    timeout=10s

@@ -16,7 +16,7 @@ Add Purchase EF Default1-01
     [Documentation]
     Click Add Emission Factor Button
     Enter Purchases Emission Factor Form    start date=Apr 2023    end date=May 2023    publisher=EF A    cert id=EFP-001
-    ...    factor type=Full Lifecycle    purchase group=Pulp and Paper    goods and services=Good A
+    ...    factor type=Lifecycle    purchase group=Pulp and Paper    goods and services=Good A
     ...    unit=kg    filling method=Total    Total=0.1
     Confirm Add EF
 
@@ -34,7 +34,7 @@ Add Purchase EF Default1-03
     [Documentation]
     Click Add Emission Factor Button
     Enter Purchases Emission Factor Form    start date=Apr 2023    end date=May 2023    publisher=EF C    cert id=EFP-003
-    ...    factor type=Full Lifecycle    purchase group=Other    goods and services=Good C
+    ...    factor type=Lifecycle    purchase group=Other    goods and services=Good C
     ...    unit=kg    filling method=Total    Total=0.3
     Confirm Add EF
 
@@ -52,7 +52,7 @@ Add Purchase EF Default1-05
     [Documentation]
     Click Add Emission Factor Button
     Enter Purchases Emission Factor Form    start date=Jun 2023    end date=${None}    publisher=EF C    cert id=EFP-005
-    ...    factor type=Full Lifecycle    purchase group=Other    goods and services=Good C
+    ...    factor type=Lifecycle    purchase group=Other    goods and services=Good C
     ...    unit=kg    filling method=Total    Total=0.5
     Confirm Add EF
 

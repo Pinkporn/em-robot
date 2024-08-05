@@ -9,13 +9,13 @@ Test Teardown     Sleep    0.5
 
 *** Keywords ***
 Add & Check Emission
-    [Arguments]       ${site name}        ${source}    ${amount}=15.89    
+    [Arguments]       ${site name}        ${source}    ${amount}=15.89    ${unit}=kg   
     ...    ${scope 1}=${None}    ${scope 3}=${None}    ${outside of scope}=${None}
     ...    ${no emission}=${False}
     ...    ${delete}=${True}
     
     Add Emission Page 1 2    ${SUB ORG}    ${site name}    Other Fugitive Emission
-    Enter Other Fugitive Emission Form    source=${source}    amount=${amount}
+    Enter Other Fugitive Emission Form    source=${source}    amount=${amount}    unit=${unit}
     Save Emission
     Check Record Emission
     ...    scope 1=${scope 1}
