@@ -8,8 +8,8 @@ Resource          Structure.resource
 *** Keywords ***
 Go To Business Structure
     Click Element    //div[@data-testid="menu-organization"]
-    Wait Until Element Is Visible    //button[@role='menuitem' and .//div[text()='Business Structure']]
-    Click Element    //button[@role='menuitem' and .//div[text()='Business Structure']]
+    Wait Until Element Is Visible    //button[@role='menuitem' and .//h4[text()='Business Structure']]
+    Click Element    //button[@role='menuitem' and .//h4[text()='Business Structure']]
     Wait Until Element Is Visible    //li//button[contains(@class, 'mantine-ActionIcon-root')]
     Wait Until Element Is Not Visible    css:.mantine-Overlay-root
 
@@ -60,18 +60,23 @@ Enter Organization Form
     ...    ${website}=${None}
     ...    ${industry}=${None}    ${sector}=${None}
     ...    ${country}=${None}    ${province}=${None}
-    ...    ${city}=${None}    ${zip code}=${None}
+    ...    ${district}=${None}    ${subdistrict}=${None}
+    ...    ${zip code}=${None}
     ...    ${address}=${None}
 
     IF  $display_name is not None
+        VAR    ${name}    (//input[@name='name'])[last()]
+        Press Keys    ${name}    CTRL+A+BACKSPACE
         Input Text    (//input[@name='name'])[last()]    ${display name}
     END
     IF  $english_name is not None
         VAR    ${nameEn}    (//input[@name='nameEn'])[last()]
         Press Keys    ${nameEn}    CTRL+A+BACKSPACE
-        Input Text    ${nameEn}    ${english name}
+        Input Text    (//input[@name='nameEn'])[last()]    ${english name}
     END
     IF  $thai_name is not None
+        VAR    ${nameTh}    (//input[@name='nameTh'])[last()]
+        Press Keys    ${nameTh}    CTRL+A+BACKSPACE
         Input Text    (//input[@name='nameTh'])[last()]    ${thai name}
     END
     IF  $website is not None
@@ -83,8 +88,11 @@ Enter Organization Form
     IF  $province is not None
         Select Drop Down    State / Province    ${province}
     END
-    IF  $city is not None
-        Select Drop Down    City    ${city}
+    IF  $district is not None
+        Select Drop Down    District    ${district}
+    END
+        IF  $subdistrict is not None
+        Select Drop Down    Subdistrict    ${subdistrict}
     END
     IF  $zip_code is not None
         Select Drop Down    Zip / Postal Code    ${zip code}
@@ -110,3 +118,10 @@ Enter New Asset Form
     Select Drop Down    Asset Group    ${group}    # เอาบรรทัดนี้ออก ถ้าเป็น zplify
     Select Drop Down    Site    ${site}
     Select Drop Down    Asset Type    ${type}
+
+Confirm Save Update Detail Organization
+    Click Element    //button[.="Save"]
+    Wait Until Toast Finish Loading
+    Toast Status Should Be    Successful
+    Toast Message Should Be    Organization profile has been updated successfully.
+    Wait Until Element Is Not Visible    //section
