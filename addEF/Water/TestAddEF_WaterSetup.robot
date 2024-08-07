@@ -16,7 +16,7 @@ Add Water EF Default1-01
     [Documentation]
     Click Add Emission Factor Button
     Enter Water Emission Factor Form   start date=Apr 2023    end date=May 2023    publisher=EF A    cert id=EFW-001
-    ...    factor type=Full Lifecycle        water type=Water A
+    ...    factor type=Lifecycle        water type=Water A
     ...    unit=m3    filling method=Total    Total=0.1
     Confirm Add EF
 
@@ -34,7 +34,7 @@ Add Water EF Default1-03
     [Documentation]
     Click Add Emission Factor Button
     Enter Water Emission Factor Form    start date=Apr 2023    end date=May 2023    publisher=EF C    cert id=EFW-003
-    ...    factor type=Full Lifecycle        water type=Water C
+    ...    factor type=Lifecycle        water type=Water C
     ...    unit=m3    filling method=Total    Total=0.3
     Confirm Add EF
 
@@ -52,7 +52,7 @@ Add Water EF Default1-05
     [Documentation]
     Click Add Emission Factor Button
     Enter Water Emission Factor Form    start date=Jun 2023    end date=${None}    publisher=EF C    cert id=EFW-005
-    ...    factor type=Full Lifecycle        water type=Water C
+    ...    factor type=Lifecycle        water type=Water C
     ...    unit=m3    filling method=Total    Total=0.5
     Confirm Add EF
 

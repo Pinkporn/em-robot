@@ -8,6 +8,8 @@ ${URL}            https://app-uat.zplify.com/
 ${DELAY}          0s
 ${USER EMAIL}     tanomporn.p@gideon-one.com
 ${PASSWORD}       P@ssw0rd
+# ${ORGANIZATION}   Zpliporn Test
+# ${ORG CODE}       zpliporn-test
 ${ORGANIZATION}   Get Start อีกครั้ง
 ${ORG CODE}       get-start-agian
 

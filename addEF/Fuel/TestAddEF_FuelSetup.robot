@@ -191,10 +191,10 @@ Add Fuel EF Default3-06
     ...    unit=kg    filling method=Total    Total=0.7
     Confirm Add EF
 
-# Delete All EF
-#     [Tags]    delete
-#     ${element}    Find WebElement    //td[@data-sticky="action"]//button
-#     WHILE    $element is not None
-#         Click Delete EF
-#         ${element}    Find WebElement    //td[@data-sticky="action"]//button
-#     END
+Delete All EF
+    [Tags]    delete
+    ${element}    Find WebElement    //td[@data-sticky="action"]//button
+    WHILE    $element is not None
+        Click Delete EF
+        ${element}    Find WebElement    //td[@data-sticky="action"]//button
+    END

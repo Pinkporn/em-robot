@@ -5,7 +5,14 @@ Suite Setup       Setup Everything
 Test Teardown     Custom Teardown
 
 *** Variables ***
-@{SITES}              Site OU
+# @{SITES}              Site OU
+# @{CATEGORY}           Waste Generated in Operations    End-of-Life Treatment of Sold Products
+# @{WASTE TYPE}         Wood    Glass
+# @{TREATMENT}          Landfill    Combustion
+# @{PUBLISHER}          EF A    EF B    EF C
+# ${UNIT}               tonne
+
+@{SITES}              Site G2-OU
 @{CATEGORY}           Waste Generated in Operations    End-of-Life Treatment of Sold Products
 @{WASTE TYPE}         Wood    Glass
 @{TREATMENT}          Landfill    Combustion
