@@ -126,7 +126,7 @@ Enter Energy Emission Factor Form
     ...    ${source}=SKIP
     ...    ${unit}=SKIP
     ...    ${renewable}=SKIP
-    ...    ${filling method}=${None}
+    ...    ${filling method}=SKIP
     ...    &{gases}
 
     ${element}    Get Element From Label    Emission Group

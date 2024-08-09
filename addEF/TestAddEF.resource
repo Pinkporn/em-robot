@@ -8,10 +8,10 @@ ${URL}            https://app-uat.zplify.com/
 ${DELAY}          0s
 ${USER EMAIL}     tanomporn.p@gideon-one.com
 ${PASSWORD}       P@ssw0rd
-${ORGANIZATION}   Gideon Two
-# ${ORGANIZATION}   Gideon Three
-${ORG CODE}       gideon-two
-# ${ORG CODE}       gideon-three
+# ${ORGANIZATION}   Gideon Two
+${ORGANIZATION}   Gideon Three
+# ${ORG CODE}       gideon-two
+${ORG CODE}       gideon-three
 
 *** Keywords ***
 Setup Everything
