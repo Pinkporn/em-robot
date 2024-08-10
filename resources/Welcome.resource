@@ -8,8 +8,7 @@ Resource          FormUtility.resource
 *** Keywords ***
 
 Go To Welcome
-    VAR    ${welcome}    //*[local-name() = 'svg'][@class='styles_logo__1h8dr7f9']
-    Click Element    ${welcome}
+    Click Element    //*[local-name() = 'svg' and ./*[@fill="#11D073"]]
     Wait Until Page Contains    Welcome To Zplify! 🎉
     Wait Until Element Is Not Visible    //div[contains(@class, 'styles_loadingOverlayContent')]
     Wait Until Element Is Not Visible    //td//span[contains(@class, 'mantine-Loader-root')]

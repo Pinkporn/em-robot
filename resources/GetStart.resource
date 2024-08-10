@@ -1,7 +1,6 @@
 *** Settings ***
 Documentation     Get Start Page
 Resource          FormUtility.resource
-Resource          ../resources/EmissionFactor.resource
 
 *** Variables ***
       
@@ -23,3 +22,13 @@ Click Go To Data Completion
 Click Go To Reduction
     Wait Until Element Is Visible    //a/p[text()='Reduction']
     Click Element    //a/p[text()='Reduction']
+
+Click Task Go
+    [Arguments]    ${text}
+    Click Element    (//div[.//h1[text()='${text}'] and .//a[.='Go']])[last()]//a[.='Go']
+
+Task Status Should Be Completed
+    [Arguments]    ${text}
+    VAR    ${badge}    //span[contains(@class, 'mantine-Badge-label')]
+    ${status}    Get Text    (//div[.//h1[.='${text}'] and .${badge}])[last()]${badge}/p
+    Should Be Equal As Strings    ${status}    Completed

@@ -27,8 +27,8 @@ Enter Site Form
     [Arguments]
     ...    ${site name}=${None}    ${org}=${None}
     ...    ${site status}=${None}  ${country}=${None}
-    ...    ${province}=${None}     ${city}=${None}
-    ...    ${zip code}=${None}
+    ...    ${province}=${None}     ${district}=${None}
+    ...    ${subdistrict}=${None}    ${zip code}=${None}
     ...    ${address}=${None}
     
     IF  $site_name is not None
@@ -43,8 +43,11 @@ Enter Site Form
     IF  $province is not None
         Select Drop Down    State / Province    ${province}
     END
-    IF  $city is not None
-        Select Drop Down    City    ${city}
+    IF  $district is not None
+        Select Drop Down    District    ${district}
+    END
+    IF  $subdistrict is not None
+        Select Drop Down    Subdistrict    ${subdistrict}
     END
     IF  $zip_code is not None
         Select Drop Down    Zip / Postal Code    ${zip code}
@@ -67,17 +70,17 @@ Enter Organization Form
     IF  $display_name is not None
         VAR    ${name}    (//input[@name='name'])[last()]
         Press Keys    ${name}    CTRL+A+BACKSPACE
-        Input Text    (//input[@name='name'])[last()]    ${display name}
+        Input Text    ${name}    ${display name}
     END
     IF  $english_name is not None
         VAR    ${nameEn}    (//input[@name='nameEn'])[last()]
         Press Keys    ${nameEn}    CTRL+A+BACKSPACE
-        Input Text    (//input[@name='nameEn'])[last()]    ${english name}
+        Input Text    ${nameEn}    ${english name}
     END
     IF  $thai_name is not None
         VAR    ${nameTh}    (//input[@name='nameTh'])[last()]
         Press Keys    ${nameTh}    CTRL+A+BACKSPACE
-        Input Text    (//input[@name='nameTh'])[last()]    ${thai name}
+        Input Text    ${nameTh}    ${thai name}
     END
     IF  $website is not None
         Input Text    (//input[@name='website'])[last()]    ${website}
@@ -115,7 +118,6 @@ Click Asset Tab
 Enter New Asset Form
     [Tags]    CarbonCal
     [Arguments]    ${group}=${None}    ${site}=${None}    ${type}=${None}
-    Select Drop Down    Asset Group    ${group}    # เอาบรรทัดนี้ออก ถ้าเป็น zplify
     Select Drop Down    Site    ${site}
     Select Drop Down    Asset Type    ${type}
 
