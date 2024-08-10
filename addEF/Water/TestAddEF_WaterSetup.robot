@@ -24,7 +24,7 @@ Add Water EF Default1-02
     [Tags]    case 1
     [Documentation]
     Click Add Emission Factor Button
-    Enter Water Emission Factor Form    start date=Feb 2023    end date=May 2023    publisher=EF B    cert id=EFW-002
+    Enter Water Emission Factor Form    start date=Feb 2023    end date=Mar 2023    publisher=EF B    cert id=EFW-002
     ...    factor type=Upstream        water type=Water B
     ...    unit=m3    filling method=Total    Total=0.2
     Confirm Add EF

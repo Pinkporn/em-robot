@@ -29,7 +29,8 @@ Add Waste Disposal EF 17
     Confirm Add EF Expect Invalid Date
 
 Add Waste Disposal EF 18
-    [Documentation]    EF ไม่ต่อเนื่อง
+    [Tags]    bug
+    [Documentation]    EF ไม่ต่อเนื่อง EM-5762
     Click Add Emission Factor Button
     Enter Waste Disposal Emission Factor Form    start date=Jan 2023    end date=Apr 2023    publisher=EF A    cert id=EFWD-018
     ...    waste type=Wood    waste treatment=Landfil
@@ -54,6 +55,7 @@ Add Waste Disposal EF 20
     Click Delete EF
 
 Add Waste Disposal EF 21
+    [Tags]    bug
     [Documentation]    EF ต่อเนื่องและไม่ทับ
     Click Add Emission Factor Button
     Enter Waste Disposal Emission Factor Form    start date=Feb 2023    end date=Mar 2023    publisher=EF A    cert id=EFWD-021
@@ -79,7 +81,8 @@ Add Waste Disposal EF 23
     Confirm Add EF Expect Overlap Date
 
 Add Waste Disposal EF 24
-    [Documentation]    EF ทับกับที่มีอยู่แล้ว
+    [Tags]    bug
+    [Documentation]    EF ทับกับที่มีอยู่แล้ว EM-5762
     Click Add Emission Factor Button
     Enter Waste Disposal Emission Factor Form    start date=Apr 2023    end date=${None}    publisher=EF A    cert id=EFWD-024
     ...    waste type=Wood    waste treatment=Landfil
@@ -202,9 +205,10 @@ Add Waste Disposal EF 38
     Confirm Add EF Expect Overlap Date
 
 Add Waste Disposal EF 39
+    [Tags]    bug
     [Documentation]    Cert. ซ้ำ
     Click Add Emission Factor Button
-    Enter Waste Disposal Emission Factor Form    start date=Aug 2023    end date=Sep 2023    publisher=EF A    cert id=EFWD-006
+    Enter Waste Disposal Emission Factor Form    start date=Oct 2023    end date=Nov 2023    publisher=EF A    cert id=EFWD-0006
     ...    waste type=Wood    waste treatment=Landfill
     ...    unit=tonne    filling method=Total    Total=0.6
     Confirm Add EF Expect Duplicate Cert

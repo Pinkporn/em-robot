@@ -5,15 +5,15 @@ Suite Setup       Setup Everything
 Test Teardown     Custom Teardown
 
 *** Variables ***
-# @{SITES}          Site OU
-# ${FUEL}           LPG_A (On-road vehicle)
-# ${PUBLISHER}      EF A
-# ${VEHICLE}        Bike OU-1
-
-@{SITES}          Site G3-OU
+@{SITES}          Site OU
 ${FUEL}           LPG_A (On-road vehicle)
 ${PUBLISHER}      EF A
-${VEHICLE}        Bike G3 OU-1
+${VEHICLE}        Bike OU-1
+
+# @{SITES}          Site G3-OU
+# ${FUEL}           LPG_A (On-road vehicle)
+# ${PUBLISHER}      EF A
+# ${VEHICLE}        Bike G3 OU-1
 
 *** Keywords ***
 

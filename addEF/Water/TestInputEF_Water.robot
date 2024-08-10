@@ -1,5 +1,5 @@
 *** Settings ***
-Documentation     Input Emission Test for custom Fuel emission factor
+Documentation     Input Emission Test for custom Water emission factor
 Resource          ${EXECDIR}/addEF/TestInputEf.resource
 Suite Setup       Setup Everything
 Test Teardown     Custom Teardown

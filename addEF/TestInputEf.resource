@@ -4,12 +4,13 @@ Resource          ${EXECDIR}/resources/InputEmission.resource
 Resource          ${EXECDIR}/resources/Common.resource
 
 *** Variables ***
-${URL}            https://app-uat.zplify.com/
+# ${URL}            https://app-uat.zplify.com/
+${URL}            https://app.zplify.com/login
 ${DELAY}          0s
 ${USER EMAIL}     tanomporn.p@gideon-one.com
 ${PASSWORD}       P@ssw0rd
-# ${ORGANIZATION}   Gideon Two
-${ORGANIZATION}   Gideon Three
+${ORGANIZATION}   Gideon Two
+# ${ORGANIZATION}   Gideon Three
 
 *** Keywords ***
 Setup Everything
