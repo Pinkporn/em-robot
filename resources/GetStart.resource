@@ -25,10 +25,9 @@ Click Go To Reduction
 
 Click Task Go
     [Arguments]    ${text}
-    Click Element    (//div[.//h1[text()='${text}'] and .//a[.='Go']])[last()]//a[.='Go']
+    Click Element    //div[./div/div[@aria-hidden] and .//h1[text()='${text}']]//a[.='Go']
 
 Task Status Should Be Completed
     [Arguments]    ${text}
-    VAR    ${badge}    //span[contains(@class, 'mantine-Badge-label')]
-    ${status}    Get Text    (//div[.//h1[.='${text}'] and .${badge}])[last()]${badge}/p
+    ${status}    Get Text    //div[./div/div[@aria-hidden] and .//h1[text()='${text}']]//span/p
     Should Be Equal As Strings    ${status}    Completed
