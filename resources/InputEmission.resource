@@ -50,6 +50,21 @@ Add Emission Page 1 2
     Click Element                    //form//button[.='${group}']
     Wait Until Element Is Visible    //div[./form and contains(@style, 'translateX(0%)')]
 
+Add Emission Page 1 2 From Get Start
+    [Arguments]    ${org name}    ${site name}    ${group}
+    VAR    ${org input}    //input[@id=//form//label[text()='Organization']/@for]
+    Wait For Expected Condition    element_to_be_clickable    ${{('xpath', $org_input)}}
+    Click Element    ${org input}
+    Wait Until Element Is Visible    //div[@role="option" and ./span[text()='${org name}']]
+    Click Element                    //div[@role="option" and ./span[text()='${org name}']]
+    Click Element    //form[@id="add-emission-form"]//label[.//div[text()='Site']]
+    Wait Until Element Is Visible    //div[@role="option"]//p[text()='${site name}']
+    Click Element                    //div[@role="option"]//p[text()='${site name}']
+    Press Keys    ${None}    TAB    RETURN
+    Wait Until Element Is Visible    //div[./form and contains(@style, 'translateX(0%)')]
+    Click Element                    //form//button[.='${group}']
+    Wait Until Element Is Visible    //div[./form and contains(@style, 'translateX(0%)')]
+
 Input Text With Default
     [Arguments]    ${locator}    ${text}    ${default}
     IF  $text is None

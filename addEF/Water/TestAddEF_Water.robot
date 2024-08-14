@@ -56,8 +56,8 @@ Add Water EF 11
 Add Water EF 12
     [Documentation]    EF ต่อเนื่องและไม่ทับ
     Click Add Emission Factor Button
-     Enter Water Emission Factor Form    start date=Feb 2023    end date=Mar 2023    publisher=EF B    cert id=EFW-012
-    ...    factor type=Lifecycle    water type=Water B
+     Enter Water Emission Factor Form    start date=Feb 2023    end date=Mar 2023    publisher=EF C    cert id=EFW-012
+    ...    factor type=Lifecycle    water type=Water C
     ...    unit=m3    filling method=Total    Total=0.1
     Confirm Add EF Expect Different EF Type
 
@@ -127,13 +127,15 @@ Add Water EF 20
     ...    unit=m3    filling method=Total    Total=0.1
     Confirm Add EF Expect Overlap Date
 
-Add Water EF 21-bug
-    [Documentation]    EF ต่อเนื่องและไม่ทับ
+Add Water EF 21
+    [Tags]    bug
+    [Documentation]    EF ต่อเนื่องและไม่ทับ EM-5765
     Click Add Emission Factor Button
     Enter Water Emission Factor Form    start date=Oct 2023    end date=Nov 2023    publisher=EF A    cert id=EFW-021
     ...    factor type=Lifecycle        water type=Water A
     ...    unit=m3    filling method=Total    Total=0.1
-    Confirm Add EF Expect Invalid Date
+    Confirm Add EF
+    Click Delete EF
 
 Add Water EF 22
     [Documentation]    EF ไม่ต่อเนื่อง

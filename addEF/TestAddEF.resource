@@ -4,8 +4,8 @@ Resource          ../resources/EmissionFactor.resource
 Resource          ../resources/Common.resource
 
 *** Variables ***
-# ${URL}            https://app-uat.zplify.com/
-${URL}            https://app.zplify.com/login
+${URL}            https://app-uat.zplify.com/
+# ${URL}            https://app.zplify.com/login
 ${DELAY}          0s
 ${USER EMAIL}     tanomporn.p@gideon-one.com
 ${PASSWORD}       P@ssw0rd

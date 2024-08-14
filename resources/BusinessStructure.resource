@@ -116,10 +116,13 @@ Click Asset Tab
     Wait Until Element Is Visible    //table
 
 Enter New Asset Form
-    [Tags]    CarbonCal
-    [Arguments]    ${group}=${None}    ${site}=${None}    ${type}=${None}
+    [Arguments]    ${site}=${None}    ${asset type}=${None}    ${asset name}=${None}    ${asset status}=${None}
     Select Drop Down    Site    ${site}
-    Select Drop Down    Asset Type    ${type}
+    Select Drop Down    Asset Type    ${asset type}
+    Wait Until Element Is Visible    (//input[@name='name'])[last()]
+    Input Text    (//input[@name='name'])[last()]    ${asset name}
+    Select Drop Down    Asset Status    ${asset status}
+
 
 Confirm Save Update Detail Organization
     Click Element    //button[.="Save"]
