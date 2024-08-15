@@ -59,7 +59,8 @@ Add Water EF 12
      Enter Water Emission Factor Form    start date=Feb 2023    end date=Mar 2023    publisher=EF C    cert id=EFW-012
     ...    factor type=Lifecycle    water type=Water C
     ...    unit=m3    filling method=Total    Total=0.1
-    Confirm Add EF Expect Different EF Type
+    Confirm Add EF
+    Click Delete EF
 
 Add Water EF 13
     [Documentation]    EF ทับกับที่มีอยู่แล้ว
@@ -114,10 +115,10 @@ Add Water EF 18
 Add Water EF 19
     [Documentation]    EF ไม่ต่อเนื่อง
     Click Add Emission Factor Button
-     Enter Water Emission Factor Form    start date=Jun 2023    end date=Aug 2023    publisher=EF B    cert id=EFW-019
-    ...    factor type=Upstream        water type=Water B
+     Enter Water Emission Factor Form    start date=Jun 2023    end date=Aug 2023    publisher=EF C    cert id=EFW-019
+    ...    factor type=Upstream        water type=Water C
     ...    unit=m3    filling method=Total    Total=0.1
-    Confirm Add EF Expect Invalid Date
+    Confirm Add EF Expect Overlap Date
 
 Add Water EF 20
     [Documentation]    EF ทับกับที่มีอยู่แล้ว
@@ -153,10 +154,18 @@ Add Water EF 23
     ...    unit=m3    filling method=Total    Total=0.1
     Confirm Add EF Expect Overlap Date
 
-Add Water EF 24-bug
+Add Water EF 24
     [Documentation]    EF ทับกับที่มีอยู่แล้ว
     Click Add Emission Factor Button
      Enter Water Emission Factor Form    start date=Nov 2023    end date=${None}    publisher=EF C    cert id=EFW-023
     ...    factor type=Lifecycle        water type=Water C
     ...    unit=m3    filling method=Total    Total=0.1
     Confirm Add EF Expect Overlap Date
+
+Add Water EF 25
+    [Documentation]    ช่วงเวลาเดียวกัน คนละ EF Type
+    Click Add Emission Factor Button
+    Enter Water Emission Factor Form    start date=Feb 2023    end date=May 2023    publisher=EF B    cert id=EFW-007
+    ...    factor type=Lifecycle        water type=Water B
+    ...    unit=m3    filling method=Total    Total=0.1
+    Confirm Add EF Expect Different EF Type

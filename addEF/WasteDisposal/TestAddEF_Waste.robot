@@ -30,7 +30,7 @@ Add Waste Disposal EF 17
 
 Add Waste Disposal EF 18
     [Tags]    bug
-    [Documentation]    EF ไม่ต่อเนื่อง EM-5762
+    [Documentation]    EF ทับกับที่มีอยู่แล้ว EM-5762
     Click Add Emission Factor Button
     Enter Waste Disposal Emission Factor Form    start date=Jan 2023    end date=Apr 2023    publisher=EF A    cert id=EFWD-018
     ...    waste type=Wood    waste treatment=Landfil
