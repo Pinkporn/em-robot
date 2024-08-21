@@ -1,7 +1,6 @@
 *** Settings ***
 Documentation     Get Start Progress Regression Test
 Resource          getstart.resource
-Resource          ../resources/InputEmission.resource
 Suite Setup       Setup Everything
 
 *** Variables ***
@@ -25,10 +24,10 @@ Step 1 : Create Your Site
     Switch Window    Main
     Task Status Should Be Completed    Step 1 : Create Your Site
 
-Step 2 : Step 2 : Create Your Asset
+Step 2 : Create Your Asset
     Click Task Go    Step 2 : Create Your Asset
     Switch Window    New
-    Wait Until Element Is Visible    //section
+    Wait Until Element Is Visible    //section    60s
     Enter New Asset Form    site=${SITE NAME}    asset type=${ASSET TYPE}[0]
     ...    asset name=${ASSET NAME}    asset status=${ASSET STATUS}[0]
     Click Button    //button[.='Add']

@@ -4,6 +4,7 @@ Resource          ../resources/Welcome.resource
 Resource          ../resources/GetStart.resource
 Resource          ../resources/Common.resource
 Resource          ../resources/BusinessStructure.resource
+Resource          ../resources/InputEmission.resource
 
 *** Variables ***
 # ${URL}            https://app-uat.zplify.com/
