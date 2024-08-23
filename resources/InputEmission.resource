@@ -479,10 +479,13 @@ Enter Outsourcing Transport Form
     END
     Select Drop Down    Distance Unit    ${distance unit}
     Input Text With Default    name:outsourcingTransport.distance    ${distance}    100
-    Select Drop Down    Loading Unit    ${loading unit}
+    ${loading unit field}    Get WebElement    name:outsourcingTransport.loading
+    IF  $loading_unit_field.is_enabled()
+        Select Drop Down    Loading Unit    ${loading unit}
+    END
     ${loading field}    Get WebElement    name:outsourcingTransport.loading
     IF  $loading_field.is_enabled()
-        Input Text With Default    ${loading field}    ${loading}    100
+        Input Text With Default    ${loading field}    ${loading}    200
     END
     IF  $remark is not None
         Input Text    name:remark    ${remark}
