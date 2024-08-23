@@ -49,3 +49,8 @@ Step 3 : Add Your Emissions
     Toast Status Should Be    Successful
     Switch Window    Main
     Task Status Should Be Completed    Step 3 : Add Your Emissions
+
+Step 4 : Generate Your Report
+    Click Task Go    Step 4 : Generate Your Report
+    Switch Window    New
+    Wait Until Element Is Visible    //section

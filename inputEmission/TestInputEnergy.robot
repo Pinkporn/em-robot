@@ -11,14 +11,14 @@ Test Teardown     Sleep    0.5
 
 
 Add & Check Emission
-    [Arguments]      ${site name}    ${amount}                       
-    ...    ${source}    ${asset type}=${None}   ${asset name}=${None}    ${resell}=${None}    ${unit}=kWh                   
-    ...    ${scope 2}=${None}    ${scope 3}=${None}    ${outside of scope}=${None}
+    [Arguments]      ${site name}    ${amount}    ${source}    
+    ...    ${asset type}=${None}   ${asset name}=${None}    ${resell}=${None}    ${unit}=kWh
+    ...    ${scope 2}=${None}    ${scope 3}=${None}    ${outside of scope}=${None}    ${publisher}=${None}
     ...    ${no emission}=${False}    
     ...    ${delete}=${True}
     
     Add Emission Page 1 2    ${SUB ORG}    ${site name}   Energy
-    Enter Energy Form    asset type=${asset type}   asset name=${asset name}
+    Enter Energy Form    asset type=${asset type}   asset name=${asset name}    publisher=TGO
     ...    source=${source}    unit=${unit}    amount=${amount}    resell=${resell}
     Save Emission
     Check Record Emission
@@ -59,7 +59,7 @@ Add Energy 05
     [Documentation]    Owned and used / Site / EF Type Case 13 / Renew
     ${id}    Get Last Running No
     Add Emission Page 1 2    ${SUB ORG}    ${SITE NAMES}[0]   Energy
-    Enter Energy Form    source=รีนิว    amount=100    unit=tonne
+    Enter Energy Form    source=Renew A        publisher=Renew Factor    amount=100    unit=tonne
     Field Message Should Be    Energy Source    The selected energy source is Renewable.
     Click Element    //button[.//span[text()='Save as Draft']]
     Wait Until Page Contains    Emission created successfully
@@ -73,34 +73,38 @@ Add Energy 05
 
 Add Energy 06
     [Documentation]    Owned and used / Site / EF Type Case 13 / Resell / RE
-    Add & Check Emission    ${SITE NAMES}[0]    
-    ...    source=รีนิว    amount=100    unit=tonne    resell=${True}    
-    ...    no emission=${True}
+    ${id}    Get Last Running No
+    Add Emission Page 1 2    ${SUB ORG}    ${SITE NAMES}[0]   Energy
+    Enter Energy Form    source=Renew A        publisher=Renew Factor    amount=100    unit=tonne    resell=${True}
+    Field Message Should Be    Energy Source    The selected energy source is Renewable.
+    Click Element    //button[.//span[text()='Save as Draft']]
+    Wait Until Page Contains    Emission created successfully
+    ${new id}    Get Last Running No
+    WHILE  $new_id <= $id
+        Sleep    0.2
+        ${new id}    Get Last Running No
+    END
+    Element Should Be Visible    (//td[@data-key="emissions"]/div)[1][text()='0.00 kg']
+    Click Delete Emission
 
 Add Energy 07
     [Documentation]    Owned and used / Vehicle / EF Type Case 13
     Add & Check Emission    ${SITE NAMES}[0]    
     ...    source=Electricity (MEA / PEA)    amount=50.55       
-    ...    asset type=Vehicle    asset name=V1OU    
+    ...    asset type=Vehicle    asset name=Vehicle 01-01   
     ...    scope 2=25.27 kg    scope 3=4.99 kg
 
 Add Energy 08
     [Documentation]    Leased in / Vehicle / EF Type Case 13
     Add & Check Emission    ${SITE NAMES}[1]    
     ...    source=Electricity (MEA / PEA)    amount=50.55       
-    ...    asset type=Vehicle    asset name=V2LI
+    ...    asset type=Vehicle    asset name=Vehicle 02-01
     ...    scope 2=25.27 kg    scope 3=4.99 kg
 
 Add Energy 09
     [Documentation]    Owned and leased out / Vehicle / EF Type Case 13
     Add & Check Emission    ${SITE NAMES}[2]    
     ...    source=Electricity (MEA / PEA)    amount=50.55       
-    ...    asset type=Vehicle    asset name=V3LO
+    ...    asset type=Vehicle    asset name=Vehicle 03-01
     ...    scope 3=25.27 kg
-
- 
- 
-    
-           
-
 
