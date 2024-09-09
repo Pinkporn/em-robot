@@ -21,7 +21,7 @@ Select Structure Item
     WHILE  True
         ${item}    Find WebElement    ${target}
         IF  $item is not None
-            ${icon}    Get WebElement    //*[local-name()='svg' and ./following-sibling::div[.='${name}']]
+            ${icon}    Get WebElement    ${target}//*[local-name()='svg' and ./following-sibling::div[.='${name}']]
             ${icon_data_opened}    Get Element Attribute    ${icon}    data-opened
             Click Element    ${item}
             Execute Javascript    arrow_icon = arguments[0]    ARGUMENTS    ${icon}

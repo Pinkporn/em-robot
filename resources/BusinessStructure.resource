@@ -105,14 +105,14 @@ Enter Organization Form
     END
 
 Click Profile Tab
-    [Tags]    CarbonCal
-    Click Element    //ul[contains(@class, 'tab-ul')]//li[text()='Profile']
+    [Tags]
+    Click Element    //div[contains(@class, 'SegmentedControl-control') and .='asset']
     Wait Until Element Is Visible    //form
 
 Click Asset Tab
-    [Tags]    CarbonCal
+    [Tags]
     [Documentation]    Click `Asset` or `Asset Group` tab
-    Click Element    //ul[contains(@class, 'tab-ul')]//li[contains(text(), 'Asset')]
+    Click Element    //span[text()='asset']
     Wait Until Element Is Visible    //table
 
 Enter New Asset Form
