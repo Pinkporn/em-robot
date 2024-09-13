@@ -9,8 +9,8 @@ ${URL}            https://app.zplify.com
 ${DELAY}          0s
 ${USER EMAIL}     tanomporn.p@gideon-one.com
 ${PASSWORD}       P@ssw0rd
-${ORGANIZATION}   THE EXCISE DEPARTMENT
-${ORG CODE}       the-excise-department
+${ORGANIZATION}   TEST THE EXCISE
+${ORG CODE}       test-the-excise
 
 *** Keywords ***
 Setup Everything
