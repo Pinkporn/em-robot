@@ -7,17 +7,17 @@ Resource          ../resources/BusinessStructure.resource
 Resource          ../resources/InputEmission.resource
 
 *** Variables ***
-# ${URL}            https://app-uat.zplify.com/
-${URL}            https://app.zplify.com/
+${URL}            https://app-uat.zplify.com/
+# ${URL}            https://app.zplify.com/
 ${DELAY}          0s
 ${USER EMAIL}     tanomporn.p@gideon-one.com
 ${PASSWORD}       P@ssw0rd
 # ${ORGANIZATION}   Zpliporn Test
 # ${ORG CODE}       zpliporn-test
-# ${ORGANIZATION}   Get Start อีกครั้ง
-# ${ORG CODE}       get-start-agian
-${ORGANIZATION}   Get Start
-${ORG CODE}       get-start
+${ORGANIZATION}   Get Start อีกครั้ง
+${ORG CODE}       get-start-agian
+# ${ORGANIZATION}   Get Start
+# ${ORG CODE}       get-start
 
 *** Keywords ***
 Setup Everything

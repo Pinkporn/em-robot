@@ -27,6 +27,7 @@ Step 1 : Create Your Site
 Step 2 : Create Your Asset
     Click Task Go    Step 2 : Create Your Asset
     Switch Window    New
+    Sleep    0.1
     Wait Until Element Is Visible    //section    60s
     Enter New Asset Form    site=${SITE NAME}    asset type=${ASSET TYPE}[0]
     ...    asset name=${ASSET NAME}    asset status=${ASSET STATUS}[0]

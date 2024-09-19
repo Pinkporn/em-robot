@@ -9,8 +9,8 @@ ${URL}            https://app-uat.zplify.com/
 ${DELAY}          0s
 ${USER EMAIL}     tanomporn.p@gideon-one.com
 ${PASSWORD}       P@ssw0rd
-${ORGANIZATION}   TEST THE EXCISE
-${ORG CODE}       test-the-excise
+${ORGANIZATION}   Get Start อีกครั้ง
+${ORG CODE}       get-start-agian
 
 *** Keywords ***
 Setup Everything
