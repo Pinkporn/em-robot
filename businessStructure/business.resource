@@ -9,8 +9,8 @@ ${URL}            https://app-uat.zplify.com/
 ${DELAY}          0s
 ${USER EMAIL}     tanomporn.p@gideon-one.com
 ${PASSWORD}       P@ssw0rd
-${ORGANIZATION}   Get Start อีกครั้ง
-${ORG CODE}       get-start-agian
+${ORGANIZATION}   กีเดี้ยน - Internal@1
+${ORG CODE}       c3dtMG9kWXlhNA==
 
 *** Keywords ***
 Setup Everything
