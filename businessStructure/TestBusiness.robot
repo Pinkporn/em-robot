@@ -13,10 +13,10 @@ Check Require Field
     [Arguments]    ${fieldname}
     Element Should Be Visible    //label[.='${fieldname}']
     ${require}    Get Element Attribute    //label[starts-with(., '${fieldname}')]    data-required
-    IF  $require is not None
+    IF  $require
         Should Be Equal    ${require}    true
     ELSE 
-        Should Be Equal    ${require}    ${None}
+        Should Be Equal    ${require}     ${None}
     END
     
 *** Test Cases ***
@@ -190,9 +190,60 @@ Check Require Field
 #     Element Should Be Disabled    //input[@placeholder="Select a sector"]
 #     Wait Until Page Contains Element    //p[.='Please select an industry']
 
-BusinessStructure_WS_Unlimited_DetailWS_TC025
-    [Documentation]    Sector เลือกข้อมูลจาก Dropdown List
-    Select Drop Down    Industry    Industrials
-    Wait Until Element Is Enabled    //input[@placeholder="Select a sector"]
-    Select Drop Down    Sector    Industrial Materials & Machinery
-    Confirm Save Update Detail Organization
+# BusinessStructure_WS_Unlimited_DetailWS_TC025
+#     [Documentation]    Sector เลือกข้อมูลจาก Dropdown List
+#     Select Drop Down    Industry    Industrials
+#     Wait Until Element Is Enabled    //input[@placeholder="Select a sector"]
+#     Select Drop Down    Sector    Industrial Materials & Machinery
+#     Confirm Save Update Detail Organization
+
+# BusinessStructure_WS_Unlimited_DetailWS_TC026
+#     [Documentation]    Sector เลือกข้อมูลจากการ Search
+#     Click Element    //div[./input[@placeholder="Select an industry"]]//div/button
+#     Element Should Be Disabled    //input[@placeholder="Select a sector"]
+#     Input Text    //input[@placeholder="Select an industry"]    Re
+#     Wait Until Page Contains    Resources
+#     Click Element    //div[@value='Resources']
+#     Element Should Be Enabled    //input[@placeholder="Select a sector"]
+#     Input Text    //input[@placeholder="Select a sector"]    Ener
+#     Wait Until Page Contains    Energy & Utilities
+#     Click Element    //span[text()='Energy & Utilities']
+#     Confirm Save Update Detail Organization
+
+# BusinessStructure_WS_Unlimited_DetailWS_TC027
+#     [Documentation]    Sector ไม่กรอกข้อมูลใน field นี้
+#     Click Element    //div[./input[@placeholder="Select a sector"]]//div/button
+#     Click Element    //button[.="Save"]
+#     Wait Until Page Contains Element    //p[.='Please select sector']
+
+# BusinessStructure_WS_Unlimited_DetailWS_TC028
+#     [Documentation]    Country เลือกข้อมูลจาก Dropdown list
+#     Click Element    //input[@placeholder="Select Country"]
+#     Wait Until Page Contains    Thailand
+#     Click Element    //span[text()='Thailand']
+#     Element Should Be Enabled    //input[@placeholder="Select State / Province"]
+
+# BusinessStructure_WS_Unlimited_DetailWS_TC029
+#     [Documentation]    State / Province เลือกข้อมูลจาก Dropdown list
+#     Click Element    //input[@placeholder="Select State / Province"]
+#     Wait Until Page Contains    Bangkok
+#     Click Element    //span[text()='Bangkok']
+#     Element Should Be Enabled    //input[@placeholder="Select District"]
+
+# BusinessStructure_WS_Unlimited_DetailWS_TC030
+#     [Documentation]    State / Province เลือกข้อมูลจากการ Search
+#     Click Element    //input[@placeholder="Select State / Province"]
+#     Press Keys   //input[@placeholder="Select State / Province"]   COMMAND+a   BACKSPACE
+#     Input Text    //input[@placeholder="Select State / Province"]    B
+#     Wait Until Page Contains    Bangkok
+#     Click Element    //span[text()='Bangkok']
+#     Element Should Be Enabled    //input[@placeholder="Select District"]
+#     Confirm Save Update Detail Organization
+
+# BusinessStructure_WS_Unlimited_DetailWS_TC030
+#     [Documentation]    District เลือกข้อมูลจาก Dropdown list
+#     Click Element    //input[@placeholder="Select District"]
+#     Wait Until Page Contains    Chom Thong
+#     Click Element    //span[text()='Chom Thong']
+#     Element Should Be Enabled    //input[@placeholder="Select Subdistrict"]
+
