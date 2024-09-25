@@ -29,8 +29,8 @@ BusinessStructure_WS_Unlimited_TC001
     Element Should Be Visible    //p[.='Workspace ID:']
     Element Should Be Disabled    //div[./p[.='Workspace ID:']]//input
     Element Should Be Visible    //p[.='Copy']
-    Element Should Be Visible    //div[@data-selected="true"]
     Element Should Be Visible    ${CURRENT SELECTION}
+    Element Should Be Visible    ${CURRENT SELECTION}//button
     Element Should Be Visible    //p[.='Organization Logo']
     Element Should Be Visible    //div[@data-with-label="true"]
     Element Should Be Visible    //p[.='The logo will be displayed on your profile and report.']
@@ -96,6 +96,7 @@ BusinessStructure_WS_Unlimited_DetailWS_TC009
     ${name}    Get Element Attribute    //input[@name='name']    value
     ${length}    Get Length    ${name}    
     Should Be Equal As Integers	${length}    30
+    Wait Until Page Contains Element    //p[.='${length} / 30 Characters']
 
 BusinessStructure_WS_Unlimited_DetailWS_TC010
     [Documentation]    Field Display Name ไม่กรอกข้อมูลใน field นี้

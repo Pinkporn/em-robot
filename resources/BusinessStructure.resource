@@ -130,3 +130,10 @@ Confirm Save Update Detail Organization
     Toast Status Should Be    Successful
     Toast Message Should Be    Organization profile has been updated successfully.
     Wait Until Element Is Not Visible    //section
+
+Confirm Add Organization
+    Click Element    //button[.="Create"]
+    Wait Until Toast Finish Loading
+    Toast Status Should Be    Successful
+    Toast Message Should Be    Organization has been created successfully.
+    Wait Until Element Is Not Visible    //section
