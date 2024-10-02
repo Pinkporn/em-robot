@@ -83,15 +83,15 @@ BusinessStructure_WS_Unlimited_DetailWS_TC007
     Click Element    //input[@name='name']
     Wait Until Page Contains Element    //p[.='${length} / 30 Characters'] 
 
-# BusinessStructure_WS_Unlimited_DetailWS_TC008
-#     [Documentation]    Field Display ซ้ำกับ Display ที่อยู่คนละ Workspace
-#     Press Keys   //input[@name='name']   COMMAND+a   BACKSPACE
-#     Input Text    //input[@name='name']    Zpliporn Test
-#     Confirm Save Update Detail Organization
+BusinessStructure_WS_Unlimited_DetailWS_TC008
+    [Documentation]    Field Display ซ้ำกับ Display ที่อยู่คนละ Workspace
+    Press Keys   //input[@name='name']   COMMAND+a   BACKSPACE
+    Input Text    //input[@name='name']    Zpliporn Test
+    Confirm Save Update Detail Organization
 
 BusinessStructure_WS_Unlimited_DetailWS_TC009
     [Documentation]    Field Display เกิน 30 ตัวอักษร
-    Clear Element Text    //input[@name='name']
+    Press Keys   //input[@name='name']   COMMAND+a   BACKSPACE
     Input Text    //input[@name='name']    กีเดี้ยน - Internal@1234567891
     ${name}    Get Element Attribute    //input[@name='name']    value
     ${length}    Get Length    ${name}    
@@ -109,19 +109,22 @@ BusinessStructure_WS_Unlimited_DetailWS_TC010
     Wait Until Page Contains Element    //p[.='${length} / 30 Characters']
     Wait Until Page Contains      Organization Display Name is required.
 
-# BusinessStructure_WS_Unlimited_DetailWS_TC013
-#     [Tags]    fail EM-5932
-#     [Documentation]    Filed Org. (in English) ตรวจสอบการกรอกข้อมูล
-#     Press Keys   //input[@name='nameEn']   COMMAND+a   BACKSPACE
-#     Input Text    //input[@name='nameEn']    G1 - Internal@1
-#     Confirm Save Update Detail Organization
-
-BusinessStructure_WS_Unlimited_DetailWS_TC014
-    [Documentation]    Filed Org. (in English) ชื่อซ้ำกับ Org. นอก Workspace
+BusinessStructure_WS_Unlimited_DetailWS_TC013
+    [Documentation]    Filed Org. (in English) ตรวจสอบการกรอกข้อมูล
     Press Keys   //input[@name='name']   COMMAND+a   BACKSPACE
     Input Text    //input[@name='name']    กีเดี้ยน - Internal@1
     Press Keys   //input[@name='nameEn']   COMMAND+a   BACKSPACE
-    Input Text    //input[@name='nameEn']    Zpliporn Test
+    Input Text    //input[@name='nameEn']    G1 - Internal@1
+    Confirm Save Update Detail Organization
+    Wait Until Page Does Not Contain    Organization profile has been updated successfully.
+
+BusinessStructure_WS_Unlimited_DetailWS_TC014
+    [Documentation]    Filed Org. (in English) ชื่อซ้ำกับ Org. นอก Workspace
+    [Tags]    fail em-5983
+    Press Keys   //input[@name='name']   COMMAND+a   BACKSPACE
+    Input Text    //input[@name='name']    กีเดี้ยน - Internal@1
+    Press Keys   //input[@name='nameEn']   COMMAND+a   BACKSPACE
+    Input Text    //input[@name='nameEn']    Gideon Three
     Wait Until Page Contains Element    //p[.='This name is already taken. Try another one.']
 
 BusinessStructure_WS_Unlimited_DetailWS_TC015
@@ -141,21 +144,22 @@ BusinessStructure_WS_Unlimited_DetailWS_TC016
     Click Element    //button[.="Save"]
     Wait Until Page Contains Element    //p[.='Organization name (is English) is required']
 
-BusinessStructure_WS_Unlimited_DetailWS_TC017
-    [Documentation]    Filed Org. (in Thai) ตรวจสอบการกรอกข้อมูล
-    [Tags]    fail EM-5932
-    Press Keys   //input[@name='name']   COMMAND+a   BACKSPACE
-    Input Text    //input[@name='name']    กีเดี้ยน - Internal@1
-    Input Text    //input[@name='nameEn']    G1 - Internal@1
-    Press Keys   //input[@name='nameTh']   COMMAND+a   BACKSPACE
-    Input Text    //input[@name='nameTh']    กีเดี้ยน - เทสภายใน@1
-    Confirm Save Update Detail Organization
+# BusinessStructure_WS_Unlimited_DetailWS_TC017
+#     [Documentation]    Filed Org. (in Thai) ตรวจสอบการกรอกข้อมูล
+#     Press Keys   //input[@name='name']   COMMAND+a   BACKSPACE
+#     Input Text    //input[@name='name']    กีเดี้ยน - Internal@1
+#     Input Text    //input[@name='nameEn']    G1 - Internal@1
+#     Press Keys   //input[@name='nameTh']   COMMAND+a   BACKSPACE
+#     Input Text    //input[@name='nameTh']    กีเดี้ยน - เทสภายใน@1
+#     Confirm Save Update Detail Organization
+#     Wait Until Page Does Not Contain    Organization profile has been updated successfully.
 
 # BusinessStructure_WS_Unlimited_DetailWS_TC018
 #     [Documentation]    Filed Org. (in Thai) ไม่กรอกข้อมูล Field นี้
 #     Press Keys   //input[@name='nameTh']   COMMAND+a   BACKSPACE
 #     Input Text    //input[@name='nameTh']    ${EMPTY}
 #     Confirm Save Update Detail Organization
+#     Wait Until Page Does Not Contain    Organization profile has been updated successfully.
 
 # BusinessStructure_WS_Unlimited_DetailWS_TC019
 #     [Documentation]    Filed Org. (in Thai) กดแป้นภาษาอังกฤแล้วพิมพ์
@@ -168,13 +172,14 @@ BusinessStructure_WS_Unlimited_DetailWS_TC017
 #     Press Keys   //input[@name='website']   COMMAND+a   BACKSPACE
 #     Input Text    //input[@name='website']    www.g1-internaltest.com
 #     Confirm Save Update Detail Organization
+#     Wait Until Page Does Not Contain    Organization profile has been updated successfully.
 
-# # BusinessStructure_WS_Unlimited_DetailWS_TC021
-# #     [Tags]    fail EM-5932
-# #     [Documentation]    Org. Website ไม่กรอกข้อมูล Field นี้
-# #     Press Keys   //input[@name='website']   COMMAND+a   BACKSPACE
-# #     Input Text    //input[@name='website']    ${EMPTY}
-# #     Confirm Save Update Detail Organization
+# BusinessStructure_WS_Unlimited_DetailWS_TC021
+#     [Tags]    fail EM-5932
+#     [Documentation]    Org. Website ไม่กรอกข้อมูล Field นี้
+#     Press Keys   //input[@name='website']   COMMAND+a   BACKSPACE
+#     Input Text    //input[@name='website']    ${EMPTY}
+#     Confirm Save Update Detail Organization
 
 # BusinessStructure_WS_Unlimited_DetailWS_TC022
 #     [Documentation]    Industry เลือกข้อมูลจาก Dropdown List
@@ -239,16 +244,17 @@ BusinessStructure_WS_Unlimited_DetailWS_TC017
 
 # BusinessStructure_WS_Unlimited_DetailWS_TC030
 #     [Documentation]    State / Province เลือกข้อมูลจากการ Search
+#     Scroll Element Into View    //input[@name='address']
 #     Click Element    //input[@placeholder="Select State / Province"]
 #     Press Keys   //input[@placeholder="Select State / Province"]   COMMAND+a   BACKSPACE
 #     Input Text    //input[@placeholder="Select State / Province"]    B
 #     Wait Until Page Contains    Bangkok
 #     Click Element    //span[text()='Bangkok']
 #     Element Should Be Enabled    //input[@placeholder="Select District"]
-#     Confirm Save Update Detail Organization
 
 # BusinessStructure_WS_Unlimited_DetailWS_TC031
 #     [Documentation]    District เลือกข้อมูลจาก Dropdown list
+#     Scroll Element Into View    //input[@name='address']
 #     Click Element    //input[@placeholder="Select District"]
 #     Wait Until Page Contains    Chom Thong
 #     Click Element    //span[text()='Chom Thong']
@@ -256,6 +262,8 @@ BusinessStructure_WS_Unlimited_DetailWS_TC017
 
 # BusinessStructure_WS_Unlimited_DetailWS_TC032
 #     [Documentation]    District เลือกข้อมูลจากการ Search
+#     Select Drop Down    Sector    Energy & Utilities
+#     Scroll Element Into View    //input[@name='address']
 #     Click Element    //input[@placeholder="Select District"]
 #     Press Keys   //input[@placeholder="Select District"]   COMMAND+a   BACKSPACE
 #     Input Text    //input[@placeholder="Select District"]    Ch
@@ -266,6 +274,7 @@ BusinessStructure_WS_Unlimited_DetailWS_TC017
 
 # BusinessStructure_WS_Unlimited_DetailWS_TC033
 #     [Documentation]    Subdistrict เลือกข้อมูลจาก Dropdown list
+#     Scroll Element Into View    //input[@name='address']
 #     Click Element    //input[@placeholder="Select Subdistrict"]
 #     Wait Until Page Contains    Bang Mot
 #     Click Element    //span[text()='Bang Mot']
@@ -273,6 +282,7 @@ BusinessStructure_WS_Unlimited_DetailWS_TC017
 
 # BusinessStructure_WS_Unlimited_DetailWS_TC034
 #     [Documentation]    Subdistrict เลือกข้อมูลจากการ Search
+#     Scroll Element Into View    //input[@name='address']
 #     Click Element    //input[@placeholder="Select Subdistrict"]
 #     Press Keys   //input[@placeholder="Select Subdistrict"]   COMMAND+a   BACKSPACE
 #     Input Text    //input[@placeholder="Select Subdistrict"]    Bang
@@ -283,6 +293,7 @@ BusinessStructure_WS_Unlimited_DetailWS_TC017
 
 # BusinessStructure_WS_Unlimited_DetailWS_TC035
 #     [Documentation]    Zip / Postal Code เลือกข้อมูลจาก Dropdown list
+#     Scroll Element Into View    //input[@name='address']
 #     Click Element    //input[@placeholder="Select Zip / Postal Code"]
 #     Wait Until Page Contains    10150
 #     Click Element    //span[text()='10150']
@@ -290,6 +301,8 @@ BusinessStructure_WS_Unlimited_DetailWS_TC017
 
 # BusinessStructure_WS_Unlimited_DetailWS_TC036
 #     [Documentation]    Field Address
+#     Scroll Element Into View    //input[@name='address']
+#     Press Keys   //input[@name='address']   COMMAND+a   BACKSPACE
 #     Input Text    //input[@name='address']    416/05 หมู่บ้านร่มเย็นใจ   
 #     Confirm Save Update Detail Organization
 
@@ -313,7 +326,3 @@ BusinessStructure_WS_Unlimited_DetailWS_TC017
 #     Wait Until Page Contains Element    //p[.='Organization Display Name is required.']
 #     Wait Until Page Contains Element    //p[.='Organization name (is English) is required']
 #     Wait Until Page Contains Element    //p[.='Please select an industry']
-
-
-
-
