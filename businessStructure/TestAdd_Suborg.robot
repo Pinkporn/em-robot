@@ -52,7 +52,7 @@ BusinessStructure_WS_Unlimited_Add Sub org_TC001
     Check Require Field    Zip / Postal Code
     Element Should Be Visible    //section//input[@placeholder="Select Zip / Postal Code"]
     Check Require Field    Address
-    Element Should Be Disabled    //section//button[.="Create"]
+    Element Should Be Enabled    //section//button[.="Create"]
     Element Should Be Visible    //section//header//button
     Click Element    //section//header/button
 
@@ -109,7 +109,6 @@ BusinessStructure_WS_Unlimited_Add Sub org_TC006
 
 BusinessStructure_WS_Unlimited_Add Sub org_TC007
     [Documentation]    Field NameEn ตรวจสอบการกรอกข้อมูลเป็นภาษาอังกฤษ / ตัวเลข และอักขระพิเศษ
-    [Tags]    fail     #EM-5989
     Select Structure Item    กีเดี้ยน - Internal@1
     Go to modal add sub org
     Enter Organization Form    display name=กีเดี้ยน - Internal@2    english name=G1 - Internal@2
@@ -144,7 +143,6 @@ BusinessStructure_WS_Unlimited_Add Sub org_TC010
 
 BusinessStructure_WS_Unlimited_Add Sub org_TC011
     [Documentation]    Filed Org. (in Thai) ตรวจสอบการกรอกข้อมูล
-    [Tags]    fail     #EM-5989
     Select Structure Item    ${org}    type=Org
     Go to modal add sub org
     Enter Organization Form    display name=กีเดี้ยน - Internal@3    english name=G1 - Internal@3    thai name=กีเดี้ยน - ภายใน@3
@@ -155,7 +153,6 @@ BusinessStructure_WS_Unlimited_Add Sub org_TC011
 
 BusinessStructure_WS_Unlimited_Add Sub org_TC012
     [Documentation]    Filed Org. (in Thai) ไม่กรอกข้อมูลใน field นี้
-    [Tags]    fail     #EM-5989
     Select Structure Item    ${org}    type=Org
     Go to modal add sub org
     Enter Organization Form    display name=กีเดี้ยน - Internal@4    english name=G1 - Internal@4    thai name=${EMPTY}
@@ -353,7 +350,6 @@ BusinessStructure_WS_Unlimited_Add Sub org_TC030
 
 BusinessStructure_WS_Unlimited_Add Sub org_TC031
     [Documentation]    Field Address
-    [Tags]    fail     #EM-5989
     Select Structure Item    ${org}    type=Org
     Go to modal add sub org
     Enter Organization Form    display name=กีเดี้ยน - Internal@8    english name=G1 - Internal@8
@@ -373,7 +369,7 @@ BusinessStructure_WS_Unlimited_Add Sub org_TC032
 
 BusinessStructure_WS_Unlimited_Add Sub org_TC033
     [Documentation]    Add Sub Org. ภายใต้ Sub org.
-    # Select Structure Item    กีเดี้ยน - Internal@8    type=Org
+    Select Structure Item    กีเดี้ยน - Internal@8    type=Org
     Click Current Selection Kebab Button
     Click + Add Sub Org Menu Button
     Enter Organization Form    display name=กีเดี้ยน - Internal@9    english name=G1 - Internal@9
@@ -384,7 +380,9 @@ BusinessStructure_WS_Unlimited_Add Sub org_TC033
 
 BusinessStructure_WS_Unlimited_Add Sub org_TC034
     [Documentation]    ตรวจสอบการกดปุ่ม Create
-    Go to modal add sub org
+    Select Structure Item    กีเดี้ยน - Internal@1    type=Org
+    Click Current Selection Kebab Button
+    Click + Add Sub Org Menu Button
     Input Text    //section//input[@name='address']    57/33
     Click Element    //section//button[.="Create"]
     Wait Until Page Contains Element    //section//p[.='Organization Display Name is required.']
@@ -394,11 +392,9 @@ BusinessStructure_WS_Unlimited_Add Sub org_TC034
 
 BusinessStructure_WS_Unlimited_Add Sub org_TC035
     [Documentation]    ตรวจสอบการแสดง Tree
-    [Tags]    fail     #EM-5989
-    Select Structure Item    กีเดี้ยน - Internal@1    type=Org
+    Click Element    //*[local-name()='svg' and ./following-sibling::div[.='กีเดี้ยน - Internal@1']]
     Select Structure Item    กีเดี้ยน - Internal@8    type=Org
-    Wait Until Element Is Visible    //p[text()='กีเดี้ยน - Internal@9']
-    Click Element    //section//header/button
+    Wait Until Page Contains Element   //*[local-name()='svg' and ./following-sibling::div[.='กีเดี้ยน - Internal@9']]
 
 
 
