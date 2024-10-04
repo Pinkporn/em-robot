@@ -15,7 +15,7 @@ Check Require Field
     ${require}    Get Element Attribute    //label[starts-with(., '${fieldname}')]    data-required
     IF  $require
         Should Be Equal    ${require}    true
-    ELSE 
+    ELSE
         Should Be Equal    ${require}     ${None}
     END
 

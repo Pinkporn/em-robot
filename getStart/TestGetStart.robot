@@ -9,7 +9,8 @@ Landing To Access Control
     Switch Window    New
     Wait Until Element Is Not Visible    css:.mantine-Loader-root
     Wait Until Page Contains       Access Control
-    Switch Window    Main
+    Close Window
+    Switch Window    MAIN
 
 Landing To Emission Factor
     Click Go To Emission Factor
@@ -17,14 +18,16 @@ Landing To Emission Factor
     Wait Until Element Is Not Visible    //div[contains(@class, 'styles_loadingOverlayContent')]
     Wait Until Element Is Not Visible    //td//span[contains(@class, 'mantine-Loader-root')]
     Wait Until Element Is Visible    //button[.//span[text()='Add Emission Factor']]
-    Switch Window    Main
+    Close Window
+    Switch Window    MAIN
 
 Landing To Data Completion
     Click Go To Data Completion
     Switch Window    New
     Wait Until Element Is Not Visible    css:.mantine-Loader-root
     Wait Until Element Is Visible    //label//span[text()='trackers']
-    Switch Window    Main
+    Close Window
+    Switch Window    MAIN
 
 Landing To Reduction
     Click Go To Reduction
@@ -37,4 +40,5 @@ Landing To Reduction
     ELSE
         Element Should Not Be Visible    //section
     END
-    Switch Window    Main
+    Close Window
+    Switch Window    MAIN
