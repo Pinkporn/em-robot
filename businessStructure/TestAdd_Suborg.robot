@@ -1,12 +1,12 @@
 *** Settings ***
-Documentation     Input Emission Regression Test
+Documentation     Add Suborg. Regression Test
 Resource          ../resources/BusinessStructure.resource
 Resource          business.resource
 Suite Setup       Setup Everything
-Test Teardown     Close Browser
+Test Teardown     Sleep    0.5
 
 *** Variables ***
-
+${org}    กีเดี้ยน - Internal@1
 
 *** Keywords ***
 Check Require Field
@@ -54,6 +54,7 @@ BusinessStructure_WS_Unlimited_Add Sub org_TC001
     Check Require Field    Address
     Element Should Be Disabled    //section//button[.="Create"]
     Element Should Be Visible    //section//header//button
+    Click Element    //section//header/button
 
 BusinessStructure_WS_Unlimited_Add Sub org_TC002
     [Documentation]    Field Display ตรวจสอบการกรอกข้อมูลเป็นภาษาอังกฤษ /ภาษาไทย / ตัวเลข และอักขระพิเศษ ความยาวไม่เกิน 30 ตัวอักษร
@@ -64,6 +65,7 @@ BusinessStructure_WS_Unlimited_Add Sub org_TC002
     Should Be Equal As Integers	${length}    21
     Click Element    //section//input[@name='name']
     Wait Until Page Contains Element    //section//p[.='${length} / 30 Characters']
+    Click Element    //section//header/button
 
 BusinessStructure_WS_Unlimited_Add Sub org_TC003
     [Documentation]    Field Display ซ้ำกับ Display ที่อยู่คนละ Workspace
@@ -73,13 +75,14 @@ BusinessStructure_WS_Unlimited_Add Sub org_TC003
     Confirm Add Organization
 
 BusinessStructure_WS_Unlimited_Add Sub org_TC004
-    [Tags]    fail EM-5932
+    [Tags]    fail EM-5905
     [Documentation]    Field Display ชื่อซ้ำกับ Org. ภายใน Workspace เดียวกัน
     Go to modal add sub org
     Enter Organization Form    display name=กีเดี้ยน - Internal@1    english name=duplicate display name
     ...    industry=Agro & Food Industry    sector=Agribusiness
     Click Element    //button[.="Create"]
-    Wait Until Page Contains Element    //section//p[.='Organization display name already exists']
+    Wait Until Page Contains Element    //section//p[.='This Display name is already taken. Try another one.']
+    Click Element    //section//header/button
 
 BusinessStructure_WS_Unlimited_Add Sub org_TC005
     [Documentation]    Field Display เกิน 30 ตัวอักษร
@@ -89,6 +92,7 @@ BusinessStructure_WS_Unlimited_Add Sub org_TC005
     ${length}    Get Length    ${name}    
     Should Be Equal As Integers	${length}    30
     Wait Until Page Contains Element    //section//p[.='${length} / 30 Characters']
+    Click Element    //section//header/button
 
 BusinessStructure_WS_Unlimited_Add Sub org_TC006
     [Documentation]    Field Display ไม่กรอกข้อมูลใน field นี้
@@ -101,9 +105,12 @@ BusinessStructure_WS_Unlimited_Add Sub org_TC006
     Should Be Equal As Integers	${length}    0
     Wait Until Page Contains Element    //section//p[.='${length} / 30 Characters']
     Wait Until Page Contains Element      //section//p[.='Organization Display Name is required.']
+    Click Element    //section//header/button
 
 BusinessStructure_WS_Unlimited_Add Sub org_TC007
     [Documentation]    Field NameEn ตรวจสอบการกรอกข้อมูลเป็นภาษาอังกฤษ / ตัวเลข และอักขระพิเศษ
+    [Tags]    fail     #EM-5989
+    Select Structure Item    กีเดี้ยน - Internal@1
     Go to modal add sub org
     Enter Organization Form    display name=กีเดี้ยน - Internal@2    english name=G1 - Internal@2
     ...    industry=Agro & Food Industry    sector=Agribusiness
@@ -117,12 +124,14 @@ BusinessStructure_WS_Unlimited_Add Sub org_TC008
     Enter Organization Form    display name=กีเดี้ยน - Internal@2    english name=Zpliporn Test
     ...    industry=Agro & Food Industry    sector=Agribusiness
     Wait Until Page Contains Element    //section//p[.='This name is already taken. Try another one.']
+    Click Element    //section//header/button
 
 BusinessStructure_WS_Unlimited_Add Sub org_TC009
     [Documentation]    Filed Org. (in English) กดแป้นภาษาไทยแล้วพิมพ์
     Go to modal add sub org
     Input Text    //section//input[@name='nameEn']    เทสระบบ
     Element Text Should Not Be    //section//input[@name='nameEn']    ${None}
+    Click Element    //section//header/button
 
 BusinessStructure_WS_Unlimited_Add Sub org_TC010
     [Documentation]    Filed Org. (in English) ไม่กรอกข้อมูลใน field นี้
@@ -131,9 +140,12 @@ BusinessStructure_WS_Unlimited_Add Sub org_TC010
     ...    industry=Agro & Food Industry    sector=Agribusiness
     Click Element    //button[.="Create"]
     Wait Until Page Contains Element    //p[.='Organization name (is English) is required']
+    Click Element    //section//header/button
 
 BusinessStructure_WS_Unlimited_Add Sub org_TC011
     [Documentation]    Filed Org. (in Thai) ตรวจสอบการกรอกข้อมูล
+    [Tags]    fail     #EM-5989
+    Select Structure Item    ${org}    type=Org
     Go to modal add sub org
     Enter Organization Form    display name=กีเดี้ยน - Internal@3    english name=G1 - Internal@3    thai name=กีเดี้ยน - ภายใน@3
     ...    industry=Agro & Food Industry    sector=Agribusiness
@@ -143,6 +155,8 @@ BusinessStructure_WS_Unlimited_Add Sub org_TC011
 
 BusinessStructure_WS_Unlimited_Add Sub org_TC012
     [Documentation]    Filed Org. (in Thai) ไม่กรอกข้อมูลใน field นี้
+    [Tags]    fail     #EM-5989
+    Select Structure Item    ${org}    type=Org
     Go to modal add sub org
     Enter Organization Form    display name=กีเดี้ยน - Internal@4    english name=G1 - Internal@4    thai name=${EMPTY}
     ...    industry=Agro & Food Industry    sector=Agribusiness
@@ -155,9 +169,11 @@ BusinessStructure_WS_Unlimited_Add Sub org_TC013
     Go to modal add sub org
     Input Text    //section//input[@name='nameTh']    TestTest
     Element Text Should Not Be    //section//input[@name='nameEn']    ${None}
+    Click Element    //section//header/button
 
 BusinessStructure_WS_Unlimited_Add Sub org_TC014
     [Documentation]    Filed Website ตรวจสอบการกรอกข้อมูลเป็น Freetext
+    Select Structure Item    ${org}    type=Org
     Go to modal add sub org
     Enter Organization Form    display name=กีเดี้ยน - Internal@5    english name=G1 - Internal@5    website=www.g1-test@5.com
     ...    industry=Agro & Food Industry    sector=Agribusiness
@@ -167,6 +183,7 @@ BusinessStructure_WS_Unlimited_Add Sub org_TC014
 
 BusinessStructure_WS_Unlimited_Add Sub org_TC015
     [Documentation]    Filed Website ไม่กรอกข้อมูลใน field นี้
+    Select Structure Item    ${org}    type=Org
     Go to modal add sub org
     Enter Organization Form    display name=กีเดี้ยน - Internal@6    english name=G1 - Internal@6    website=${EMPTY}
     ...    industry=Agro & Food Industry    sector=Agribusiness
@@ -179,6 +196,7 @@ BusinessStructure_WS_Unlimited_Add Sub org_TC016
     Go to modal add sub org
     Select Drop Down    Industry    Industrials
     Wait Until Element Is Enabled    //section//input[@placeholder="Select a sector"]
+    Click Element    //section//header/button
 
 BusinessStructure_WS_Unlimited_Add Sub org_TC017
     [Documentation]    Industry เลือกข้อมูลจากการ Search
@@ -187,6 +205,7 @@ BusinessStructure_WS_Unlimited_Add Sub org_TC017
     Wait Until Page Contains    Resources
     Click Element    (//div//span[text()='Resources'])[last()]
     Element Should Be Enabled    //section//input[@placeholder="Select a sector"]
+    Click Element    //section//header/button
 
 BusinessStructure_WS_Unlimited_Add Sub org_TC018
     [Documentation]    Industry ไม่กรอกข้อมูลใน field นี้
@@ -196,6 +215,7 @@ BusinessStructure_WS_Unlimited_Add Sub org_TC018
     Click Element    //section//button[.="Create"]
     Wait Until Page Contains Element    //section//p[.='Please select an industry']
     Element Should Be Disabled    //section//input[@placeholder="Select a sector"]
+    Click Element    //section//header/button
 
 BusinessStructure_WS_Unlimited_Add Sub org_TC019
     [Documentation]    Sector เลือกข้อมูลจาก Dropdown List
@@ -203,6 +223,7 @@ BusinessStructure_WS_Unlimited_Add Sub org_TC019
     Select Drop Down    Industry    Industrials
     Wait Until Element Is Enabled    //section//input[@placeholder="Select a sector"]
     Select Drop Down    Sector    Industrial Materials & Machinery
+    Click Element    //section//header/button
 
 BusinessStructure_WS_Unlimited_Add Sub org_TC020
     [Documentation]    Sector เลือกข้อมูลจากการ Search
@@ -215,6 +236,7 @@ BusinessStructure_WS_Unlimited_Add Sub org_TC020
     Input Text    //section//input[@placeholder="Select a sector"]    Ener
     Wait Until Page Contains    Energy & Utilities
     Click Element    (//div//span[text()='Energy & Utilities'])[last()]
+    Click Element    //section//header/button
 
 BusinessStructure_WS_Unlimited_Add Sub org_TC021
     [Documentation]    Sector ไม่กรอกข้อมูลใน field นี้
@@ -224,6 +246,7 @@ BusinessStructure_WS_Unlimited_Add Sub org_TC021
     Select Drop Down    Industry    Resources
     Click Element    //section//button[.="Create"]
     Wait Until Page Contains Element    //section//p[.='Please select a Sector']
+    Click Element    //section//header/button
 
 BusinessStructure_WS_Unlimited_Add Sub org_TC022
     [Documentation]    Country เลือกข้อมูลจาก Dropdown list
@@ -232,6 +255,7 @@ BusinessStructure_WS_Unlimited_Add Sub org_TC022
     Wait Until Page Contains    Thailand
     Click Element    (//div//span[text()='Thailand'])[last()]
     Element Should Be Enabled    //section//input[@placeholder="Select State / Province"]
+    Click Element    //section//header/button
 
 BusinessStructure_WS_Unlimited_Add Sub org_TC023
     [Documentation]    State / Province เลือกข้อมูลจาก Dropdown list
@@ -240,6 +264,7 @@ BusinessStructure_WS_Unlimited_Add Sub org_TC023
     Wait Until Page Contains    Bangkok
     Click Element    (//div//span[text()='Bangkok'])[last()]
     Element Should Be Enabled    //section//input[@placeholder="Select District"]
+    Click Element    //section//header/button
 
 BusinessStructure_WS_Unlimited_Add Sub org_TC024
     [Documentation]    State / Province เลือกข้อมูลจากการ Search
@@ -248,6 +273,7 @@ BusinessStructure_WS_Unlimited_Add Sub org_TC024
     Wait Until Page Contains    Bangkok
     Click Element    (//div//span[text()='Bangkok'])[last()]
     Element Should Be Enabled    //section//input[@placeholder="Select District"]
+    Click Element    //section//header/button
 
 BusinessStructure_WS_Unlimited_Add Sub org_TC025
     [Documentation]    District เลือกข้อมูลจาก Dropdown list
@@ -257,6 +283,7 @@ BusinessStructure_WS_Unlimited_Add Sub org_TC025
     Wait Until Page Contains    Chom Thong
     Click Element    (//div//span[text()='Chom Thong'])[last()]
     Element Should Be Enabled    //section//input[@placeholder="Select Subdistrict"]
+    Click Element    //section//header/button
 
 BusinessStructure_WS_Unlimited_Add Sub org_TC026
     [Documentation]    District เลือกข้อมูลจากการ Search
@@ -266,6 +293,7 @@ BusinessStructure_WS_Unlimited_Add Sub org_TC026
     Wait Until Page Contains    Chom Thong
     Click Element    (//div//span[text()='Chom Thong'])[last()]
     Element Should Be Enabled    //section//input[@placeholder="Select Subdistrict"]
+    Click Element    //section//header/button
 
 BusinessStructure_WS_Unlimited_Add Sub org_TC027
     [Documentation]    Subdistrict เลือกข้อมูลจาก Dropdown list
@@ -279,6 +307,7 @@ BusinessStructure_WS_Unlimited_Add Sub org_TC027
     Wait Until Page Contains    Bang Mot
     Click Element    (//div//span[text()='Bang Mot'])[last()]
     Element Should Be Enabled    //section//input[@placeholder="Select Zip / Postal Code"]
+    Click Element    //section//header/button
 
 BusinessStructure_WS_Unlimited_Add Sub org_TC028
     [Documentation]    Subdistrict เลือกข้อมูลจากการ Search
@@ -292,6 +321,7 @@ BusinessStructure_WS_Unlimited_Add Sub org_TC028
     Wait Until Page Contains    Bang Mot
     Click Element    (//div//span[text()='Bang Mot'])[last()]
     Element Should Be Enabled    //section//input[@placeholder="Select Zip / Postal Code"]
+    Click Element    //section//header/button
 
 BusinessStructure_WS_Unlimited_Add Sub org_TC029
     [Documentation]    Zip / Postal Code เลือกข้อมูลจาก Dropdown list
@@ -309,6 +339,7 @@ BusinessStructure_WS_Unlimited_Add Sub org_TC029
     Click Element    //section//input[@placeholder="Select Zip / Postal Code"]
     Wait Until Page Contains    10150
     Click Element    (//div//span[text()='10150'])[last()]
+    Click Element    //section//header/button
 
 BusinessStructure_WS_Unlimited_Add Sub org_TC030
     [Documentation]    Field Address เกิน 255 ตัวอักษร
@@ -318,9 +349,12 @@ BusinessStructure_WS_Unlimited_Add Sub org_TC030
     ...    address=51/412 หมู่บ้านตะบันเทส51/412 หมู่บ้านตะบันเทส51/412 หมู่บ้านตะบันเทส51/412 หมู่บ้านตะบันเทส51/412 หมู่บ้านตะบันเทส51/412 หมู่บ้านตะบันเทส51/412 หมู่บ้านตะบันเทส51/412 หมู่บ้านตะบันเทส51/412 หมู่บ้านตะบันเทส51/412 หมู่บ้านตะบันเทส51/412 หมู่บ้านตะบันเทส51/412 หมู่บ้านตะบันเทส51/412 หมู่บ้านตะบันเทส51/412 หมู่บ้านตะบันเทส51/412 หมู่บ้านตะบันเทส51/412 หมู่บ้านตะบันเทส51/412 หมู่บ้านตะบันเทส51/412 หมู่บ้านตะบันเทส51/412 หมู่บ้านตะบันเทส51/412 หมู่บ้านตะบันเทส51/412 หมู่บ้านตะบันเทส51/412 หมู่บ้านตะบันเทส51/412 หมู่บ้านตะบันเทส51/412 หมู่บ้านตะบันเทส51/412 หมู่บ้านตะบันเทส51/412 หมู่บ้านตะบันเทส51/412 หมู่บ้านตะบันเทส51/412 หมู่บ้านตะบันเทส51/412 หมู่บ้านตะบันเทส51/412 หมู่บ้านตะบันเทส51/412 หมู่บ้านตะบันเทส51/412 หมู่บ้านตะบันเทส
     Click Element    //button[.="Create"]
     Wait Until Page Contains Element    //p[.='You have exceeded the maximum character of 255 in this field']
+    Click Element    //section//header/button
 
 BusinessStructure_WS_Unlimited_Add Sub org_TC031
     [Documentation]    Field Address
+    [Tags]    fail     #EM-5989
+    Select Structure Item    ${org}    type=Org
     Go to modal add sub org
     Enter Organization Form    display name=กีเดี้ยน - Internal@8    english name=G1 - Internal@8
     ...    industry=Agro & Food Industry    sector=Agribusiness    
@@ -331,7 +365,6 @@ BusinessStructure_WS_Unlimited_Add Sub org_TC031
 
 BusinessStructure_WS_Unlimited_Add Sub org_TC032
     [Documentation]    ตรวจสอบการกดปุ่ม จุด 3 จุด ที่ Sub org.
-    Select Structure Item    Zpliporn Test    type=Org
     Click Current Selection Kebab Button
     Wait Until Element Is Visible    //div[@role="menu"]
     Element Should Be Visible    //div[@role="menu"]//button[.='+ Add Site']
@@ -340,7 +373,7 @@ BusinessStructure_WS_Unlimited_Add Sub org_TC032
 
 BusinessStructure_WS_Unlimited_Add Sub org_TC033
     [Documentation]    Add Sub Org. ภายใต้ Sub org.
-    Select Structure Item    กีเดี้ยน - Internal@8    type=Org
+    # Select Structure Item    กีเดี้ยน - Internal@8    type=Org
     Click Current Selection Kebab Button
     Click + Add Sub Org Menu Button
     Enter Organization Form    display name=กีเดี้ยน - Internal@9    english name=G1 - Internal@9
@@ -357,12 +390,15 @@ BusinessStructure_WS_Unlimited_Add Sub org_TC034
     Wait Until Page Contains Element    //section//p[.='Organization Display Name is required.']
     Wait Until Page Contains Element    //section//p[.='Organization name (is English) is required']
     Wait Until Page Contains Element    //section//p[.='Please select an industry']
+    Click Element    //section//header/button
 
 BusinessStructure_WS_Unlimited_Add Sub org_TC035
     [Documentation]    ตรวจสอบการแสดง Tree
+    [Tags]    fail     #EM-5989
     Select Structure Item    กีเดี้ยน - Internal@1    type=Org
     Select Structure Item    กีเดี้ยน - Internal@8    type=Org
     Wait Until Element Is Visible    //p[text()='กีเดี้ยน - Internal@9']
+    Click Element    //section//header/button
 
 
 

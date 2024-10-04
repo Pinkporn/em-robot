@@ -1,5 +1,5 @@
 *** Settings ***
-Documentation     Input Emission Regression Test
+Documentation     Update Detail Workspace Regression Test
 Resource          ../resources/BusinessStructure.resource
 Resource          business.resource
 Suite Setup       Setup Everything
@@ -120,7 +120,7 @@ BusinessStructure_WS_Unlimited_DetailWS_TC013
 
 BusinessStructure_WS_Unlimited_DetailWS_TC014
     [Documentation]    Filed Org. (in English) ชื่อซ้ำกับ Org. นอก Workspace
-    [Tags]    fail em-5983
+    [Tags]    fail     #em-5983
     Press Keys   //input[@name='name']   COMMAND+a   BACKSPACE
     Input Text    //input[@name='name']    กีเดี้ยน - Internal@1
     Press Keys   //input[@name='nameEn']   COMMAND+a   BACKSPACE
@@ -144,185 +144,185 @@ BusinessStructure_WS_Unlimited_DetailWS_TC016
     Click Element    //button[.="Save"]
     Wait Until Page Contains Element    //p[.='Organization name (is English) is required']
 
-# BusinessStructure_WS_Unlimited_DetailWS_TC017
-#     [Documentation]    Filed Org. (in Thai) ตรวจสอบการกรอกข้อมูล
-#     Press Keys   //input[@name='name']   COMMAND+a   BACKSPACE
-#     Input Text    //input[@name='name']    กีเดี้ยน - Internal@1
-#     Input Text    //input[@name='nameEn']    G1 - Internal@1
-#     Press Keys   //input[@name='nameTh']   COMMAND+a   BACKSPACE
-#     Input Text    //input[@name='nameTh']    กีเดี้ยน - เทสภายใน@1
-#     Confirm Save Update Detail Organization
-#     Wait Until Page Does Not Contain    Organization profile has been updated successfully.
+BusinessStructure_WS_Unlimited_DetailWS_TC017
+    [Documentation]    Filed Org. (in Thai) ตรวจสอบการกรอกข้อมูล
+    Press Keys   //input[@name='name']   COMMAND+a   BACKSPACE
+    Input Text    //input[@name='name']    กีเดี้ยน - Internal@1
+    Input Text    //input[@name='nameEn']    G1 - Internal@1
+    Press Keys   //input[@name='nameTh']   COMMAND+a   BACKSPACE
+    Input Text    //input[@name='nameTh']    กีเดี้ยน - เทสภายใน@1
+    Confirm Save Update Detail Organization
+    Wait Until Page Does Not Contain    Organization profile has been updated successfully.
 
-# BusinessStructure_WS_Unlimited_DetailWS_TC018
-#     [Documentation]    Filed Org. (in Thai) ไม่กรอกข้อมูล Field นี้
-#     Press Keys   //input[@name='nameTh']   COMMAND+a   BACKSPACE
-#     Input Text    //input[@name='nameTh']    ${EMPTY}
-#     Confirm Save Update Detail Organization
-#     Wait Until Page Does Not Contain    Organization profile has been updated successfully.
+BusinessStructure_WS_Unlimited_DetailWS_TC018
+    [Documentation]    Filed Org. (in Thai) ไม่กรอกข้อมูล Field นี้
+    Press Keys   //input[@name='nameTh']   COMMAND+a   BACKSPACE
+    Input Text    //input[@name='nameTh']    ${EMPTY}
+    Confirm Save Update Detail Organization
+    Wait Until Page Does Not Contain    Organization profile has been updated successfully.
 
-# BusinessStructure_WS_Unlimited_DetailWS_TC019
-#     [Documentation]    Filed Org. (in Thai) กดแป้นภาษาอังกฤแล้วพิมพ์
-#     Press Keys   //input[@name='nameTh']   COMMAND+a   BACKSPACE
-#     Input Text    //input[@name='nameTh']    TestTest
-#     Element Text Should Not Be    //input[@name='nameEn']    ${None}
+BusinessStructure_WS_Unlimited_DetailWS_TC019
+    [Documentation]    Filed Org. (in Thai) กดแป้นภาษาอังกฤแล้วพิมพ์
+    Press Keys   //input[@name='nameTh']   COMMAND+a   BACKSPACE
+    Input Text    //input[@name='nameTh']    TestTest
+    Element Text Should Not Be    //input[@name='nameEn']    ${None}
 
-# BusinessStructure_WS_Unlimited_DetailWS_TC020
-#     [Documentation]    Org. Website ตรวจสอบการกรอกข้อมูล
-#     Press Keys   //input[@name='website']   COMMAND+a   BACKSPACE
-#     Input Text    //input[@name='website']    www.g1-internaltest.com
-#     Confirm Save Update Detail Organization
-#     Wait Until Page Does Not Contain    Organization profile has been updated successfully.
+BusinessStructure_WS_Unlimited_DetailWS_TC020
+    [Documentation]    Org. Website ตรวจสอบการกรอกข้อมูล
+    Press Keys   //input[@name='website']   COMMAND+a   BACKSPACE
+    Input Text    //input[@name='website']    www.g1-internaltest.com
+    Confirm Save Update Detail Organization
+    Wait Until Page Does Not Contain    Organization profile has been updated successfully.
 
-# BusinessStructure_WS_Unlimited_DetailWS_TC021
-#     [Tags]    fail EM-5932
-#     [Documentation]    Org. Website ไม่กรอกข้อมูล Field นี้
-#     Press Keys   //input[@name='website']   COMMAND+a   BACKSPACE
-#     Input Text    //input[@name='website']    ${EMPTY}
-#     Confirm Save Update Detail Organization
+BusinessStructure_WS_Unlimited_DetailWS_TC021
+    [Tags]    fail     #EM-5932
+    [Documentation]    Org. Website ไม่กรอกข้อมูล Field นี้
+    Press Keys   //input[@name='website']   COMMAND+a   BACKSPACE
+    Input Text    //input[@name='website']    ${EMPTY}
+    Confirm Save Update Detail Organization
 
-# BusinessStructure_WS_Unlimited_DetailWS_TC022
-#     [Documentation]    Industry เลือกข้อมูลจาก Dropdown List
-#     Select Drop Down    Industry    Industrials
-#     Wait Until Element Is Enabled    //input[@placeholder="Select a sector"]
+BusinessStructure_WS_Unlimited_DetailWS_TC022
+    [Documentation]    Industry เลือกข้อมูลจาก Dropdown List
+    Select Drop Down    Industry    Industrials
+    Wait Until Element Is Enabled    //input[@placeholder="Select a sector"]
 
-# BusinessStructure_WS_Unlimited_DetailWS_TC023
-#     [Documentation]    Industry เลือกข้อมูลจากการ Search
-#     Click Element    //div[./input[@placeholder="Select an industry"]]//div/button
-#     Element Should Be Disabled    //input[@placeholder="Select a sector"]
-#     Input Text    //input[@placeholder="Select an industry"]    Re
-#     Wait Until Page Contains    Resources
-#     Click Element    //div[@value='Resources']
-#     Element Should Be Enabled    //input[@placeholder="Select a sector"]
+BusinessStructure_WS_Unlimited_DetailWS_TC023
+    [Documentation]    Industry เลือกข้อมูลจากการ Search
+    Click Element    //div[./input[@placeholder="Select an industry"]]//div/button
+    Element Should Be Disabled    //input[@placeholder="Select a sector"]
+    Input Text    //input[@placeholder="Select an industry"]    Re
+    Wait Until Page Contains    Resources
+    Click Element    //div[@value='Resources']
+    Element Should Be Enabled    //input[@placeholder="Select a sector"]
 
-# BusinessStructure_WS_Unlimited_DetailWS_TC024
-#     [Documentation]    Industry ไม่กรอกข้อมูลใน field นี้
-#     Click Element    //div[./input[@placeholder="Select an industry"]]//div/button
-#     Click Element    //button[.="Save"]
-#     Element Should Be Disabled    //input[@placeholder="Select a sector"]
-#     Wait Until Page Contains Element    //p[.='Please select an industry']
+BusinessStructure_WS_Unlimited_DetailWS_TC024
+    [Documentation]    Industry ไม่กรอกข้อมูลใน field นี้
+    Click Element    //div[./input[@placeholder="Select an industry"]]//div/button
+    Click Element    //button[.="Save"]
+    Element Should Be Disabled    //input[@placeholder="Select a sector"]
+    Wait Until Page Contains Element    //p[.='Please select an industry']
 
-# BusinessStructure_WS_Unlimited_DetailWS_TC025
-#     [Documentation]    Sector เลือกข้อมูลจาก Dropdown List
-#     Select Drop Down    Industry    Industrials
-#     Wait Until Element Is Enabled    //input[@placeholder="Select a sector"]
-#     Select Drop Down    Sector    Industrial Materials & Machinery
-#     Confirm Save Update Detail Organization
+BusinessStructure_WS_Unlimited_DetailWS_TC025
+    [Documentation]    Sector เลือกข้อมูลจาก Dropdown List
+    Select Drop Down    Industry    Industrials
+    Wait Until Element Is Enabled    //input[@placeholder="Select a sector"]
+    Select Drop Down    Sector    Industrial Materials & Machinery
+    Confirm Save Update Detail Organization
 
-# BusinessStructure_WS_Unlimited_DetailWS_TC026
-#     [Documentation]    Sector เลือกข้อมูลจากการ Search
-#     Click Element    //div[./input[@placeholder="Select an industry"]]//div/button
-#     Element Should Be Disabled    //input[@placeholder="Select a sector"]
-#     Input Text    //input[@placeholder="Select an industry"]    Re
-#     Wait Until Page Contains    Resources
-#     Click Element    //div[@value='Resources']
-#     Element Should Be Enabled    //input[@placeholder="Select a sector"]
-#     Input Text    //input[@placeholder="Select a sector"]    Ener
-#     Wait Until Page Contains    Energy & Utilities
-#     Click Element    //span[text()='Energy & Utilities']
-#     Confirm Save Update Detail Organization
+BusinessStructure_WS_Unlimited_DetailWS_TC026
+    [Documentation]    Sector เลือกข้อมูลจากการ Search
+    Click Element    //div[./input[@placeholder="Select an industry"]]//div/button
+    Element Should Be Disabled    //input[@placeholder="Select a sector"]
+    Input Text    //input[@placeholder="Select an industry"]    Re
+    Wait Until Page Contains    Resources
+    Click Element    //div[@value='Resources']
+    Element Should Be Enabled    //input[@placeholder="Select a sector"]
+    Input Text    //input[@placeholder="Select a sector"]    Ener
+    Wait Until Page Contains    Energy & Utilities
+    Click Element    //span[text()='Energy & Utilities']
+    Confirm Save Update Detail Organization
 
-# BusinessStructure_WS_Unlimited_DetailWS_TC027
-#     [Documentation]    Sector ไม่กรอกข้อมูลใน field นี้
-#     Click Element    //div[./input[@placeholder="Select a sector"]]//div/button
-#     Click Element    //button[.="Save"]
-#     Wait Until Page Contains Element    //p[.='Please select sector']
+BusinessStructure_WS_Unlimited_DetailWS_TC027
+    [Documentation]    Sector ไม่กรอกข้อมูลใน field นี้
+    Click Element    //div[./input[@placeholder="Select a sector"]]//div/button
+    Click Element    //button[.="Save"]
+    Wait Until Page Contains Element    //p[.='Please select sector']
 
-# BusinessStructure_WS_Unlimited_DetailWS_TC028
-#     [Documentation]    Country เลือกข้อมูลจาก Dropdown list
-#     Click Element    //input[@placeholder="Select Country"]
-#     Wait Until Page Contains    Thailand
-#     Click Element    //span[text()='Thailand']
-#     Element Should Be Enabled    //input[@placeholder="Select State / Province"]
+BusinessStructure_WS_Unlimited_DetailWS_TC028
+    [Documentation]    Country เลือกข้อมูลจาก Dropdown list
+    Click Element    //input[@placeholder="Select Country"]
+    Wait Until Page Contains    Thailand
+    Click Element    //span[text()='Thailand']
+    Element Should Be Enabled    //input[@placeholder="Select State / Province"]
 
-# BusinessStructure_WS_Unlimited_DetailWS_TC029
-#     [Documentation]    State / Province เลือกข้อมูลจาก Dropdown list
-#     Click Element    //input[@placeholder="Select State / Province"]
-#     Wait Until Page Contains    Bangkok
-#     Click Element    //span[text()='Bangkok']
-#     Element Should Be Enabled    //input[@placeholder="Select District"]
+BusinessStructure_WS_Unlimited_DetailWS_TC029
+    [Documentation]    State / Province เลือกข้อมูลจาก Dropdown list
+    Click Element    //input[@placeholder="Select State / Province"]
+    Wait Until Page Contains    Bangkok
+    Click Element    //span[text()='Bangkok']
+    Element Should Be Enabled    //input[@placeholder="Select District"]
 
-# BusinessStructure_WS_Unlimited_DetailWS_TC030
-#     [Documentation]    State / Province เลือกข้อมูลจากการ Search
-#     Scroll Element Into View    //input[@name='address']
-#     Click Element    //input[@placeholder="Select State / Province"]
-#     Press Keys   //input[@placeholder="Select State / Province"]   COMMAND+a   BACKSPACE
-#     Input Text    //input[@placeholder="Select State / Province"]    B
-#     Wait Until Page Contains    Bangkok
-#     Click Element    //span[text()='Bangkok']
-#     Element Should Be Enabled    //input[@placeholder="Select District"]
+BusinessStructure_WS_Unlimited_DetailWS_TC030
+    [Documentation]    State / Province เลือกข้อมูลจากการ Search
+    Scroll Element Into View    //input[@name='address']
+    Click Element    //input[@placeholder="Select State / Province"]
+    Press Keys   //input[@placeholder="Select State / Province"]   COMMAND+a   BACKSPACE
+    Input Text    //input[@placeholder="Select State / Province"]    B
+    Wait Until Page Contains    Bangkok
+    Click Element    //span[text()='Bangkok']
+    Element Should Be Enabled    //input[@placeholder="Select District"]
 
-# BusinessStructure_WS_Unlimited_DetailWS_TC031
-#     [Documentation]    District เลือกข้อมูลจาก Dropdown list
-#     Scroll Element Into View    //input[@name='address']
-#     Click Element    //input[@placeholder="Select District"]
-#     Wait Until Page Contains    Chom Thong
-#     Click Element    //span[text()='Chom Thong']
-#     Element Should Be Enabled    //input[@placeholder="Select Subdistrict"]
+BusinessStructure_WS_Unlimited_DetailWS_TC031
+    [Documentation]    District เลือกข้อมูลจาก Dropdown list
+    Scroll Element Into View    //input[@name='address']
+    Click Element    //input[@placeholder="Select District"]
+    Wait Until Page Contains    Chom Thong
+    Click Element    //span[text()='Chom Thong']
+    Element Should Be Enabled    //input[@placeholder="Select Subdistrict"]
 
-# BusinessStructure_WS_Unlimited_DetailWS_TC032
-#     [Documentation]    District เลือกข้อมูลจากการ Search
-#     Select Drop Down    Sector    Energy & Utilities
-#     Scroll Element Into View    //input[@name='address']
-#     Click Element    //input[@placeholder="Select District"]
-#     Press Keys   //input[@placeholder="Select District"]   COMMAND+a   BACKSPACE
-#     Input Text    //input[@placeholder="Select District"]    Ch
-#     Wait Until Page Contains    Chom Thong
-#     Click Element    //span[text()='Chom Thong']
-#     Element Should Be Enabled    //input[@placeholder="Select Subdistrict"]
-#     Confirm Save Update Detail Organization
+BusinessStructure_WS_Unlimited_DetailWS_TC032
+    [Documentation]    District เลือกข้อมูลจากการ Search
+    Select Drop Down    Sector    Energy & Utilities
+    Scroll Element Into View    //input[@name='address']
+    Click Element    //input[@placeholder="Select District"]
+    Press Keys   //input[@placeholder="Select District"]   COMMAND+a   BACKSPACE
+    Input Text    //input[@placeholder="Select District"]    Ch
+    Wait Until Page Contains    Chom Thong
+    Click Element    //span[text()='Chom Thong']
+    Element Should Be Enabled    //input[@placeholder="Select Subdistrict"]
+    Confirm Save Update Detail Organization
 
-# BusinessStructure_WS_Unlimited_DetailWS_TC033
-#     [Documentation]    Subdistrict เลือกข้อมูลจาก Dropdown list
-#     Scroll Element Into View    //input[@name='address']
-#     Click Element    //input[@placeholder="Select Subdistrict"]
-#     Wait Until Page Contains    Bang Mot
-#     Click Element    //span[text()='Bang Mot']
-#     Element Should Be Enabled    //input[@placeholder="Select Zip / Postal Code"]
+BusinessStructure_WS_Unlimited_DetailWS_TC033
+    [Documentation]    Subdistrict เลือกข้อมูลจาก Dropdown list
+    Scroll Element Into View    //input[@name='address']
+    Click Element    //input[@placeholder="Select Subdistrict"]
+    Wait Until Page Contains    Bang Mot
+    Click Element    //span[text()='Bang Mot']
+    Element Should Be Enabled    //input[@placeholder="Select Zip / Postal Code"]
 
-# BusinessStructure_WS_Unlimited_DetailWS_TC034
-#     [Documentation]    Subdistrict เลือกข้อมูลจากการ Search
-#     Scroll Element Into View    //input[@name='address']
-#     Click Element    //input[@placeholder="Select Subdistrict"]
-#     Press Keys   //input[@placeholder="Select Subdistrict"]   COMMAND+a   BACKSPACE
-#     Input Text    //input[@placeholder="Select Subdistrict"]    Bang
-#     Wait Until Page Contains    Bang Mot
-#     Click Element    //span[text()='Bang Mot']
-#     Element Should Be Enabled    //input[@placeholder="Select Zip / Postal Code"]
-#     Confirm Save Update Detail Organization
+BusinessStructure_WS_Unlimited_DetailWS_TC034
+    [Documentation]    Subdistrict เลือกข้อมูลจากการ Search
+    Scroll Element Into View    //input[@name='address']
+    Click Element    //input[@placeholder="Select Subdistrict"]
+    Press Keys   //input[@placeholder="Select Subdistrict"]   COMMAND+a   BACKSPACE
+    Input Text    //input[@placeholder="Select Subdistrict"]    Bang
+    Wait Until Page Contains    Bang Mot
+    Click Element    //span[text()='Bang Mot']
+    Element Should Be Enabled    //input[@placeholder="Select Zip / Postal Code"]
+    Confirm Save Update Detail Organization
 
-# BusinessStructure_WS_Unlimited_DetailWS_TC035
-#     [Documentation]    Zip / Postal Code เลือกข้อมูลจาก Dropdown list
-#     Scroll Element Into View    //input[@name='address']
-#     Click Element    //input[@placeholder="Select Zip / Postal Code"]
-#     Wait Until Page Contains    10150
-#     Click Element    //span[text()='10150']
-#     Confirm Save Update Detail Organization
+BusinessStructure_WS_Unlimited_DetailWS_TC035
+    [Documentation]    Zip / Postal Code เลือกข้อมูลจาก Dropdown list
+    Scroll Element Into View    //input[@name='address']
+    Click Element    //input[@placeholder="Select Zip / Postal Code"]
+    Wait Until Page Contains    10150
+    Click Element    //span[text()='10150']
+    Confirm Save Update Detail Organization
 
-# BusinessStructure_WS_Unlimited_DetailWS_TC036
-#     [Documentation]    Field Address
-#     Scroll Element Into View    //input[@name='address']
-#     Press Keys   //input[@name='address']   COMMAND+a   BACKSPACE
-#     Input Text    //input[@name='address']    416/05 หมู่บ้านร่มเย็นใจ   
-#     Confirm Save Update Detail Organization
+BusinessStructure_WS_Unlimited_DetailWS_TC036
+    [Documentation]    Field Address
+    Scroll Element Into View    //input[@name='address']
+    Press Keys   //input[@name='address']   COMMAND+a   BACKSPACE
+    Input Text    //input[@name='address']    416/05 หมู่บ้านร่มเย็นใจ   
+    Confirm Save Update Detail Organization
 
-# BusinessStructure_WS_Unlimited_DetailWS_TC037
-#     [Documentation]    Field Address เกิน 30 ตัวอักษร
-#     Click Element   //input[@name='address']
-#     Press Keys   //input[@name='address']   COMMAND+a   BACKSPACE
-#     Input Text    //input[@name='address']    416/05 หมู่บ้านร่มเย็นใจ416/05 หมู่บ้านร่มเย็นใจ416/05 หมู่บ้านร่มเย็นใจ416/05 หมู่บ้านร่มเย็นใจ416/05 หมู่บ้านร่มเย็นใจ416/05 หมู่บ้านร่มเย็นใจ416/05 หมู่บ้านร่มเย็นใจ416/05 หมู่บ้านร่มเย็นใจ416/05 หมู่บ้านร่มเย็นใจ416/05 หมู่บ้านร่มเย็นใจ416/05 หมู่บ้านร่มเย็นใจ416/05 หมู่บ้านร่มเย็นใจ416/05 หมู่บ้านร่มเย็นใจ416/05 หมู่บ้านร่มเย็นใจ416/05 หมู่บ้านร่มเย็นใจ416/05 หมู่บ้านร่มเย็นใจ416/05 หมู่บ้านร่มเย็นใจ416/05 หมู่บ้านร่มเย็นใจ416/05 หมู่บ้านร่มเย็นใจ416/05 หมู่บ้านร่มเย็นใจ416/05 หมู่บ้านร่มเย็นใจ416/05 หมู่บ้านร่มเย็นใจ416/05 หมู่บ้านร่มเย็นใจ416/05 หมู่บ้านร่มเย็นใจ416/05 หมู่บ้านร่มเย็นใจ416/05 หมู่บ้านร่มเย็นใจ416/05 หมู่บ้านร่มเย็นใจ416/05 หมู่บ้านร่มเย็นใจ416/05 หมู่บ้านร่มเย็นใจ416/05 หมู่บ้านร่มเย็นใจ416/05 หมู่บ้านร่มเย็นใจ416/05 หมู่บ้านร่มเย็นใจ416/05 หมู่บ้านร่มเย็นใจ416/05 หมู่บ้านร่มเย็นใจ416/05 หมู่บ้านร่มเย็นใจ416/05 หมู่บ้านร่มเย็นใจ416/05 หมู่บ้านร่มเย็นใจ416/05 หมู่บ้านร่มเย็นใจ416/05 หมู่บ้านร่มเย็นใจ416/05 หมู่บ้านร่มเย็นใจ416/05 หมู่บ้านร่มเย็นใจ416/05 หมู่บ้านร่มเย็นใจ416/05 หมู่บ้านร่มเย็นใจ416/05 หมู่บ้านร่มเย็นใจ"   
-#     Click Element    //button[.="Save"]
-#     Wait Until Page Contains Element    //p[.='You have exceeded the maximum character of 255 in this field']
+BusinessStructure_WS_Unlimited_DetailWS_TC037
+    [Documentation]    Field Address เกิน 30 ตัวอักษร
+    Click Element   //input[@name='address']
+    Press Keys   //input[@name='address']   COMMAND+a   BACKSPACE
+    Input Text    //input[@name='address']    416/05 หมู่บ้านร่มเย็นใจ416/05 หมู่บ้านร่มเย็นใจ416/05 หมู่บ้านร่มเย็นใจ416/05 หมู่บ้านร่มเย็นใจ416/05 หมู่บ้านร่มเย็นใจ416/05 หมู่บ้านร่มเย็นใจ416/05 หมู่บ้านร่มเย็นใจ416/05 หมู่บ้านร่มเย็นใจ416/05 หมู่บ้านร่มเย็นใจ416/05 หมู่บ้านร่มเย็นใจ416/05 หมู่บ้านร่มเย็นใจ416/05 หมู่บ้านร่มเย็นใจ416/05 หมู่บ้านร่มเย็นใจ416/05 หมู่บ้านร่มเย็นใจ416/05 หมู่บ้านร่มเย็นใจ416/05 หมู่บ้านร่มเย็นใจ416/05 หมู่บ้านร่มเย็นใจ416/05 หมู่บ้านร่มเย็นใจ416/05 หมู่บ้านร่มเย็นใจ416/05 หมู่บ้านร่มเย็นใจ416/05 หมู่บ้านร่มเย็นใจ416/05 หมู่บ้านร่มเย็นใจ416/05 หมู่บ้านร่มเย็นใจ416/05 หมู่บ้านร่มเย็นใจ416/05 หมู่บ้านร่มเย็นใจ416/05 หมู่บ้านร่มเย็นใจ416/05 หมู่บ้านร่มเย็นใจ416/05 หมู่บ้านร่มเย็นใจ416/05 หมู่บ้านร่มเย็นใจ416/05 หมู่บ้านร่มเย็นใจ416/05 หมู่บ้านร่มเย็นใจ416/05 หมู่บ้านร่มเย็นใจ416/05 หมู่บ้านร่มเย็นใจ416/05 หมู่บ้านร่มเย็นใจ416/05 หมู่บ้านร่มเย็นใจ416/05 หมู่บ้านร่มเย็นใจ416/05 หมู่บ้านร่มเย็นใจ416/05 หมู่บ้านร่มเย็นใจ416/05 หมู่บ้านร่มเย็นใจ416/05 หมู่บ้านร่มเย็นใจ416/05 หมู่บ้านร่มเย็นใจ416/05 หมู่บ้านร่มเย็นใจ416/05 หมู่บ้านร่มเย็นใจ416/05 หมู่บ้านร่มเย็นใจ"   
+    Click Element    //button[.="Save"]
+    Wait Until Page Contains Element    //p[.='You have exceeded the maximum character of 255 in this field']
 
-# BusinessStructure_WS_Unlimited_DetailWS_TC039
-#     [Documentation]     require field
-#     Click Element   //input[@name='name']
-#     Press Keys   //input[@name='name']   COMMAND+a   BACKSPACE
-#     Click Element   //input[@name='nameEn']
-#     Press Keys   //input[@name='nameEn']   COMMAND+a   BACKSPACE
-#     Click Element    //div[./input[@placeholder="Select an industry"]]//div/button
-#     Element Should Be Disabled    //input[@placeholder="Select a sector"]
-#     Click Element    //button[.="Save"]
-#     Wait Until Page Contains Element    //p[.='Organization Display Name is required.']
-#     Wait Until Page Contains Element    //p[.='Organization name (is English) is required']
-#     Wait Until Page Contains Element    //p[.='Please select an industry']
+BusinessStructure_WS_Unlimited_DetailWS_TC039
+    [Documentation]     require field
+    Click Element   //input[@name='name']
+    Press Keys   //input[@name='name']   COMMAND+a   BACKSPACE
+    Click Element   //input[@name='nameEn']
+    Press Keys   //input[@name='nameEn']   COMMAND+a   BACKSPACE
+    Click Element    //div[./input[@placeholder="Select an industry"]]//div/button
+    Element Should Be Disabled    //input[@placeholder="Select a sector"]
+    Click Element    //button[.="Save"]
+    Wait Until Page Contains Element    //p[.='Organization Display Name is required.']
+    Wait Until Page Contains Element    //p[.='Organization name (is English) is required']
+    Wait Until Page Contains Element    //p[.='Please select an industry']
