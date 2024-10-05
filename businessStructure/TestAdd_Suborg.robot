@@ -28,6 +28,7 @@ Go to modal add sub org
 *** Test Cases ***
 BusinessStructure_WS_Unlimited_Add Sub org_TC001
     [Documentation]    ตรวจสอบหน้าจอของ Modal "+Add Sub Org."
+    [Tags]    fail    #EM-5992
     Go to modal add sub org
     Check Require Field    Sub-Organization Display Name *
     Element Should Be Visible    //section//input[@name='name']
@@ -52,7 +53,7 @@ BusinessStructure_WS_Unlimited_Add Sub org_TC001
     Check Require Field    Zip / Postal Code
     Element Should Be Visible    //section//input[@placeholder="Select Zip / Postal Code"]
     Check Require Field    Address
-    Element Should Be Enabled    //section//button[.="Create"]
+    Element Should Be Disabled    //section//button[.="Create"]
     Element Should Be Visible    //section//header//button
     Click Element    //section//header/button
 
