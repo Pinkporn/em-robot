@@ -394,9 +394,5 @@ BusinessStructure_WS_Unlimited_Add Sub org_TC035
     [Documentation]    ตรวจสอบการแสดง Tree
     Click Element    //*[local-name()='svg' and ./following-sibling::div[.='กีเดี้ยน - Internal@1']]
     Select Structure Item    กีเดี้ยน - Internal@8    type=Org
+    Click Element    //*[local-name()='svg' and ./following-sibling::div[.='กีเดี้ยน - Internal@8']]
     Wait Until Page Contains Element   //*[local-name()='svg' and ./following-sibling::div[.='กีเดี้ยน - Internal@9']]
-
-
-
-
-
