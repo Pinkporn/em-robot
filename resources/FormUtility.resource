@@ -119,7 +119,7 @@ Select Date of Activity
     ...    มักจะได้ใช้ใน form ของ add emission หรือ add eco-efficiency
     [Arguments]    ${from}=${None}    ${to}=${None}
     IF  $from is None and $to is None
-        ${date button}    Get WebElements    //button[contains(@aria-label, "Date")]
+        ${date button}    Get WebElements    //button[@data-dates-input]
         IF  $date_button
             Click Element    ${date button}[0]
             Press Keys    ${None}    TAB    TAB    RETURN    RETURN
@@ -244,6 +244,7 @@ Select Orgs Structure Drop Down
         VAR    ${locator}   //input[@placeholder="Select Organization"]/../..
     END
     # คลิกปุ่ม drop down จาก ${locator}
+    Wait Until Element Is Visible    ${locator}
     ${element}    Get WebElement    ${locator}
     Evaluate    $element.click()
     Wait Until Element Is Visible    //div[@role='presentation' and not(contains(@style,'display: none'))]
