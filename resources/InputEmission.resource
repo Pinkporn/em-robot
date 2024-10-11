@@ -36,6 +36,7 @@ Go To Input Emission By Url
 Add Emission Page 1 2
     [Arguments]    ${org name}    ${site name}    ${group}
     Wait Until Element Is Visible    //span[.='+ Add Emission']
+    Scroll Element Into View    //span[.='+ Add Emission']
     Click Element    //span[.='+ Add Emission']
     VAR    ${org input}    //input[@id=//form//label[text()='Organization']/@for]
     Wait For Expected Condition    element_to_be_clickable    ${{('xpath', $org_input)}}
