@@ -132,8 +132,8 @@ Check Record Emission
 Close Unsaved Changes Form
     [Documentation]    ปิด modal ตอนกำลังกรอกข้อมูล emission
     Click Element    (//section//header//button)[last()]
-    Wait Until Element Is Visible    //button[.='Confirm']    timeout=1
-    Click Element    //button[.='Confirm']
+    Wait Until Element Is Visible    //button[.='Leave']    timeout=1
+    Click Element    //button[.='Leave']
     Wait Until Element Is Not Visible    //section
 
 # ======== Enter Emission Form ========
