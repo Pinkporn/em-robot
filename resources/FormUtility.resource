@@ -378,7 +378,7 @@ Get Toast Status
     ...
     ...    อ่านเพิ่มเติมที่ [https://github.com/Pinkporn/em-robot/pull/9#get-toast-status| pull request 9]
     [Arguments]    ${toast no}=1    @{}    ${required}=${False}
-    VAR    ${symbol_xpath}    ((//div[@role='status'])[${toast no}]/..//div[not(node())])[last()]
+    VAR    ${symbol_xpath}    ((//div[@role='status'])[${toast no}]/..//div[not(node()) and @class])[last()]
     ${status}    Find WebElement    ${symbol_xpath}    required=${required}
     IF  $status is None    RETURN
     ${rgba}    Evaluate    ${status.value_of_css_property("background-color")}[4:]
